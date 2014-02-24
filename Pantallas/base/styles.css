@@ -1,0 +1,22 @@
+.jumbotronBackground {
+	background-image: url('IMG_2429.jpg');
+	color: white;
+	text-shadow: black 0.2em 0.2em 0.2em;
+	background-position: 20% 60%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.padContainer {
+	padding-top: 30px;
+}
+
+.separateContainers {
+	padding-left: 20px;
+}
+
+.navbarMargin {
+	margin-bottom: 0px;
+}

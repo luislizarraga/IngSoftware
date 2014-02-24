@@ -1,0 +1,1052 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"foo",
+				"footerstudent"
+			],
+			[
+				"footer",
+				"footerstock"
+			],
+			[
+				"modal",
+				"modal-buttons"
+			],
+			[
+				"sc",
+				"JavaScript"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"paddin",
+				"padding-left"
+			],
+			[
+				"Room",
+				"RoomController"
+			],
+			[
+				"N",
+				"NEXTOR"
+			],
+			[
+				"NEXTORVozeroPortalBundle_indexCostCen",
+				"NEXTORVozeroPortalBundle_indexCostCenters"
+			],
+			[
+				"cost",
+				"costCenters"
+			],
+			[
+				"costCente",
+				"costCenterAux"
+			],
+			[
+				"costC",
+				"costCenter"
+			],
+			[
+				"co",
+				"CostCenter"
+			],
+			[
+				"cos",
+				"costCentersArr"
+			],
+			[
+				"rooms",
+				"roomsarr"
+			],
+			[
+				"room",
+				"roomsarr"
+			],
+			[
+				"dataPo",
+				"dataPointDuration"
+			],
+			[
+				"data",
+				"dataPointDuration"
+			],
+			[
+				"C",
+				"cCRooms"
+			],
+			[
+				"arra",
+				"array	$… = array (…)"
+			],
+			[
+				"getR",
+				"getRoomId"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"act",
+				"activeDNISGraph"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"y",
+				"year"
+			],
+			[
+				"F",
+				"Feb"
+			],
+			[
+				"get",
+				"getMonth"
+			],
+			[
+				"da",
+				"dataPointCost"
+			],
+			[
+				"skypebutton",
+				"skypebuttonvozeromx"
+			],
+			[
+				"getD",
+				"getDay"
+			],
+			[
+				"day",
+				"daysInMonth"
+			],
+			[
+				"grap",
+				"graph4"
+			],
+			[
+				"tot",
+				"totalCost"
+			],
+			[
+				"totalC",
+				"totalCost"
+			],
+			[
+				"fo",
+				"foreach	foreach …"
+			],
+			[
+				"mon",
+				"monthName"
+			],
+			[
+				"hacer",
+				"hacer1"
+			],
+			[
+				"renderer",
+				"rendererOptions"
+			],
+			[
+				"jq",
+				"jqplot"
+			],
+			[
+				"show",
+				"showTicks"
+			],
+			[
+				"sere",
+				"seriesDefaults"
+			],
+			[
+				"series",
+				"seriesDefaults"
+			],
+			[
+				"ti",
+				"ticks2"
+			],
+			[
+				"tick",
+				"ticks1"
+			],
+			[
+				"total",
+				"totalCost"
+			],
+			[
+				"mt",
+				"mt_rand"
+			],
+			[
+				"va",
+				"válida"
+			],
+			[
+				"RoomTypeWizard",
+				"RoomTypeWizardStep3"
+			],
+			[
+				"gen",
+				"generateRan"
+			],
+			[
+				"array",
+				"array"
+			],
+			[
+				"D",
+				"Dijkstra"
+			],
+			[
+				"add",
+				"addVertex"
+			],
+			[
+				"Lis",
+				"List"
+			],
+			[
+				"verte",
+				"Vertex"
+			],
+			[
+				"d",
+				"distances"
+			],
+			[
+				"ge",
+				"getnVertices"
+			],
+			[
+				"pr",
+				"println"
+			],
+			[
+				"to",
+				"toString"
+			],
+			[
+				"Bin",
+				"BinomialQueueContainer"
+			],
+			[
+				"Binom",
+				"BinomialQueueContainer"
+			],
+			[
+				"I",
+				"Iterator"
+			],
+			[
+				"gener",
+				"generateQ"
+			],
+			[
+				"Min",
+				"minIndex"
+			],
+			[
+				"Bno",
+				"BinomialQueueContainer"
+			],
+			[
+				"gene",
+				"generateQ"
+			],
+			[
+				"comp",
+				"compareBQC"
+			],
+			[
+				"com",
+				"compareBQC"
+			],
+			[
+				"s",
+				"start"
+			],
+			[
+				"aux",
+				"aux2"
+			],
+			[
+				"si",
+				"size"
+			],
+			[
+				"Bino",
+				"BinomialQueue"
+			],
+			[
+				"que",
+				"queue"
+			],
+			[
+				"au",
+				"aux2"
+			],
+			[
+				"Bina",
+				"BinomialQueueContainer"
+			],
+			[
+				"bqc",
+				"bqc1"
+			],
+			[
+				"bq",
+				"bqc1"
+			],
+			[
+				"ele",
+				"element"
+			],
+			[
+				"pad",
+				"padreV1"
+			],
+			[
+				"M",
+				"MinimumSpanningTree"
+			],
+			[
+				"vert",
+				"vertices"
+			],
+			[
+				"rep",
+				"representantes"
+			],
+			[
+				"padr",
+				"padreV2"
+			],
+			[
+				"pa",
+				"padres"
+			],
+			[
+				"VERT",
+				"vertices"
+			],
+			[
+				"re",
+				"representantes"
+			],
+			[
+				"h",
+				"h3	Tag"
+			],
+			[
+				"t",
+				"td	Tag"
+			],
+			[
+				"th",
+				"th	Tag"
+			],
+			[
+				"se",
+				"section	Tag"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"Pin",
+				"Pinset"
+			],
+			[
+				"tarifica_pins",
+				"tarifica_pinset"
+			],
+			[
+				"pinset_",
+				"pinset_number"
+			],
+			[
+				"is",
+				"isoformat"
+			],
+			[
+				"destina",
+				"destinations"
+			],
+			[
+				"esc",
+				"escribirArchivo"
+			],
+			[
+				"nom",
+				"nombre"
+			],
+			[
+				"line",
+				"lineas"
+			],
+			[
+				"leer",
+				"leerArchivo"
+			],
+			[
+				"date",
+				"datetime"
+			],
+			[
+				"month",
+				"monthCost"
+			],
+			[
+				"end",
+				"end_date_month"
+			],
+			[
+				"tarifi",
+				"tarifica_userdailydetail"
+			],
+			[
+				"mont",
+				"month"
+			],
+			[
+				"st",
+				"strftime"
+			],
+			[
+				"sda",
+				"sdate"
+			],
+			[
+				"days",
+				"days_data"
+			],
+			[
+				"timd",
+				"timedelta"
+			],
+			[
+				"time",
+				"timedelta"
+			],
+			[
+				"Ex",
+				"Ext"
+			],
+			[
+				"exte",
+				"extension_id"
+			],
+			[
+				"extens",
+				"extension_id"
+			],
+			[
+				"tari",
+				"tarifica_call"
+			],
+			[
+				"tarific",
+				"tarifica_call"
+			],
+			[
+				"exten",
+				"extension_id"
+			],
+			[
+				"getBarChartInfoBy",
+				"getBarChartInfoByLocale"
+			],
+			[
+				"tarifica_dest",
+				"tarifica_destinationname"
+			],
+			[
+				"tarifica_des",
+				"tarifica_destinationname"
+			],
+			[
+				"tarifica_destination",
+				"tarifica_destinationname"
+			],
+			[
+				"extension",
+				"extension_number"
+			],
+			[
+				"form",
+				"form"
+			],
+			[
+				"last",
+				"last_month"
+			],
+			[
+				"las",
+				"last_month"
+			],
+			[
+				"star",
+				"start_date"
+			],
+			[
+				"bill",
+				"billing_period_cost"
+			],
+			[
+				"this",
+				"thisBillingPeriod"
+			],
+			[
+				"prov",
+				"providers"
+			],
+			[
+				"tar",
+				"tarifica_userdailydetail"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "styles.css",
+			"settings":
+			{
+				"buffer_size": 387,
+				"line_ending": "Unix",
+				"name": "styles.css"
+			}
+		},
+		{
+			"file": "baseinisesion.html",
+			"settings":
+			{
+				"buffer_size": 3652,
+				"line_ending": "Unix",
+				"name": "baseinisesion.html"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <title>Escuela de Inglés</title>\n    <meta name=\"description\" content=\"Vozero MX Conferencing Application\">\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <!-- Latest compiled and minified CSS -->\n	<link rel=\"stylesheet\" href=\"http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css\">\n	<link rel=\"stylesheet\" href=\"styles.css\">\n\n	<!-- Optional theme -->\n	<link rel=\"stylesheet\" href=\"http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css\">\n</head>\n<body>\n 	\n	<nav class=\"navbar navbar-inverse navbarMargin navbar-fixed-top\" role=\"navigation\">\n      <div class=\"container\">\n        <div class=\"navbar-header\">\n          <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n          </button>\n          <a class=\"navbar-brand\" href=\"#\">Escuela de Inglés</a>\n        </div>\n        <div class=\"navbar-collapse collapse\">\n          <div class=\"navbar-right navbar-form\">\n          <!-- <form class=\"navbar-form navbar-right\" role=\"form\">\n            <div class=\"form-group\">\n              <input type=\"text\" placeholder=\"Email\" class=\"form-control\">\n            </div>\n            <div class=\"form-group\">\n              <input type=\"password\" placeholder=\"Password\" class=\"form-control\">\n            </div>\n            <button type=\"submit\" class=\"btn btn-success\">Sign in</button> -->\n            <!-- <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">\n              Iniciar sesión\n            </button> -->\n            <a href=\"#modalRegistration\" role='button' data-toggle=\"modal\" class=\"btn btn-primary\">Registrarse</a>\n            <a href=\"#modalLogIn\" role='button' data-toggle=\"modal\" class=\"btn btn-success\">Iniciar sesión</a>\n<!--           </form> -->\n          </div>\n        </div><!--/.navbar-collapse -->\n      </div>\n    </nav>\n\n    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"jumbotron jumbotronBackground\">\n      <div class=\"container\">\n        <h1>Hola!</h1>\n        <p>Somos la primer escuela de inglés con precios accesibles y clases personales</p>\n        <p>Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>\n        <p><a class=\"btn btn-primary btn-lg\" role=\"button\">Conócenos &raquo;</a></p>\n      </div>\n    </div>\n\n    <div class=\"container padContainer\">\n    	<div class=\"row\">\n    		<div class=\"col-md-3\">\n    			<ul class=\"nav nav-pills nav-stacked\">\n  					<li class=\"active\">\n  						<a href=\"#\">Conócenos</a>\n  					</li>\n            <li>\n              <a href=\"#\">Maestros</a>\n            </li>\n            <li>\n              <a href=\"#\">Conócenos</a>\n            </li>\n  					<li>\n  						<a href=\"#\">Contactanos</a>\n  					</li>\n				  </ul>\n    		</div>\n    		<div class=\"col-md-9\">\n    			<p class=\"lead\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n    			</p>\n          <p class=\"lead\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n          </p>\n    		</div>\n    	</div>\n    </div>\n\n    <div class=\"container\">\n      <!-- Example row of columns -->\n      <div class=\"row\">\n        <div class=\"col-md-4\">\n          <h2>Toefl gratis!</h2>\n          <p>El Gobierno Federal apoyará la iniciativa de los Diputados para que modifiquen las leyes de educación de tal forma que, en apoyo a los estudiantes y personas de bajos recursos, la población se pueda certificar en el idioma inglés gratuitamente. </p>\n          <p><a class=\"btn btn-default\" href=\"#\" role=\"button\">Ver detalles &raquo;</a></p>\n        </div>\n        <div class=\"col-md-4\">\n          <h2>Toefl gratis!</h2>\n          <p>El Gobierno Federal apoyará la iniciativa de los Diputados para que modifiquen las leyes de educación de tal forma que, en apoyo a los estudiantes y personas de bajos recursos, la población se pueda certificar en el idioma inglés gratuitamente. </p>\n          <p><a class=\"btn btn-default\" href=\"#\" role=\"button\">Ver detalles &raquo;</a></p>\n       </div>\n        <div class=\"col-md-4\">\n          <h2>Toefl gratis!</h2>\n          <p>El Gobierno Federal apoyará la iniciativa de los Diputados para que modifiquen las leyes de educación de tal forma que, en apoyo a los estudiantes y personas de bajos recursos, la población se pueda certificar en el idioma inglés gratuitamente. </p>\n          <p><a class=\"btn btn-default\" href=\"#\" role=\"button\">Ver detalles &raquo;</a></p>\n        </div>\n      </div>\n\n      <!-- Modals -->\n      <div class=\"modal fade bs-example-modal-sm\" id=\"modalLogIn\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modalLogInLabel\" aria-hidden=\"true\">\n        <div id=\"modaldialogLogIn\" class=\"modal-dialog modal-sm\">\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n              <h4 class=\"modal-title\" id=\"modalLogInLabel1\">Iniciar sesión como:</h4>\n              <h4 class=\"modal-title\" id=\"modalLogInLabel2\">Iniciar sesión</h4>\n            </div>\n            <div class=\"modal-body\">\n              <div id=\"modal-buttonsLogIn\" class=\"text-center\">\n                  <button id=\"studentbuttonLogIn\" class=\"btn btn-success\">Alumno</button>\n                  <button id=\"professorbuttonLogIn\" class=\"btn btn-success\">Profesor</button>\n              </div>\n              <div id=\"studentLogIn\">\n                <form class=\"form-horizontal\" role=\"form\">\n                  <div class=\"form-group\">\n                    <label for=\"mail\" class=\"col-sm-3 control-label\">E-mail</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"mail\" type=\"text\" placeholder=\"Email\" class=\"form-control\">\n                    </div>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"pass\" class=\"col-sm-3 control-label\">Contraseña</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"pass\" type=\"Contraseña\" placeholder=\"Password\" class=\"form-control\">\n                    </div>\n                  </div>\n                </form>\n              </div>\n              <div id=\"professorLogIn\">\n                <form class=\"form-horizontal\" role=\"form\">\n                  <div class=\"form-group\">\n                    <label for=\"mail\" class=\"col-sm-3 control-label\">E-mail</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"mail\" type=\"text\" placeholder=\"Email\" class=\"form-control\">\n                    </div>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"pass\" class=\"col-sm-3 control-label\">Contraseña</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"pass\" type=\"Contraseña\" placeholder=\"Password\" class=\"form-control\">\n                    </div>\n                  </div>\n                </form>\n              </div>\n            </div>\n            <div id=\"footerstockLogIn\" class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cerrar</button>\n            </div>\n            <div id=\"footerstudentLogIn\" class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-primary\">Iniciar Sesión</button>\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cerrar</button>\n            </div>\n            <div id=\"footerprofessorLogIn\" class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-primary\">Iniciar Sesión</button>\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cerrar</button>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"modal fade bs-example-modal-sm\" id=\"modalRegistration\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"modalRegistrationLabel\" aria-hidden=\"true\">\n        <div id=\"modaldialogRegistration\" class=\"modal-dialog modal-sm\">\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n              <h4 class=\"modal-title\" id=\"modalRegistrationLabel1\">Registrarse como:</h4>\n              <h4 class=\"modal-title\" id=\"modalRegistrationLabel2\">Registrarse</h4>\n            </div>\n            <div class=\"modal-body\">\n              <div id=\"modal-buttons\" class=\"text-center\">\n                  <button id=\"studentbuttonRegistration\" class=\"btn btn-success\">Alumno</button>\n                  <button id=\"professorbuttonRegistration\" class=\"btn btn-success\">Profesor</button>\n              </div>\n              <div id=\"studentRegistration\">\n                <form class=\"form-horizontal\" role=\"form\">\n                  <div class=\"form-group\">\n                    <label for=\"mail\" class=\"col-sm-3 control-label\">Nombre(s)</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"mail\" type=\"text\" placeholder=\"Email\" class=\"form-control\">\n                    </div>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"pass\" class=\"col-sm-3 control-label\">Contraseña</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"pass\" type=\"Contraseña\" placeholder=\"Password\" class=\"form-control\">\n                    </div>\n                  </div>\n                </form>\n              </div>\n              <div id=\"professorRegistration\">\n                <form class=\"form-horizontal\" role=\"form\">\n                  <div class=\"form-group\">\n                    <label for=\"mail\" class=\"col-sm-3 control-label\">E-mail</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"mail\" type=\"text\" placeholder=\"Email\" class=\"form-control\">\n                    </div>\n                  </div>\n                  <div class=\"form-group\">\n                    <label for=\"pass\" class=\"col-sm-3 control-label\">Contraseña</label>\n                    <div class=\"col-sm-8\">\n                      <input id=\"pass\" type=\"Contraseña\" placeholder=\"Password\" class=\"form-control\">\n                    </div>\n                  </div>\n                </form>\n              </div>\n            </div>\n            <div id=\"footerstockRegistration\" class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cerrar</button>\n            </div>\n            <div id=\"footerstudentRegistration\" class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-primary\">Iniciar Sesión</button>\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cerrar</button>\n            </div>\n            <div id=\"footerprofessorRegistration\" class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-primary\">Iniciar Sesión</button>\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cerrar</button>\n            </div>\n          </div>\n        </div>\n      </div>\n      <!-- endModals -->\n\n      <hr>\n\n      <footer>\n        <p>&copy; SourceCode Company 2014</p>\n      </footer>\n    </div> <!-- /container -->\n\n\n    <!-- Bootstrap core JavaScript\n    ================================================== -->\n    <!-- Placed at the end of the document so the pages load faster -->\n    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>\n 	  <script src=\"http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js\"></script>\n    <script type=\"text/javascript\">\n      $(document).ready(function() {\n        $('#modalLogIn').modal({show:false});\n        $('#studentLogIn').hide();\n        $('#professorLogIn').hide();\n        $('#footerstudentLogIn').hide();\n        $('#footerprofessorLogIn').hide();\n        $('#modalLogInLabel2').hide();\n        $(\"#studentbuttonLogIn\").click(function(){\n          $(\"#modal-buttonsLogIn\").hide(400);\n          $('#modalLogInLabel1').hide(400);\n          $('#modalLogInLabel2').show(800);\n          $(\"#modaldialogLogIn\").removeClass('modal-sm');\n          $('#studentLogIn').show(1000);\n          $(\"#footerstockLogIn\").hide(400);\n          $('#footerstudentLogIn').show(1000);\n        });\n        $(\"#professorbuttonLogIn\").click(function(){\n          $(\"#modal-buttonsLogIn\").hide(400);\n          $('#modalLogInLabel1').hide(400);\n          $('#modalLogInLabel2').show(800);\n          $(\"#modaldialogLogIn\").removeClass('modal-sm');\n          $('#professorLogIn').show(1000);\n          $(\"#footerstockLogIn\").hide(400);\n          $('#footerprofessorLogIn').show(1000);\n        });\n        $('#modalLogIn').on('hidden.bs.modal', function (e) {\n          $('#modalLogInLabel1').show();\n          $('#modalLogInLabel2').hide();\n          $('#studentLogIn').hide();\n          $('#footerstudentLogIn').hide();\n          $('#professorLogIn').hide();\n          $('#footerprofessorLogIn').hide();\n          $(\"#modal-buttonsLogIn\").show();\n          $(\"#modaldialogLogIn\").addClass('modal-sm');\n          $(\"#footerstockLogIn\").show();\n        })\n      });\n    </script>\n</body>\n</html>",
+			"file": "Principal.html",
+			"file_size": 14333,
+			"file_write_time": 130376792423249939,
+			"settings":
+			{
+				"buffer_size": 14300,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/luis/Ingenieria de Software/base/base.html",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/rooms.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Entity/Room.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/RoomController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/CDRController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Form/Type/RoomCostCenterType.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/base.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/config/routing-rooms.yml",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/config/routing-costCenter.yml",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/CDR/monthCdr.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Daemon/daemon_mysql.py",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/CostCenter/create.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/CostCenterController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/CostCenter/index.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Entity/CostCenter.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Dashboard/dashboard.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/WizardController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Room/get.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Room/createRoom.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Form/Type/CostCenterType.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Entity/Client.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Wizard/newstep2.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/DashboardController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/config/routing.yml",
+		"/home/luis/NEXTOR/vozero/Vozero/app/config/security.yml",
+		"/home/luis/NEXTOR/vozero/Vozero/app/config/security.yml.dev",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/NOCBundle/Resources/views/Dashboard/dashboard.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Room/updateRoom.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/FAQ.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/ConferenceController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/conferences.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/pie.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/cabecera.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/paths.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/CDR/yearCdr.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/CDR/conferenceCdr.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/HomeBundle/Resources/views/Default/avisoPrivacidad.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/HomeBundle/Resources/views/Default/terminosServicios.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/HomeBundle/Resources/views/base.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Form/Type/RoomType.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Daemon/daemon_mysql_dev.py",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/pub/js/front.js",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/telefono.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/portada.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/support.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/accessNumbers.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/transactions.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Invoices/createInvoices.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/invoices.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Contact/updateContact.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Contact/getContact.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Contact/createContact.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Invitation/updateInvitations.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Invitation/createInvitations.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/menu.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/menu2.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/pub/plugins/nivo-slider/nivo-slider.css",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/pub/css/dos.css",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/pub/css/front.css",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/forma.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/front/views/fileUpload.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Conference/updateConference.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Conference/get.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/cdr.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/contacts.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/invitations.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Conference/createConference.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/dos/views/pie.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/config/ModelsDefiniton.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/back/views/tiendas/complete.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/back/views/tiendas/forma.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/app/back/views/menu.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/framewerk/core/main.php",
+		"/home/luis/NEXTOR/vozero/Vozero/newsite/of4/framewerk/core/autoload.php",
+		"/home/luis/NEXTOR/vozero/Vozero/mainsite/aviso_privacidad.html",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Asterisk/AsteriskDB.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Validator/Constraints/PinNumberValidator.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Freshbooks/Task.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/config/validation.yml",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Wizard/newstep1.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Asterisk/AsteriskConference.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/ContactController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/public/css/bootstrap/bootstrap.css",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/public/css/stylesheet.css",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/public/css/styles.css",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/public/css/other/jquery.jqplot.css",
+		"/tmp/.fr-HKOW88/[CSS3 Contest]CSS3_Charts/index.html",
+		"/home/luis/NEXTOR/vozero/Vozero/app/config/config.yml",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Wizard/newstep3.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Wizard/newstep4.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Wizard/newstep5.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Wizard/newstep6.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Form/Type/RoomTypeWizard.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Form/Type/RoomTypeWizardStep3.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Wizard/newstep1.html",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/ClientController.php",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Resources/views/Base/settings.html.twig",
+		"/home/luis/NEXTOR/vozero/Vozero/src/NEXTOR/Vozero/PortalBundle/Controller/InvitationController.php",
+		"/home/luis/PracticasAlgoritmos/Practica 5/practica5/practica5.sublime-project",
+		"/home/luis/PracticasAlgoritmos/Practica 5/practica5/paquete5/GraphParser.java",
+		"/home/luis/PracticasAlgoritmos/Practica 5/practica5/paquete5/dir2.xml",
+		"/home/luis/PracticasAlgoritmos/Practica 5/practica5/paquete5/dir.xml",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/urls.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/general/privacy.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/views/general.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/general/manual.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/static/tarifica/css/docs.css",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/trunks/trunksGet.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/trunks/trunks.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/general/setup.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/providers/providerGet.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/base.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/destinationGroups/destinationGroupUpdate.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/destinationGroups/destinationGroupCreate.html",
+		"/home/luis/Desktop/docs.css",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/serve.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/views/users.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/users/detailUsers.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/views/pinsets.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/pinsets/detailPinsets.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarificador/settings.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/users/analyticsUsers.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/users/generalUsers.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/views/trunks.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/pinsets/analyticsPinsets.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/tools/digester.py",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/templates/tarifica/pinsets/generalPinsets.html",
+		"/home/luis/.virtualenvs/myvenvs/django-tarificador/tarificador/tarifica/models.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"').hide();\n        ",
+			"LogIn",
+			"myModal",
+			"<h2>Heading</h2>\n          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n          <p><a class=\"btn btn-default\" href=\"#\" role=\"button\">View details &raquo;</a></p>",
+			"student",
+			"</div>",
+			"<div class=\"col-md-6\">",
+			"text-center",
+			"primary",
+			"data-target=\"#myModal\"",
+			"data-toggle=\"modal\"",
+			">\n",
+			"p",
+			".ibutton",
+			"editable",
+			"Nombre",
+			"cCRooms",
+			"Rooms",
+			"Room",
+			"room",
+			"Rooms",
+			"rooms",
+			"private",
+			"LastUsedDate",
+			"lastUsedDate",
+			"LastUsedDate",
+			", requires_channel: https",
+			"activeDNISGraphData",
+			"console",
+			"\"No hay información\"",
+			"administrador",
+			".</",
+			"'0'",
+			"data[i].totalDuration",
+			"data[i].totalCost",
+			"data",
+			"0",
+			".push",
+			"0",
+			"50",
+			"0",
+			"Mar",
+			"Jan",
+			"'Jan'",
+			"days",
+			"active",
+			"nav\n\n\n\n\nnav",
+			"nav\n\n\n\n\nnav-la",
+			"'#chart1b'",
+			"room",
+			"locked",
+			"disable",
+			", requires_channel: https",
+			"$arr['month']",
+			"hacer1",
+			"Mes Actual",
+			"$arr['month']",
+			"false",
+			"true",
+			"false",
+			"true",
+			"false",
+			"MXN",
+			"true",
+			"false",
+			"true",
+			"false",
+			"true",
+			"false",
+			"row-fluid",
+			"<bold>*</bold>",
+			"btn-large",
+			"room",
+			"%}\n",
+			">\n",
+			"int",
+			"double",
+			"i",
+			"j",
+			"aux2",
+			"aux1",
+			"Type",
+			"abstract",
+			"0",
+			"peso",
+			"vecinoid",
+			"vid",
+			"custombutton",
+			"fees",
+			"fee",
+			"Fees",
+			"ul",
+			"020031",
+			"6d3353",
+			"#020031",
+			"tariffs",
+			"print",
+			"users",
+			"user",
+			"extension",
+			"users",
+			"extension",
+			"Ext",
+			"extension",
+			"users",
+			"extension",
+			"user",
+			"extension",
+			"user",
+			"Ext",
+			"extension",
+			"users",
+			"user",
+			"users",
+			"extensions",
+			"users",
+			"user",
+			"users",
+			"Users",
+			"users",
+			"Users",
+			"users",
+			"Users",
+			"users",
+			"Users",
+			"return",
+			"true",
+			"monthrange"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"String",
+			"int"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "styles.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								364,
+								364
+							]
+						],
+						"settings":
+						{
+							"auto_name": "styles.css",
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "baseinisesion.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								877,
+								877
+							]
+						],
+						"settings":
+						{
+							"auto_name": "baseinisesion.html",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Principal.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10223,
+								10223
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3161.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "baseIng.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"~/NEXTOR/vozero.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 117.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 224.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
