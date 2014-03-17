@@ -13,7 +13,7 @@ public class Application extends Controller {
     public static Result index() {
         Form<Alumno> alumnoForma = Form.form(Alumno.class);
         Form<Profesor> profesorForma = Form.form(Profesor.class);
-        return ok(views.html.baseViews.principalIH.render(alumnoForma, profesorForma));
+        return ok(views.html.baseViews.principalIH.render(alumnoForma, profesorForma)); 
     }
 
 
