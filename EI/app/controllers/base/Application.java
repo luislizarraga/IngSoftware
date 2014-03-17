@@ -13,7 +13,7 @@ public class Application extends Controller {
     public static Result index() {
         Form<Alumno> alumnoForma = Form.form(Alumno.class);
         Form<Profesor> profesorForma = Form.form(Profesor.class);
-        return ok(views.html.baseViews.principalIH.render(alumnoForma, profesorForma)); 
+        return ok(views.html.baseViews.principalIH.render(alumnoForma, profesorForma));
     }
 
 
@@ -22,7 +22,8 @@ public class Application extends Controller {
         Form<Alumno> alumnoForma = Form.form(Alumno.class).bindFromRequest();
         System.out.println(alumnoForma);
         if (alumnoForma.hasErrors()) {
-            return badRequest(views.html.baseViews.principalIH.render(alumnoForma));
+            Form<Profesor> profesorForma = Form.form(Profesor.class);
+            return badRequest(views.html.baseViews.principalIH.render(alumnoForma, profesorForma));
         } else {
             Alumno user = alumnoForma.get();
             user.save();
