@@ -1,0 +1,17 @@
+EI/logs
+EI/project/project
+EI/project/target
+EI/target
+EI/tmp
+EI/.history
+EI/dist
+EI/.idea
+EI/*.iml
+EI/out
+EI/.idea_modules
+EI/.classpath
+EI/.project
+EI/RUNNING_PID
+EI/.settings
+*.sublime-project
+*.sublime-workspace
