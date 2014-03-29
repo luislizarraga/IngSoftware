@@ -1,0 +1,85 @@
+@(title: String, user: String)(content: Html)
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>@title</title>
+  <meta name="description" content="La mejor escuela de inglés del mundo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="/assets/stylesheets/bootstrap-3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/styles.css">
+
+
+	<!-- Optional theme -->
+	<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
+</head>
+<body>
+ 	
+  <header>
+  	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Bienvenido @user !</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Inicio</a></li>
+            <li><a href="#">Mi Horario</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Profesores</a></li>
+                <li><a href="#">Horarios</a></li>
+                <li><a href="#">Mis cursos inscritos</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acciones <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Editar perfil</a></li>
+                <li><a href="#">Privacidad</a></li>
+                <li class="divider"></li>
+                <li><a href="@controllers.routes.CAlumno.cerrarSesionA">Salir</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
+
+  <div id="content" style="margin-top:50px">
+  @content
+  </div>
+
+  <footer>
+    <p>&copy; SourceCode Company 2014</p>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="/assets/javascripts/jquery-1.9.0.min.js"></script>
+  <script src="/assets/javascripts/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#myModal').modal({show:false});
+    });
+  </script>
+</body>
+</html> 

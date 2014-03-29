@@ -1,0 +1,34 @@
+alumnos:
+    - !!models.Alumno
+        nombre: Luis
+        apellidoPaterno: Lizarraga
+        apellidoMaterno: Santos
+        correoElectronico: luis@gmail.com
+        contrasena: luis
+
+
+    - !!models.Alumno
+        nombre: Rosa
+        apellidoPaterno: Melcacho
+        correoElectronico: rosamel.cacho@gmail.com
+        contrasena: rosa
+
+
+
+    - !!models.Alumno
+        nombre: Sebastian
+        apellidoPaterno: Perez
+        apellidoMaterno: Osorio
+        correoElectronico: sebas@gmail.com
+        contrasena: sebas
+
+
+
+profesores:
+
+    - !!models.Profesor
+        nombre: Santo Tomas de la Hambruna
+        apellidoPaterno: Sanchez
+        apellidoMaterno: Torretes
+        correoElectronico: tomas@gmail.com
+        contrasena: tomas

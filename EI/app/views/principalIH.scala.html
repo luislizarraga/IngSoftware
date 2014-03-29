@@ -1,5 +1,5 @@
-@(alumnoForma: Form[Alumno], profesorForma: Form[Profesor])
-
+@(alumnoForma: Form[forms.RegistrationAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.Login])
+@import forms._
 @import helper._
 
 @implicitField = @{ FieldConstructor(constructorDeFormas.f) }
@@ -7,15 +7,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Escuela de Inglés</title>
-    <meta name="description" content="Vozero MX Conferencing Application">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-  	<link rel="stylesheet" href="/assets/stylesheets/bootstrap-3.1.1/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Escuela de Inglés</title>
+  <meta name="description" content="La mejor escuela de inglés del mundo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/assets/stylesheets/bootstrap-3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
 
 	<!-- Optional theme -->
 	<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
@@ -134,7 +133,23 @@
                   <button id="professorbuttonLogIn" class="btn btn-success">Profesor</button>
               </div>
               <div id="studentLogIn">
-                <form class="form-horizontal" role="form">
+                @helper.form(action = controllers.routes.CAlumno.iniciarSesionA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentLoginForm") {
+                  <fieldset>
+                    @inputText(
+                        alumnoLoginForm("email"), 
+                        '_label -> "E-mail", 
+                        '_error -> alumnoForma.globalError,
+                        'class -> "form-control"
+                    )
+                    @inputPassword(
+                        alumnoForma("password"), 
+                        '_label -> "Contraseña", 
+                        '_error -> alumnoForma.globalError,
+                        'class -> "form-control"
+                    )
+                  </fieldset>
+                }
+                <!-- <form class="form-horizontal" role="form">
                   <div class="form-group">
                     <label for="mail" class="col-sm-3 control-label">E-mail</label>
                     <div class="col-sm-8">
@@ -147,7 +162,7 @@
                       <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
                     </div>
                   </div>
-                </form>
+                </form> -->
               </div>
               <div id="professorLogIn">
                 <form class="form-horizontal" role="form">
@@ -170,7 +185,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
             <div id="footerstudentLogIn" class="modal-footer">
-              <button type="button" class="btn btn-primary">Iniciar Sesión</button>
+              <button id="footerstudentLogInSubmit" type="submit" class="btn btn-primary">Iniciar Sesión</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
             <div id="footerprofessorLogIn" class="modal-footer">
@@ -196,7 +211,7 @@
                   <button id="professorbuttonRegistration" class="btn btn-success">Profesor</button>
               </div>
               <div id="studentRegistration">
-                @helper.form(action = base.routes.Application.registraAlumno(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentRegistrationForm") {
+                @helper.form(action = base.routes.CBase.registraAlumno(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentRegistrationForm") {
                   <fieldset>
                     @inputText(
                         alumnoForma("nombre"), 
@@ -225,6 +240,12 @@
                     @inputPassword(
                         alumnoForma("contrasena"), 
                         '_label -> "Contraseña", 
+                        '_error -> alumnoForma.globalError,
+                        'class -> "form-control"
+                    )
+                    @inputPassword(
+                        alumnoForma("confContrasena"), 
+                        '_label -> "Confirmar Contraseña", 
                         '_error -> alumnoForma.globalError,
                         'class -> "form-control"
                     )
@@ -321,6 +342,13 @@
 
             // Find form and submit it
             $('#studentRegistrationForm').submit();
+        });
+        $('#footerstudentLogInSubmit').on('click', function(e){
+                // We don't want this to act as a link so cancel the link action
+            e.preventDefault();
+
+            // Find form and submit it
+            $('#studentLoginForm').submit();
         });
         $('#modalLogIn').modal({show:false});
         $('#studentLogIn').hide();

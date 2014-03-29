@@ -1,15 +1,16 @@
+@(title: String, user: String)(content: Html)
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Escuela de Ingléskfasdfasdf</title>
-    <meta name="description" content="Vozero MX Conferencing Application">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>@title</title>
+  <meta name="description" content="La mejor escuela de inglés del mundo">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="/assets/stylesheets/bootstrap-3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/styles.css">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
@@ -26,20 +27,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Escuela de Inglés</a>
+        <a class="navbar-brand" href="#">Bienvenido @user !</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Inicio</a></li>
-          <li><a href="#">Mi Horario</a></li>
+          <li><a href="#">Mis grupos</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profesores</a></li>
+              <li><a href="#">Alumnos</a></li>
               <li><a href="#">Horarios</a></li>
-              <li><a href="#">Mis cursos inscritos</a></li>
+
               <!-- <li class="divider"></li>
               <li><a href="#">Separated link</a></li>
               <li class="divider"></li>
@@ -69,21 +70,25 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-    <footer>
-        <p>&copy; SourceCode Company 2014</p>
-      </footer>
-    </div> <!-- /container -->
+  <div id="content" style="margin-top:50px">
+  @content
+  </div>
+
+  <footer>
+    <p>&copy; SourceCode Company 2014</p>
+  </footer>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('#myModal').modal({show:false});
-      });
-    </script>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="/assets/javascripts/jquery-1.9.0.min.js"></script>
+  <script src="/assets/javascripts/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#myModal').modal({show:false});
+    });
+  </script>
 </body>
 </html> 

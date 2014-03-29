@@ -5,41 +5,81 @@ import javax.persistence.*;
 import play.db.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import models.*;
 
 @Entity
 public class Alumno extends Model {
 
-  @Id
-  @GeneratedValue
-  public Integer id;
-  
-  @Constraints.Required
-  public String nombre;
-  
-  public boolean activo;
-  
-  @Constraints.Required
-  public String apellidoPaterno;
+    @Id
+    @GeneratedValue
+    public Integer id;
+    
+    @Column(columnDefinition = "tinyint(1) default 1")
+    public boolean activo = true;
 
-  @Constraints.Required
-  public String apellidoMaterno;
+    @Constraints.Required
+    @Column(nullable = false)
+    public String nombre;
+    
+    @Constraints.Required
+    @Column(nullable = false)
+    public String apellidoPaterno;
 
-  @Constraints.Required
-  public String correoElectronico;
 
-  @Constraints.Required
-  public String contrasena;
+    public String apellidoMaterno;
 
-  public static Finder<Integer,Alumno> find = new Finder<Integer,Alumno>(
-    Integer.class, Alumno.class
-  ); 
+    @Constraints.Required
+    @Column(nullable = false, unique = true)
+    public String correoElectronico;
 
-  /*public List<ValidationError> validate() {
-    List<ValidationError> errors = new ArrayList<ValidationError>();
-    if (Alumno.byCorreoElectronico(correoElectronico) == "aa") {
-        errors.add(new ValidationError("correoElectronico", "This e-mail is already registered."));
+    @Constraints.Required
+    @Column(nullable = false)
+    public String contrasena;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<Curso> cursos;
+
+    public static Finder<Integer,Alumno> find = new Finder<Integer,Alumno>(
+        Integer.class, Alumno.class
+    ); 
+
+    public Alumno(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String contrasena) {
+        this.nombre            = nombre;
+        this.apellidoPaterno   = apellidoPaterno;
+        this.apellidoMaterno   = apellidoMaterno;
+        this.correoElectronico = correoElectronico;
+        this.contrasena        = contrasena;
     }
-    return errors.isEmpty() ? null : errors;
-}*/
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public List<ValidationError> validate() {
+        List<ValidationError> errors = new ArrayList<ValidationError>();
+        Alumno a = Alumno.find.where().eq("correoElectronico", correoElectronico).findUnique();
+        System.out.println(a);
+        if (a != null) {
+            errors.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
+        }
+        //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"));
+        if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"))
+            errors.add(new ValidationError("correoElectronico", "Correo Electrónico inválido."));
+        
+        return errors.isEmpty() ? null : errors;
+    }
+
+
+    /*public List<ValidationError> validate() {
+      List<ValidationError> errors = new ArrayList<ValidationError>();
+      if (Alumno.byCorreoElectronico(correoElectronico) == "aa") {
+          errors.add(new ValidationError("correoElectronico", "This e-mail is already registered."));
+      }
+      return errors.isEmpty() ? null : errors;
+    }*/
 
 }
