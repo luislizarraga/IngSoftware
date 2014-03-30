@@ -63,6 +63,16 @@ public class Alumno extends Model {
     }
 
 
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
