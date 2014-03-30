@@ -39,6 +39,7 @@ public class Alumno extends Model {
     @OneToMany(cascade = CascadeType.ALL)
     public List<Curso> cursos;
 
+
     public static Finder<Integer,Alumno> find = new Finder<Integer,Alumno>(
         Integer.class, Alumno.class
     ); 
@@ -51,6 +52,9 @@ public class Alumno extends Model {
         this.correoElectronico = correoElectronico;
         this.contrasena        = contrasena;
     }
+
+
+    public Alumno(){}
 
 
     public String getNombre() {
@@ -72,6 +76,10 @@ public class Alumno extends Model {
         return apellidoMaterno;
     }
 
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
