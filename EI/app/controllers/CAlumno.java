@@ -14,7 +14,7 @@ public class CAlumno extends Controller {
 
     /**
      * [index description]
-     * author: Luis Lizarraga
+     * @author Luis Lizarraga
      * @return [description]
      */
     @Security.Authenticated(SecuredAlumno.class) // al poner esto encima de cualquier método o clase, se checara 
@@ -32,6 +32,7 @@ public class CAlumno extends Controller {
                                                                                     a.apellidoMaterno,
                                                                                     a.correoElectronico));
         return ok(views.html.alumno.alumnoIniciado.render("Página Principal", user, modificacionFormulario, a));
+        //return ok(views.html.principalAlumnoIH.render("Página Principal", user, modificacionFormulario, principalIH));
     }
 
 
