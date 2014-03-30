@@ -35,6 +35,8 @@ create table profesor (
   apellido_materno          varchar(255),
   correo_electronico        varchar(255) not null,
   contrasena                varchar(255) not null,
+  video                     varchar(255),
+  constancia                varchar(255),
   constraint uq_profesor_correo_electronico unique (correo_electronico),
   constraint pk_profesor primary key (id))
 ;

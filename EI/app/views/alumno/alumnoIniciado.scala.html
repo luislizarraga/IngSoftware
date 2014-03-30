@@ -1,6 +1,6 @@
-@(title: String)(alumno: Alumno)(user: String)
+@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno])(alumno: Alumno)
 
-@principalAlumnoIH(title, user) {
+@principalAlumnoIH(title, user, modifyAlumno) {
 
   <div class="container-fluid">  
     <div class="row">

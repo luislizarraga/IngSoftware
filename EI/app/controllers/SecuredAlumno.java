@@ -10,9 +10,9 @@ public class SecuredAlumno extends Security.Authenticator {
 
     @Override
     public String getUsername(Context ctx) {
-        if (ctx.session().get("email") != null) {
-            if (ctx.session().get("user").equals("alumno")) {
-                return ctx.session().get("email");
+        if (ctx.session().get("correoElectronico") != null) {
+            if (ctx.session().get("usuario").equals("alumno")) {
+                return ctx.session().get("correoElectronico");
             }
         }
         return null;
@@ -20,7 +20,7 @@ public class SecuredAlumno extends Security.Authenticator {
 
     @Override
     public Result onUnauthorized(Context ctx) {
-        if (ctx.session().get("user").equals("profesor")) {
+        if (ctx.session().get("usuario").equals("profesor")) {
             return redirect(controllers.routes.CProfesor.index());
         }
         return redirect(base.routes.CBase.index());

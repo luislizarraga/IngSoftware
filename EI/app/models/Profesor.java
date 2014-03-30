@@ -36,6 +36,10 @@ public class Profesor extends Model {
     @Column(nullable = false)
     public String contrasena;
 
+    public String video;
+
+    public String constancia;
+
     @OneToMany(cascade = CascadeType.ALL)
     public List<Curso> cursos;
 

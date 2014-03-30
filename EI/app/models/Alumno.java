@@ -43,6 +43,7 @@ public class Alumno extends Model {
         Integer.class, Alumno.class
     ); 
 
+
     public Alumno(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String contrasena) {
         this.nombre            = nombre;
         this.apellidoPaterno   = apellidoPaterno;
@@ -51,13 +52,41 @@ public class Alumno extends Model {
         this.contrasena        = contrasena;
     }
 
+
     public String getNombre() {
         return nombre;
     }
 
+
     public String getContrasena() {
         return contrasena;
     }
+
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
 
     public List<ValidationError> validate() {
         List<ValidationError> errors = new ArrayList<ValidationError>();
@@ -69,17 +98,9 @@ public class Alumno extends Model {
         //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"));
         if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"))
             errors.add(new ValidationError("correoElectronico", "Correo Electrónico inválido."));
-        
+
         return errors.isEmpty() ? null : errors;
     }
 
-
-    /*public List<ValidationError> validate() {
-      List<ValidationError> errors = new ArrayList<ValidationError>();
-      if (Alumno.byCorreoElectronico(correoElectronico) == "aa") {
-          errors.add(new ValidationError("correoElectronico", "This e-mail is already registered."));
-      }
-      return errors.isEmpty() ? null : errors;
-    }*/
 
 }

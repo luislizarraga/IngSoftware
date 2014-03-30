@@ -1,4 +1,4 @@
-@(alumnoForma: Form[forms.RegistrationAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.Login])
+@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesion])
 @import forms._
 @import helper._
 
@@ -136,33 +136,19 @@
                 @helper.form(action = controllers.routes.CAlumno.iniciarSesionA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentLoginForm") {
                   <fieldset>
                     @inputText(
-                        alumnoLoginForm("email"), 
+                        alumnoLoginForm("correoElectronico"), 
                         '_label -> "E-mail", 
-                        '_error -> alumnoForma.globalError,
+                        '_error -> alumnoLoginForm.globalError,
                         'class -> "form-control"
                     )
                     @inputPassword(
-                        alumnoForma("password"), 
+                        alumnoLoginForm("contrasena"), 
                         '_label -> "Contraseña", 
-                        '_error -> alumnoForma.globalError,
+                        '_error -> alumnoLoginForm.globalError,
                         'class -> "form-control"
                     )
                   </fieldset>
                 }
-                <!-- <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="mail" class="col-sm-3 control-label">E-mail</label>
-                    <div class="col-sm-8">
-                      <input id="mail" type="text" placeholder="Email" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="pass" class="col-sm-3 control-label">Contraseña</label>
-                    <div class="col-sm-8">
-                      <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
-                    </div>
-                  </div>
-                </form> -->
               </div>
               <div id="professorLogIn">
                 <form class="form-horizontal" role="form">
@@ -211,7 +197,7 @@
                   <button id="professorbuttonRegistration" class="btn btn-success">Profesor</button>
               </div>
               <div id="studentRegistration">
-                @helper.form(action = base.routes.CBase.registraAlumno(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentRegistrationForm") {
+                @helper.form(action = controllers.routes.CAlumno.registrarA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentRegistrationForm") {
                   <fieldset>
                     @inputText(
                         alumnoForma("nombre"), 

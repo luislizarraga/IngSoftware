@@ -18,7 +18,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result index() {
-        Profesor p = Profesor.find.where().eq("correoElectronico", session().get("email")).findUnique(); // aquí hago un query a la BD buscando a 
+        Profesor p = Profesor.find.where().eq("correoElectronico", session().get("correoElectronico")).findUnique(); // aquí hago un query a la BD buscando a 
                                                                                                     // aquellos alumnos que tengan el email dado
                                                                                                     // eso de findUnique() se pone para que te regrese un
                                                                                                     // solo objeto y no una lista de objetos
@@ -33,10 +33,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result iniciarSesionP() {
-        Form<RegistrationAlumno> alumnoForma = Form.form(RegistrationAlumno.class);
-        Form<Profesor> profesorForma = Form.form(Profesor.class);
-        Form<Login> alumnoLoginForm = Form.form(Login.class);
-        return ok(views.html.principalIH.render(alumnoForma, profesorForma, alumnoLoginForm));
+        return redirect(base.routes.CBase.index());
     } 
 
 
@@ -46,10 +43,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result modificarInformacionP() {
-        Form<RegistrationAlumno> alumnoForma = Form.form(RegistrationAlumno.class);
-        Form<Profesor> profesorForma = Form.form(Profesor.class);
-        Form<Login> alumnoLoginForm = Form.form(Login.class);
-        return ok(views.html.principalIH.render(alumnoForma, profesorForma, alumnoLoginForm));
+        return redirect(base.routes.CBase.index());
     }
 
 
@@ -59,10 +53,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result eliminaRegistroP() {
-        Form<RegistrationAlumno> alumnoForma = Form.form(RegistrationAlumno.class);
-        Form<Profesor> profesorForma = Form.form(Profesor.class);
-        Form<Login> alumnoLoginForm = Form.form(Login.class);
-        return ok(views.html.principalIH.render(alumnoForma, profesorForma, alumnoLoginForm));
+        return redirect(base.routes.CBase.index());
     }
 
 
@@ -72,10 +63,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result registrarP() {
-        Form<RegistrationAlumno> alumnoForma = Form.form(RegistrationAlumno.class);
-        Form<Profesor> profesorForma = Form.form(Profesor.class);
-        Form<Login> alumnoLoginForm = Form.form(Login.class);
-        return ok(views.html.principalIH.render(alumnoForma, profesorForma, alumnoLoginForm));
+        return redirect(base.routes.CBase.index());
     }
 
 
@@ -86,10 +74,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result validaFormato() {
-        Form<RegistrationAlumno> alumnoForma = Form.form(RegistrationAlumno.class);
-        Form<Profesor> profesorForma = Form.form(Profesor.class);
-        Form<Login> alumnoLoginForm = Form.form(Login.class);
-        return ok(views.html.principalIH.render(alumnoForma, profesorForma, alumnoLoginForm));
+        return redirect(base.routes.CBase.index());
     }
 
 
@@ -99,10 +84,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result modificacionExitosa() {
-        Form<RegistrationAlumno> alumnoForma = Form.form(RegistrationAlumno.class);
-        Form<Profesor> profesorForma = Form.form(Profesor.class);
-        Form<Login> alumnoLoginForm = Form.form(Login.class);
-        return ok(views.html.principalIH.render(alumnoForma, profesorForma, alumnoLoginForm));
+        return redirect(base.routes.CBase.index());
     }
 
 
@@ -112,9 +94,6 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result eliminacionExitosa() {
-        Form<RegistrationAlumno> alumnoForma = Form.form(RegistrationAlumno.class);
-        Form<Profesor> profesorForma = Form.form(Profesor.class);
-        Form<Login> alumnoLoginForm = Form.form(Login.class);
-        return ok(views.html.principalIH.render(alumnoForma, profesorForma, alumnoLoginForm));
+        return redirect(base.routes.CBase.index());
     }
 }

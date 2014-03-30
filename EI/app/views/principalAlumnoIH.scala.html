@@ -1,4 +1,8 @@
-@(title: String, user: String)(content: Html)
+@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno])(content: Html)
+
+@import helper._
+
+@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
 
 <!DOCTYPE html>
 <html>
@@ -50,7 +54,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acciones <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Editar perfil</a></li>
+                <li><a href="#modalModification" role='button' data-toggle="modal">Editar perfil</a></li>
                 <li><a href="#">Privacidad</a></li>
                 <li class="divider"></li>
                 <li><a href="@controllers.routes.CAlumno.cerrarSesionA">Salir</a></li>
@@ -61,6 +65,66 @@
       </div><!-- /.container-fluid -->
     </nav>
   </header>
+
+  <div class="modal fade bs-example-modal-sm" id="modalModification" tabindex="-1" role="dialog" aria-labelledby="modalRegistrationLabel" aria-hidden="true">
+    <div id="modaldialogRegistration" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="modalRegistrationLabel1">Editar datos</h4>
+        </div>
+        <div class="modal-body">
+          <div id="studentRegistration">
+            @helper.form(action = controllers.routes.CAlumno.modificarInformacionA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentModificationForm") {
+              <fieldset>
+                @inputText(
+                    modifyAlumno("nombre"), 
+                    '_label -> "Nombre(s)", 
+                    '_error -> modifyAlumno.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    modifyAlumno("apellidoPaterno"), 
+                    '_label -> "Apellido Paterno", 
+                    '_error -> modifyAlumno.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    modifyAlumno("apellidoMaterno"), 
+                    '_label -> "Apellido Materno", 
+                    '_error -> modifyAlumno.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    modifyAlumno("correoElectronico"), 
+                    '_label -> "Correo Electrónico", 
+                    '_error -> modifyAlumno.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    modifyAlumno("contrasenaNueva"), 
+                    '_label -> "Nueva Contraseña", 
+                    '_error -> modifyAlumno.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    modifyAlumno("confContrasena"), 
+                    '_label -> "Confirmar Contraseña", 
+                    '_error -> modifyAlumno.globalError,
+                    'class -> "form-control"
+                )
+              </fieldset>
+            }
+          </div>
+          <div id="footerstudentModification" class="modal-footer">
+            <button id="studentModificationSubmit" type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div id="content" style="margin-top:50px">
   @content
@@ -78,7 +142,11 @@
   <script src="/assets/javascripts/bootstrap-3.1.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      $('#myModal').modal({show:false});
+      $('#modalModification').modal({show:false});
+      $('#studentModificationSubmit').on('click', function(e){
+          e.preventDefault();
+          $('#studentModificationForm').submit();
+      });
     });
   </script>
 </body>

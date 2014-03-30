@@ -4,9 +4,7 @@
 
 # Página principal (CBase)
 GET     /                           base.CBase.index()
-POST    /registraAlumno             base.CBase.registraAlumno()
-GET     /enlistaAlumnos             base.CBase.enlistaAlumnos()
-#GET     /muestra                    base.CBase.muestra()
+
 
 
 # Páginas de alumnos (CAlumno)
@@ -14,6 +12,8 @@ GET     /enlistaAlumnos             base.CBase.enlistaAlumnos()
 GET     /alumno                     controllers.CAlumno.index()
 POST    /iniciaSesionAlumno         controllers.CAlumno.iniciarSesionA()
 GET     /cerrarSesionAlumno         controllers.CAlumno.cerrarSesionA()
+POST    /registraAlumno             controllers.CAlumno.registrarA()
+POST    /modificaAlumno             controllers.CAlumno.modificarInformacionA()
 
 
 # Páginas de profesores (CProfesor)
