@@ -408,7 +408,12 @@
           $("#modaldialogRegistration").addClass('modal-sm');
           $("#footerstockRegistration").show();
         })
+        if (alumnoLoginForm.hasErrors()) {
+          System.out.println("Errores");
+          $('#modalLogIn').modal({show:true});
+        }
       });
     </script>
+
 </body>
 </html>

@@ -33,6 +33,10 @@ public class CAlumno extends Controller {
                                                                                     a.correoElectronico));
         return ok(views.html.alumno.alumnoIniciado.render("Página Principal", user, modificacionFormulario, a));
         //return ok(views.html.principalAlumnoIH.render("Página Principal", user, modificacionFormulario, principalIH));
+        //Form<RegistroAlumno> formularioAlumno      = Form.form(RegistroAlumno.class);
+        //Form<Profesor> formularioProfesor          = Form.form(Profesor.class);
+        //Form<InicioSesion> formularioIniciar = Form.form(InicioSesion.class);
+        //return ok(views.html.alumno.alumnoInicioFallido.render(formularioAlumno, formularioProfesor, formularioIniciar));
     }
 
 
