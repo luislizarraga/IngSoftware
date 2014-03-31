@@ -10,39 +10,46 @@ import models.*;
 @Entity
 public class Curso extends Model {
 
-  @Id
-  @GeneratedValue
-  public Integer id;
-  
-  public boolean aprobado;
+    @Id
+    @GeneratedValue
+    public Integer id;
+    
+    public boolean aprobado;
 
-  public String constancia;
-  
-  public Integer calificacion;
+    public String constancia;
+    
+    public Integer calificacion;
 
-  @Constraints.Required
-  public String nivel;
+    @Constraints.Required
+    public String nivel;
 
-  @Formats.DateTime(pattern="dd/MM/yyyy kk:mm:ss")
-  public Date horario = new Date();
+    @Formats.DateTime(pattern="dd/MM/yyyy kk:mm:ss")
+    public Date horario = new Date();
 
-  @OneToOne(cascade = CascadeType.ALL)
-  public Alumno alumno;
+    @OneToOne(cascade = CascadeType.ALL)
+    public Alumno alumno;
 
-  @Constraints.Required
-  @OneToOne(cascade = CascadeType.ALL)
-  public Profesor profesor;
+    @Constraints.Required
+    @OneToOne(cascade = CascadeType.ALL)
+    public Profesor profesor;
 
-  public static Finder<Integer,Curso> find = new Finder<Integer,Curso>(
-    Integer.class, Curso.class
-  ); 
+    public static Finder<Integer,Curso> find = new Finder<Integer,Curso>(
+        Integer.class, Curso.class
+    ); 
 
-  /*public List<ValidationError> validate() {
-    List<ValidationError> errors = new ArrayList<ValidationError>();
-    if (Alumno.byCorreoElectronico(correoElectronico) == "aa") {
-        errors.add(new ValidationError("correoElectronico", "This e-mail is already registered."));
+
+    public Date getHorario() {
+        return horario;
     }
-    return errors.isEmpty() ? null : errors;
-}*/
+
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+
+    public String getNivel() {
+        return nivel;
+    }
 
 }

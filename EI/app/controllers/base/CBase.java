@@ -22,33 +22,12 @@ public class CBase extends Controller {
         Form<RegistroAlumno> formularioAlumno      = Form.form(RegistroAlumno.class);
         Form<Profesor> formularioProfesor          = Form.form(Profesor.class);
         Form<InicioSesion> formularioIniciarAlumno = Form.form(InicioSesion.class);
-        return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno));
+        List<Curso> cursos = Curso.find.all();
+        List<Profesor> profesores = Profesor.find.all();
+        System.out.println(profesores);
+        System.out.println(cursos);
+        return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, cursos, profesores));
     }
-
-
-    // /**
-    //  * [registraAlumno description]
-    //  * author:
-    //  * @return [description]
-    //  */
-    // public static Result registraAlumno() {
-    //     Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class).bindFromRequest();
-    //     System.out.println(formularioAlumno);
-    //     if (formularioAlumno.hasErrors()) {
-    //         Form<Profesor> formularioProfesor  = Form.form(Profesor.class);
-    //         Form<InicioSesion> formularioIniciarAlumno = Form.form(InicioSesion.class);
-    //         return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno));
-    //     } else {
-    //         RegistroAlumno ra = formularioAlumno.get();
-    //         Alumno user = new Alumno(ra.nombre,
-    //                                  ra.apellidoPaterno,
-    //                                  ra.apellidoMaterno,
-    //                                  ra.correoElectronico,
-    //                                  ra.contrasena);
-    //         user.save();
-    //         return redirect(routes.CBase.index());
-    //     }
-    // }
 
 
     /**

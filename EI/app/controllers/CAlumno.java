@@ -46,7 +46,9 @@ public class CAlumno extends Controller {
         if (formularioIniciar.hasErrors()) {
             Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class);
             Form<Profesor> formularioProfesor     = Form.form(Profesor.class);
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciar));
+            List<Curso> cursos = Curso.find.all();
+            List<Profesor> profesores = Profesor.find.all();
+            return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciar, cursos, profesores));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
@@ -125,7 +127,9 @@ public class CAlumno extends Controller {
         if (formularioAlumno.hasErrors()) {
             Form<Profesor> formularioProfesor  = Form.form(Profesor.class);
             Form<InicioSesion> formularioIniciarAlumno = Form.form(InicioSesion.class);
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno));
+            List<Curso> cursos = Curso.find.all();
+            List<Profesor> profesores = Profesor.find.all();
+            return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, cursos, profesores));
         } else {
             RegistroAlumno ra = formularioAlumno.get();
             Alumno user = new Alumno(ra.nombre,

@@ -1,6 +1,7 @@
-@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesion])
+@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesion], horarios: List[Curso], profesores: List[Profesor])
 @import forms._
 @import helper._
+@import scala._
 
 @implicitField = @{ FieldConstructor(constructorDeFormas.f) }
 
@@ -19,7 +20,7 @@
 	<!-- Optional theme -->
 	<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
 </head>
-<body>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
  	
 	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
       <div class="container">
@@ -56,43 +57,107 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron jumbotronBackground" style="background-image: url('/assets/images/IMG_2429.jpg');">
       <div class="container">
-        <h1>Hola!</h1>
-        <p>Somos la primer escuela de inglés con precios accesibles y clases personales</p>
-        <p>Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
+        <h1 class="jumbotronBackgroundTextShadow">Hola!</h1>
+        <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales</p>
+        <p class="jumbotronBackgroundTextShadow">Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>
+        <p><a href="#conocenos" class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
       </div>
     </div>
 
     <div class="container padContainer">
     	<div class="row">
-    		<div class="col-md-3">
-    			<ul class="nav nav-pills nav-stacked">
+    		<div class="col-md-2 bs-docs-sidebar">
+    			<ul class="nav nav-pills nav-stacked bs-docs-sidenav" data-spy="affix" data-offset-top="420">
   					<li class="active">
-  						<a href="#">Conócenos</a>
+  						<a href="#conocenos">Conócenos</a>
   					</li>
             <li>
-              <a href="#">Horarios</a>
+              <a href="#profesoresdiv">Profesores</a>
+            </li>
+            <li>
+              <a href="#horariosdiv">Horarios</a>
             </li>
   					<li>
   						<a href="#">Contactanos</a>
   					</li>
 				  </ul>
     		</div>
-    		<div class="col-md-9">
-    			<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    			</p>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+    		<div class="col-md-9 pull-right" style="margin-bottom:60px">
+    			<section id="conocenos">
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      			</p>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </section>
+          <div style="padding-top:15px; padding-bottom:15px">
+            <hr>
+          </div>
+          <section id="profesoresdiv">
+            @if(!profesores.isEmpty) {
+              <table class="table table-hover">
+                  <thead>
+                  <tr>
+                      <th>Nombre</th>
+                      <th>Video</th>
+                      <th>Constancia</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @for(prof <- profesores) {
+                  <tr>
+                      <td>@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</td>
+                      <td>@prof.getVideo()</td>
+                      <td>@prof.getConstancia()</td>
+                  </tr>
+                  }
+                  <tr>
+                      <td>hola</td>
+                      <td>hola</td>
+                      <td>hola</td>
+                  </tr>
+                  </tbody>
+              </table>
+            } else {
+            <h3>No hay Profesores disponibles!</h3>
+            }
+          </section>
+          <div style="padding-top:15px; padding-bottom:15px">
+            <hr>
+          </div>
+          <section id="horariosdiv">
+            @if(!horarios.isEmpty) {
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                      <th>Horario</th>
+                      <th>Nivel</th>
+                      <th>Profesor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(h <- horarios) {
+                  <tr>
+                      <td>@h.getHorario()</td>
+                      <td>@h.getNivel()</td>
+                      <td>@h.getProfesor().getNombre()</td>
+                  </tr>
+                  }
+                </tbody>
+            </table>
+            } else {
+            <h3>No hay horarios disponibles!</h3>
+            }
+          </section>
     		</div>
     	</div>
     </div>
