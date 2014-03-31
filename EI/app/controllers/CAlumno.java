@@ -35,7 +35,7 @@ public class CAlumno extends Controller {
         //return ok(views.html.principalAlumnoIH.render("Página Principal", user, modificacionFormulario, principalIH));
         //Form<RegistroAlumno> formularioAlumno      = Form.form(RegistroAlumno.class);
         //Form<Profesor> formularioProfesor          = Form.form(Profesor.class);
-        //Form<InicioSesion> formularioIniciar = Form.form(InicioSesion.class);
+        //Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class);
         //return ok(views.html.alumno.alumnoInicioFallido.render(formularioAlumno, formularioProfesor, formularioIniciar));
     }
 
@@ -46,12 +46,14 @@ public class CAlumno extends Controller {
      * @return [description]
      */
     public static Result iniciarSesionA() {
-        Form<InicioSesion> formularioIniciar = Form.form(InicioSesion.class).bindFromRequest();
+        Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class).bindFromRequest();
         System.out.println(formularioIniciar);
         if (formularioIniciar.hasErrors()) {
             Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class);
             Form<Profesor> formularioProfesor     = Form.form(Profesor.class);
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciar));
+            Form<InicioSesionProfesor> inicioProfesor     = Form.form(InicioSesionProfesor.class);
+            System.out.println("Aqui");
+            return badRequest(views.html.alumno.alumnoInicioFallido.render(formularioAlumno, formularioProfesor, formularioIniciar, inicioProfesor));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
@@ -129,8 +131,9 @@ public class CAlumno extends Controller {
         System.out.println(formularioAlumno);
         if (formularioAlumno.hasErrors()) {
             Form<Profesor> formularioProfesor  = Form.form(Profesor.class);
-            Form<InicioSesion> formularioIniciarAlumno = Form.form(InicioSesion.class);
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno));
+            Form<InicioSesionAlumno> formularioIniciarAlumno = Form.form(InicioSesionAlumno.class);
+            Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
+            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno, formularioIniciarProfesor));
         } else {
             RegistroAlumno ra = formularioAlumno.get();
             Alumno user = new Alumno(ra.nombre,

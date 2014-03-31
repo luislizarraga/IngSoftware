@@ -1,11 +1,13 @@
-@(title: String)(profesor: Profesor)(user: String)
+
+
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor])(profesor: Profesor)
 
 @principalProfesorIH(title, user) {
 
   <div class="container-fluid">  
     <div class="row">
       <h1>Bullshet modafuckaaaaas</h1>
-      <!-- <h2>Hola @profesor.getNombre !</h2> -->
+      <h2>Hola @user !</h2>
     </div>
   </div>
 

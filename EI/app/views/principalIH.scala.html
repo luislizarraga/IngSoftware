@@ -1,4 +1,4 @@
-@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesion])
+@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesionAlumno], profesorLoginForm: Form[forms.InicioSesionProfesor])
 @import forms._
 @import helper._
 
@@ -56,9 +56,9 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron jumbotronBackground" style="background-image: url('/assets/images/IMG_2429.jpg');">
       <div class="container">
-        <h1>Hola!</h1>
+        <h1>¡Hola!</h1>
         <p>Somos la primer escuela de inglés con precios accesibles y clases personales</p>
-        <p>Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>
+        <p>Tú eliges con qué profesor y a qué hora tomarás las clases, ¡tú controlas todo!</p>
         <p><a class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
       </div>
     </div>
@@ -74,7 +74,7 @@
               <a href="#">Horarios</a>
             </li>
   					<li>
-  						<a href="#">Contactanos</a>
+  						<a href="#">Contáctanos</a>
   					</li>
 				  </ul>
     		</div>
@@ -151,6 +151,23 @@
                 }
               </div>
               <div id="professorLogIn">
+              @helper.form(action = controllers.routes.CProfesor.iniciarSesionP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "professorLoginForm") {
+                  <fieldset>
+                    @inputText(
+                        profesorLoginForm("correoElectronico"), 
+                        '_label -> "E-mail", 
+                        '_error -> profesorLoginForm.globalError,
+                        'class -> "form-control"
+                    )
+                    @inputPassword(
+                        profesorLoginForm("contrasena"), 
+                        '_label -> "Contraseña", 
+                        '_error -> profesorLoginForm.globalError,
+                        'class -> "form-control"
+                    )
+                  </fieldset>
+                }
+              <!--
                 <form class="form-horizontal" role="form">
                   <div class="form-group">
                     <label for="mail" class="col-sm-3 control-label">E-mail</label>
@@ -164,7 +181,7 @@
                       <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
                     </div>
                   </div>
-                </form>
+                </form>-->
               </div>
             </div>
             <div id="footerstockLogIn" class="modal-footer">
@@ -175,7 +192,7 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
             <div id="footerprofessorLogIn" class="modal-footer">
-              <button type="button" class="btn btn-primary">Iniciar Sesión</button>
+              <button id="footerprofessorLogInSubmit" type="button" class="btn btn-primary">Iniciar Sesión</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
           </div>
@@ -336,6 +353,13 @@
             // Find form and submit it
             $('#studentLoginForm').submit();
         });
+        $('#footerprofessorLogInSubmit').on('click', function(e){
+                // We don't want this to act as a link so cancel the link action
+            e.preventDefault();
+
+            // Find form and submit it
+            $('#professorLoginForm').submit();
+        });
         $('#modalLogIn').modal({show:false});
         $('#studentLogIn').hide();
         $('#professorLogIn').hide();
@@ -408,10 +432,6 @@
           $("#modaldialogRegistration").addClass('modal-sm');
           $("#footerstockRegistration").show();
         })
-        if (alumnoLoginForm.hasErrors()) {
-          System.out.println("Errores");
-          $('#modalLogIn').modal({show:true});
-        }
       });
     </script>
 

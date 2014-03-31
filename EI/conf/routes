@@ -19,6 +19,8 @@ POST    /modificaAlumno             controllers.CAlumno.modificarInformacionA()
 # Páginas de profesores (CProfesor)
 
 GET     /profesor                   controllers.CProfesor.index()
+POST    /iniciaSesionProfesor         controllers.CProfesor.iniciarSesionP()
+GET     /cerrarSesionProfesor         controllers.CProfesor.cerrarSesionP()
 
 
 # Map static resources from the /public folder to the /assets URL path

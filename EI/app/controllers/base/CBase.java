@@ -19,10 +19,11 @@ public class CBase extends Controller {
      * @return [description]
      */
     public static Result index() {
-        Form<RegistroAlumno> formularioAlumno      = Form.form(RegistroAlumno.class);
-        Form<Profesor> formularioProfesor          = Form.form(Profesor.class);
-        Form<InicioSesion> formularioIniciarAlumno = Form.form(InicioSesion.class);
-        return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno));
+        Form<RegistroAlumno> formularioAlumno        = Form.form(RegistroAlumno.class);
+        Form<Profesor> formularioProfesor            = Form.form(Profesor.class);
+        Form<InicioSesionAlumno> formularioIniciarAlumno   = Form.form(InicioSesionAlumno.class);
+        Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
+        return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, formularioIniciarProfesor));
     }
 
 
