@@ -42,23 +42,28 @@ public class CProfesor extends Controller {
         Form<InicioSesionProfesor> formularioIniciar = Form.form(InicioSesionProfesor.class).bindFromRequest();
         System.out.println(formularioIniciar);
         if (formularioIniciar.hasErrors()) {
-            Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class);
-            Form<Profesor> formularioProfesor     = Form.form(Profesor.class);
-            Form<InicioSesionAlumno> iniciarAlumno      = Form.form(InicioSesionAlumno.class);
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor, iniciarAlumno, formularioIniciar));
+            return forbidden(views.html.profesor.profesorIniciarSesionFormulario.render(formularioIniciar));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
             session("usuario", "profesor");                                               // Se agrega el tipo de usuario a la sesion
             Profesor p = Profesor.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (p.getContrasena().equals(formularioIniciar.get().contrasena)) {
-                return redirect(routes.CProfesor.index());
+                //return redirect(routes.CProfesor.index());
+                return ok();
             } else {
-                return redirect(base.routes.CBase.index());
+                //return redirect(base.routes.CBase.index());
+                return ok("noup");
             }
         }
     } 
 
+    /**
+     * [cerrarSesionP description]
+     * author: Jose Vargas
+     * @return [description]
+     */
+    @Security.Authenticated(SecuredProfesor.class)
     public static Result cerrarSesionP() {
         session().clear(); // Se borra toda la información de la sesión
         //flash("success", "You've been logged out");
@@ -70,6 +75,7 @@ public class CProfesor extends Controller {
      * author: Lorena Mireles
      * @return [description]
      */
+    @Security.Authenticated(SecuredProfesor.class)
     public static Result modificarInformacionP() {
         return redirect(base.routes.CBase.index());
     }
@@ -80,6 +86,7 @@ public class CProfesor extends Controller {
      * author: Lorena Mireles
      * @return [description]
      */
+    @Security.Authenticated(SecuredProfesor.class)
     public static Result eliminaRegistroP() {
         return redirect(base.routes.CBase.index());
     }

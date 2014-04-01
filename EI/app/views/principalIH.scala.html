@@ -132,56 +132,40 @@
                   <button id="studentbuttonLogIn" class="btn btn-success">Alumno</button>
                   <button id="professorbuttonLogIn" class="btn btn-success">Profesor</button>
               </div>
+              <div id="modalLogInProcessing">
+                  <h3>Procesando ... </h3>
+              </div>
               <div id="studentLogIn">
-                @helper.form(action = controllers.routes.CAlumno.iniciarSesionA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentLoginForm") {
-                  <fieldset>
-                    @inputText(
+                <form id="studentLoginForm" class="form-horizontal" role="form" method="POST">
+                    @helper.inputText(
                         alumnoLoginForm("correoElectronico"), 
                         '_label -> "E-mail", 
                         '_error -> alumnoLoginForm.globalError,
                         'class -> "form-control"
                     )
-                    @inputPassword(
+                    @helper.inputPassword(
                         alumnoLoginForm("contrasena"), 
                         '_label -> "Contraseña", 
                         '_error -> alumnoLoginForm.globalError,
                         'class -> "form-control"
                     )
-                  </fieldset>
-                }
+                </form>
               </div>
               <div id="professorLogIn">
-              @helper.form(action = controllers.routes.CProfesor.iniciarSesionP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "professorLoginForm") {
-                  <fieldset>
-                    @inputText(
+                <form id="professorLoginForm" class="form-horizontal" role="form" method="POST">
+                    @helper.inputText(
                         profesorLoginForm("correoElectronico"), 
                         '_label -> "E-mail", 
                         '_error -> profesorLoginForm.globalError,
                         'class -> "form-control"
                     )
-                    @inputPassword(
+                    @helper.inputPassword(
                         profesorLoginForm("contrasena"), 
                         '_label -> "Contraseña", 
                         '_error -> profesorLoginForm.globalError,
                         'class -> "form-control"
                     )
-                  </fieldset>
-                }
-              <!--
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="mail" class="col-sm-3 control-label">E-mail</label>
-                    <div class="col-sm-8">
-                      <input id="mail" type="text" placeholder="Email" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="pass" class="col-sm-3 control-label">Contraseña</label>
-                    <div class="col-sm-8">
-                      <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
-                    </div>
-                  </div>
-                </form>-->
+                </form>
               </div>
             </div>
             <div id="footerstockLogIn" class="modal-footer">
@@ -349,14 +333,97 @@
         $('#footerstudentLogInSubmit').on('click', function(e){
                 // We don't want this to act as a link so cancel the link action
             e.preventDefault();
-
+            $('#studentLogIn').hide(400);
+            $('#footerstudentLogIn').hide(400);
+            //$('#modalLogInProcessing').show(800);
+            //$("#footerstockLogIn").show(800);
             // Find form and submit it
+            
+            $('#studentLoginForm').submit(function(e){
+              e.preventDefault();
+              $.ajax({
+                url: '@(controllers.routes.CAlumno.iniciarSesionA())',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(e){
+                  window.location.replace('@(controllers.routes.CAlumno.index())');
+                },
+                error: function(jqXHR, exception) {
+                  $('#studentLogIn').html(jqXHR.responseText);
+                  $('#studentLogIn').show(1000);
+                  $('#footerstudentLogIn').show(1000);
+                  // console.log(jqXHR);
+                  // if (jqXHR.status == 404) {
+                  //     alert('Requested page not found. [404]');
+                  // } else if (jqXHR.status == 500) {
+                  //     alert('Internal Server Error [500].');
+                  // } else if (jqXHR.status == 403) {
+                  //   $('#studentLogIn').html(jqXHR.responseText);
+                  //   $('#studentLogIn').show(1000);
+                  //   $('#footerstudentLogIn').show(1000);
+                  //   //$('#modalLogInProcessing').hide(200);
+                  //   //$("#footerstockLogIn").hide(200);
+                  // } else if (exception === 'parsererror') {
+                  //     alert('Requested JSON parse failed.');
+                  // } else if (exception === 'timeout') {
+                  //     alert('Time out error.');
+                  // } else if (exception === 'abort') {
+                  //     alert('Ajax request aborted.');
+                  // } else {
+                  //     alert('Uncaught Error.\n' + jqXHR.responseText);
+                  // }
+                }
+              })
+            });
+
             $('#studentLoginForm').submit();
         });
         $('#footerprofessorLogInSubmit').on('click', function(e){
                 // We don't want this to act as a link so cancel the link action
             e.preventDefault();
-
+            e.preventDefault();
+            $('#professorLogIn').hide(400);
+            $('#footerprofessorLogIn').hide(400);
+            //$('#modalLogInProcessing').show(800);
+            //$("#footerstockLogIn").show(800);
+            // Find form and submit it
+            
+            $('#professorLoginForm').submit(function(e){
+              e.preventDefault();
+              $.ajax({
+                url: '@(controllers.routes.CProfesor.iniciarSesionP())',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(e){
+                  window.location.replace('@(controllers.routes.CProfesor.index())');
+                },
+                error: function(jqXHR, exception) {
+                  $('#professorLogIn').html(jqXHR.responseText);
+                  $('#professorLogIn').show(1000);
+                  $('#footerprofessorLogIn').show(1000);
+                  // console.log(jqXHR);
+                  // if (jqXHR.status == 404) {
+                  //     alert('Requested page not found. [404]');
+                  // } else if (jqXHR.status == 500) {
+                  //     alert('Internal Server Error [500].');
+                  // } else if (jqXHR.status == 403) {
+                  //   $('#studentLogIn').html(jqXHR.responseText);
+                  //   $('#studentLogIn').show(1000);
+                  //   $('#footerstudentLogIn').show(1000);
+                  //   //$('#modalLogInProcessing').hide(200);
+                  //   //$("#footerstockLogIn").hide(200);
+                  // } else if (exception === 'parsererror') {
+                  //     alert('Requested JSON parse failed.');
+                  // } else if (exception === 'timeout') {
+                  //     alert('Time out error.');
+                  // } else if (exception === 'abort') {
+                  //     alert('Ajax request aborted.');
+                  // } else {
+                  //     alert('Uncaught Error.\n' + jqXHR.responseText);
+                  // }
+                }
+              })
+            });
             // Find form and submit it
             $('#professorLoginForm').submit();
         });
@@ -367,6 +434,7 @@
         $('#footerprofessorLogIn').hide();
         $('#modalLogInLabel2').hide();
         $('#modalLogInLabel3').hide();
+        $('#modalLogInProcessing').hide();
         $('#modalRegistration').modal({show:false});
         $('#studentRegistration').hide();
         $('#professorRegistration').hide();
@@ -395,11 +463,13 @@
         $('#modalLogIn').on('hidden.bs.modal', function (e) {
           $('#modalLogInLabel1').show();
           $('#modalLogInLabel2').hide();
+          $('#modalLogInLabel3').hide();
           $('#studentLogIn').hide();
           $('#footerstudentLogIn').hide();
           $('#professorLogIn').hide();
           $('#footerprofessorLogIn').hide();
           $("#modal-buttonsLogIn").show();
+          $("#modalLogInProcessing").hide();
           $("#modaldialogLogIn").addClass('modal-sm');
           $("#footerstockLogIn").show();
         })

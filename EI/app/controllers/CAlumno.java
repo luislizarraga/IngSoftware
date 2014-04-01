@@ -42,22 +42,19 @@ public class CAlumno extends Controller {
      */
     public static Result iniciarSesionA() {
         Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class).bindFromRequest();
-        System.out.println(formularioIniciar);
         if (formularioIniciar.hasErrors()) {
-            Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class);
-            Form<Profesor> formularioProfesor     = Form.form(Profesor.class);
-            Form<InicioSesionProfesor> inicioProfesor     = Form.form(InicioSesionProfesor.class);
-            System.out.println("Aqui");
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciar, inicioProfesor));
+            return forbidden(views.html.alumno.alumnoIniciarSesionFormulario.render(formularioIniciar));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
             session("usuario", "alumno");                                               // Se agrega el tipo de usuario a la sesion
             Alumno a = Alumno.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (a.getContrasena().equals(formularioIniciar.get().contrasena)) {
-                return redirect(routes.CAlumno.index());
+                //return redirect(routes.CAlumno.index());
+                return ok();
             } else {
-                return redirect(base.routes.CBase.index());
+                //return redirect(base.routes.CBase.index());
+                return ok("noup");
             }
         }
     } 
@@ -111,6 +108,7 @@ public class CAlumno extends Controller {
      * author: Lorena Mireles
      * @return [description]
      */
+    @Security.Authenticated(SecuredAlumno.class)
     public static Result eliminaRegistroA() {
         return redirect(routes.CAlumno.index());
     }
