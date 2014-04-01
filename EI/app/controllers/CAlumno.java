@@ -32,11 +32,6 @@ public class CAlumno extends Controller {
                                                                                     a.apellidoMaterno,
                                                                                     a.correoElectronico));
         return ok(views.html.alumno.alumnoIniciado.render("Página Principal", user, modificacionFormulario, a));
-        //return ok(views.html.principalAlumnoIH.render("Página Principal", user, modificacionFormulario, principalIH));
-        //Form<RegistroAlumno> formularioAlumno      = Form.form(RegistroAlumno.class);
-        //Form<Profesor> formularioProfesor          = Form.form(Profesor.class);
-        //Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class);
-        //return ok(views.html.alumno.alumnoInicioFallido.render(formularioAlumno, formularioProfesor, formularioIniciar));
     }
 
 
@@ -53,7 +48,7 @@ public class CAlumno extends Controller {
             Form<Profesor> formularioProfesor     = Form.form(Profesor.class);
             Form<InicioSesionProfesor> inicioProfesor     = Form.form(InicioSesionProfesor.class);
             System.out.println("Aqui");
-            return badRequest(views.html.alumno.alumnoInicioFallido.render(formularioAlumno, formularioProfesor, formularioIniciar, inicioProfesor));
+            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciar, inicioProfesor));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion

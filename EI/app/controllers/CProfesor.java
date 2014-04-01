@@ -17,6 +17,7 @@ public class CProfesor extends Controller {
      * author: Luis Lizarraga
      * @return [description]
      */
+    @Security.Authenticated(SecuredProfesor.class)
     public static Result index() {
         Profesor p = Profesor.find.where().eq("correoElectronico", session().get("correoElectronico")).findUnique(); // aquí hago un query a la BD buscando a 
                                                                                                     // aquellos alumnos que tengan el email dado
