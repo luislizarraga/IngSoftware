@@ -21,12 +21,13 @@ public class CBase extends Controller {
     public static Result index() {
         Form<RegistroAlumno> formularioAlumno      = Form.form(RegistroAlumno.class);
         Form<Profesor> formularioProfesor          = Form.form(Profesor.class);
-        Form<InicioSesion> formularioIniciarAlumno = Form.form(InicioSesion.class);
+        Form<InicioSesionAlumno> formularioIniciarAlumno   = Form.form(InicioSesionAlumno.class);
+        Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
         List<Curso> cursos = Curso.find.all();
         List<Profesor> profesores = Profesor.find.all();
         System.out.println(profesores);
         System.out.println(cursos);
-        return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, cursos, profesores));
+        return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores));
     }
 
 

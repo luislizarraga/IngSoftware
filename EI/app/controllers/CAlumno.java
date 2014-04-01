@@ -14,7 +14,7 @@ public class CAlumno extends Controller {
 
     /**
      * [index description]
-     * author: Luis Lizarraga
+     * @author Luis Lizarraga
      * @return [description]
      */
     @Security.Authenticated(SecuredAlumno.class) // al poner esto encima de cualquier método o clase, se checara 
@@ -41,23 +41,20 @@ public class CAlumno extends Controller {
      * @return [description]
      */
     public static Result iniciarSesionA() {
-        Form<InicioSesion> formularioIniciar = Form.form(InicioSesion.class).bindFromRequest();
-        System.out.println(formularioIniciar);
+        Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class).bindFromRequest();
         if (formularioIniciar.hasErrors()) {
-            Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class);
-            Form<Profesor> formularioProfesor     = Form.form(Profesor.class);
-            List<Curso> cursos = Curso.find.all();
-            List<Profesor> profesores = Profesor.find.all();
-            return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciar, cursos, profesores));
+            return forbidden(views.html.alumno.alumnoIniciarSesionFormulario.render(formularioIniciar));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
             session("usuario", "alumno");                                               // Se agrega el tipo de usuario a la sesion
             Alumno a = Alumno.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (a.getContrasena().equals(formularioIniciar.get().contrasena)) {
-                return redirect(routes.CAlumno.index());
+                //return redirect(routes.CAlumno.index());
+                return ok();
             } else {
-                return redirect(base.routes.CBase.index());
+                //return redirect(base.routes.CBase.index());
+                return ok("noup");
             }
         }
     } 
@@ -111,6 +108,7 @@ public class CAlumno extends Controller {
      * author: Lorena Mireles
      * @return [description]
      */
+    @Security.Authenticated(SecuredAlumno.class)
     public static Result eliminaRegistroA() {
         return redirect(routes.CAlumno.index());
     }
@@ -126,10 +124,11 @@ public class CAlumno extends Controller {
         System.out.println(formularioAlumno);
         if (formularioAlumno.hasErrors()) {
             Form<Profesor> formularioProfesor  = Form.form(Profesor.class);
-            Form<InicioSesion> formularioIniciarAlumno = Form.form(InicioSesion.class);
             List<Curso> cursos = Curso.find.all();
             List<Profesor> profesores = Profesor.find.all();
-            return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, cursos, profesores));
+            Form<InicioSesionAlumno> formularioIniciarAlumno = Form.form(InicioSesionAlumno.class);
+            Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
+            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores));
         } else {
             RegistroAlumno ra = formularioAlumno.get();
             Alumno user = new Alumno(ra.nombre,

@@ -1,0 +1,20 @@
+@(profesorLoginForm: Form[forms.InicioSesionProfesor])
+@import forms._
+@import helper._
+
+@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+
+<form id="professorLoginForm" class="form-horizontal" role="form" method="POST">
+    @helper.inputText(
+        profesorLoginForm("correoElectronico"), 
+        '_label -> "E-mail", 
+        '_error -> profesorLoginForm.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputPassword(
+        profesorLoginForm("contrasena"), 
+        '_label -> "Contraseña", 
+        '_error -> profesorLoginForm.globalError,
+        'class -> "form-control"
+    )
+</form>
