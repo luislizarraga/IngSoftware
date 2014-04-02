@@ -16,6 +16,7 @@
   <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="/assets/stylesheets/bootstrap-3.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/jquery.fullPage.css" />
 
 	<!-- Optional theme -->
 	<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
@@ -55,7 +56,7 @@
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron jumbotronBackground" style="background-image: url('/assets/images/IMG_2429.jpg');">
+    <div class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2429pnfg.jpg');">
       <div class="container">
         <h1 class="jumbotronBackgroundTextShadow">Hola!</h1>
         <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales</p>
@@ -63,6 +64,94 @@
         <p><a href="#conocenos" class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
       </div>
     </div>
+
+    <div class="section">
+          <div class="row">
+          <div class="col-md-9 pull-right">
+          <section id="conocenos">
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </section>
+          </div>
+          </div>
+          </div>
+
+          <div class="section">
+          <section id="profesoresdiv">
+            <div class="row">
+            <div class="col-md-3 col-md-offset-1 text-center">
+              <h2> Profesores : </h2>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+            @if(!profesores.isEmpty) {
+              <table class="table table-hover">
+                  <thead>
+                  <tr>
+                      <th>Nombre</th>
+                      <th>Video</th>
+                      <th>Constancia</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  @for(prof <- profesores) {
+                  <tr>
+                      <td>@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</td>
+                      <td>@prof.getVideo()</td>
+                      <td>@prof.getConstancia()</td>
+                  </tr>
+                  }
+                  <tr>
+                      <td>hola</td>
+                      <td>hola</td>
+                      <td>hola</td>
+                  </tr>
+                  </tbody>
+              </table>
+            } else {
+            <h3>No hay Profesores disponibles!</h3>
+            }
+          </div>
+          </section>
+          </div>
+
+          <div class="section">
+          <section id="horariosdiv">
+            @if(!horarios.isEmpty) {
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                      <th>Horario</th>
+                      <th>Nivel</th>
+                      <th>Profesor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(h <- horarios) {
+                  <tr>
+                      <td>@h.getHorario()</td>
+                      <td>@h.getNivel()</td>
+                      <td>@h.getProfesor().getNombre()</td>
+                  </tr>
+                  }
+                </tbody>
+            </table>
+            } else {
+            <h3>No hay horarios disponibles!</h3>
+            }
+          </section>
+          </div>
 
     <div class="container padContainer">
     	<div class="row">
@@ -83,7 +172,8 @@
 				  </ul>
     		</div>
     		<div class="col-md-9 pull-right" style="margin-bottom:60px">
-    			<section id="conocenos">
+    			<div class="section">
+          <section id="conocenos">
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
       			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -99,10 +189,19 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </section>
-          <div style="padding-top:15px; padding-bottom:15px">
-            <hr>
           </div>
+          <!-- <div style="padding-top:15px; padding-bottom:15px">
+            <hr>
+          </div> -->
+          <div class="section">
           <section id="profesoresdiv">
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
             @if(!profesores.isEmpty) {
               <table class="table table-hover">
                   <thead>
@@ -131,10 +230,19 @@
             <h3>No hay Profesores disponibles!</h3>
             }
           </section>
-          <div style="padding-top:15px; padding-bottom:15px">
-            <hr>
           </div>
+          <!-- <div style="padding-top:15px; padding-bottom:15px">
+            <hr>
+          </div> -->
+          <div class="section">
           <section id="horariosdiv">
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
             @if(!horarios.isEmpty) {
               <table class="table table-hover">
                 <thead>
@@ -158,6 +266,7 @@
             <h3>No hay horarios disponibles!</h3>
             }
           </section>
+          </div>
     		</div>
     	</div>
     </div>
@@ -386,8 +495,16 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/assets/javascripts/jquery-1.9.0.min.js"></script>
  	  <script src="/assets/javascripts/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+    <script src="/assets/javascripts/jquery.easings.min.js"></script>
+    <script src="/assets/javascripts/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/jquery.fullPage.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+        $.fn.fullpage({
+          css3:true,
+          navigation:true,
+          fixedElements: '.navbar'
+        });
         $('#footerstudentRegistrationSubmit').on('click', function(e){
                 // We don't want this to act as a link so cancel the link action
             e.preventDefault();
