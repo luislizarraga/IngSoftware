@@ -20,7 +20,7 @@ public class SecuredProfesor extends Security.Authenticator {
 
     @Override
     public Result onUnauthorized(Context ctx) {
-        if (ctx.session().get("usuario").equals("alumno")) {
+        if (ctx.session().get("usuario") != null && ctx.session().get("usuario").equals("alumno")) {
             return redirect(controllers.routes.CAlumno.index());
         }
         return redirect(base.routes.CBase.index());
