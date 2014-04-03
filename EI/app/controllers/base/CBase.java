@@ -25,8 +25,6 @@ public class CBase extends Controller {
         Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
         List<Curso> cursos = Curso.find.all();
         List<Profesor> profesores = Profesor.find.all();
-        System.out.println(profesores);
-        System.out.println(cursos);
         return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores));
     }
 
