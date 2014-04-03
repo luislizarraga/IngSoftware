@@ -13,7 +13,7 @@ public class InicioSesionProfesor {
 
     public List<ValidationError> validate() {
         List<ValidationError> errores = new ArrayList<ValidationError>();
-        System.out.println(correoElectronico);
+        //System.out.println(correoElectronico);
         if (correoElectronico.equals("")) {
             errores.add(new ValidationError("correoElectronico", "Este campo es requerido."));
         } else {

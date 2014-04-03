@@ -23,6 +23,8 @@ public class CProfesor extends Controller {
                                                                                                     // aquellos alumnos que tengan el email dado
                                                                                                     // eso de findUnique() se pone para que te regrese un
                                                                                                     // solo objeto y no una lista de objetos
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
         String user = p.nombre + " " + p.apellidoPaterno;
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
@@ -50,6 +52,8 @@ public class CProfesor extends Controller {
             Profesor p = Profesor.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (p.getContrasena().equals(formularioIniciar.get().contrasena)) {
                 //return redirect(routes.CProfesor.index());
+                response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+                response().setHeader("Pragma","no-cache");
                 return ok();
             } else {
                 //return redirect(base.routes.CBase.index());
@@ -67,6 +71,8 @@ public class CProfesor extends Controller {
     public static Result cerrarSesionP() {
         session().clear(); // Se borra toda la información de la sesión
         //flash("success", "You've been logged out");
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
         return redirect(base.routes.CBase.index());
     }
 

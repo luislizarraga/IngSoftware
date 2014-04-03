@@ -25,6 +25,9 @@ public class CAlumno extends Controller {
                             .eq("correoElectronico", session().get("correoElectronico"))     // aquellos alumnos que tengan el email dado
                             .findUnique();                                                   // eso de findUnique() se pone para que te regrese un
                                                                                              // solo objeto y no una lista de objetos                                                                                
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        //response().setDateHeader ("Expires", 0);
         String user = a.nombre + " " + a.apellidoPaterno;
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
@@ -43,7 +46,7 @@ public class CAlumno extends Controller {
     public static Result iniciarSesionA() {
         Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class).bindFromRequest();
         if (formularioIniciar.hasErrors()) {
-            return forbidden(views.html.alumno.alumnoIniciarSesionFormulario.render(formularioIniciar));
+            return unauthorized(views.html.alumno.alumnoIniciarSesionFormulario.render(formularioIniciar));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
@@ -51,6 +54,8 @@ public class CAlumno extends Controller {
             Alumno a = Alumno.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (a.getContrasena().equals(formularioIniciar.get().contrasena)) {
                 //return redirect(routes.CAlumno.index());
+                response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+                response().setHeader("Pragma","no-cache");  
                 return ok();
             } else {
                 //return redirect(base.routes.CBase.index());
@@ -69,6 +74,8 @@ public class CAlumno extends Controller {
     public static Result cerrarSesionA() {
         session().clear(); // Se borra toda la información de la sesión
         //flash("success", "You've been logged out");
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
         return redirect(base.routes.CBase.index());
     }
 
@@ -98,6 +105,8 @@ public class CAlumno extends Controller {
             if (!ma.contrasenaNueva.equals(""))
                 a.setContrasena(ma.contrasenaNueva);
             a.save();
+            response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+            response().setHeader("Pragma","no-cache");
             return redirect(routes.CAlumno.index());
         }
     }

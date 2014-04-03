@@ -4,7 +4,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
 
-import models.Alumno;
+import models.Profesor;
 import play.mvc.*;
 import play.libs.*;
 import play.test.*;
@@ -17,7 +17,7 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
-public class IniciarSesionATest extends WithApplication {
+public class IniciarSesionPTest extends WithApplication {
     
     @Before
     public void setUp() {
@@ -28,14 +28,14 @@ public class IniciarSesionATest extends WithApplication {
         DdlGenerator ddl = new DdlGenerator();
         ddl.setup((SpiEbeanServer) server, new MySqlPlatform(), config);
         start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        Ebean.save(new Alumno("luis","lizarraga","santos","luis@gmail.com","luis"));
+        Ebean.save(new Profesor("luis","lizarraga","santos","luis@gmail.com","luis"));
     }
 
 
     @Test
     public void authenticateSuccess() {
         Result result = callAction(
-            controllers.routes.ref.CAlumno.iniciarSesionA(),
+            controllers.routes.ref.CProfesor.iniciarSesionP(),
             fakeRequest().withFormUrlEncodedBody(ImmutableMap.of(
                 "correoElectronico", "luis@gmail.com",
                 "contrasena", "luis"))
@@ -43,8 +43,9 @@ public class IniciarSesionATest extends WithApplication {
         //System.out.println(session(result));
         assertEquals(200, status(result));
         assertEquals("luis@gmail.com", session(result).get("correoElectronico"));
-        assertEquals("alumno", session(result).get("usuario"));
+        assertEquals("profesor", session(result).get("usuario"));
     }
+
 
 
     @Test
@@ -98,5 +99,6 @@ public class IniciarSesionATest extends WithApplication {
         assertEquals(401, status(result));
         assert(contentAsString(result).contains("Este campo es requerido."));
     }
+
 
 }
