@@ -18,10 +18,9 @@
 	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/jquery.fullPage.css" />
 
-	<!-- Optional theme -->
-	<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
 </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
+<!-- <body data-spy="scroll" data-target=".navbar-nav"> -->
+<body>
  	
 	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
       <div class="container">
@@ -32,128 +31,131 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Escuela de Inglés</a>
+          <a class="navbar-brand" href="">Escuela de Inglés</a>
         </div>
         <div class="navbar-collapse collapse">
+          <ul id="Mymenu" class="nav navbar-nav">
+            <li data-menuanchor="Principal" class="active"><a href="#Principal">Principal</a></li>
+            <li data-menuanchor="Conocenos"><a href="#Conocenos">Conócenos</a></li>
+            <li data-menuanchor="Profesores"><a href="#Profesores">Profesores</a></li>
+            <li data-menuanchor="Horarios"><a href="#Horarios">Horarios</a></li>
+            <li data-menuanchor="Contacto"><a href="#Contacto">Contacto</a></li>
+          </ul>
           <div class="navbar-right navbar-form">
-          <!-- <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button> -->
-            <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              Iniciar sesión
-            </button> -->
             <a href="#modalRegistration" role='button' data-toggle="modal" class="btn btn-primary">Registrarse</a>
             <a href="#modalLogIn" role='button' data-toggle="modal" class="btn btn-success">Iniciar sesión</a>
-<!--           </form> -->
           </div>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2429pnfg.jpg');">
+    <div id="principal" class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2429pnfg.jpg');">
       <div class="container">
         <h1 class="jumbotronBackgroundTextShadow">Hola!</h1>
         <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales</p>
         <p class="jumbotronBackgroundTextShadow">Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>
-        <p><a href="#conocenos" class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
+        <p data-menuanchor="Conocenos"><a href="#Conocenos" class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
       </div>
     </div>
 
-    <div class="section">
-          <div class="row">
-          <div class="col-md-9 pull-right">
-          <section id="conocenos">
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </section>
-          </div>
-          </div>
-          </div>
+    <div class="section" id="conocenos">
+      <div class="row">
+        <div class="col-md-7 col-md-offset-4">
+          <h1>
+            La primer escuela de inglés que realmente se preocupa por sus estudiantes!
+          </h1>
+          <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-md-offset-4">
+          <p class="lead" style="color:#808080">
+            Ven y prueba nuestro revolucional sistema de manejo de cursos, constancias y calificaciones totalmente en la nube.
+            Sólo con nosotros podrás tener esta experiencia.
+          </p>
+          <p class="lead" style="color:#808080">
+            Empezamos como cualquier escuela de inglés, con instalaciones humildes, pocos maestros, pocos estudiantes y pocos horarios.
+            Pero conforme pasa el tiempo hemos estado ganando reconocimiento de la sociedad por la calidad de nuestros cursos y de nuestros profesores altamente calificados.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-md-offset-4">
+          <h1>Ven y compruébalo !</h1>
+        </div>
+      </div>
+    </div>
 
-          <div class="section">
-          <section id="profesoresdiv">
-            <div class="row">
-            <div class="col-md-3 col-md-offset-1 text-center">
-              <h2> Profesores : </h2>
-            </div>
-            <div class="col-md-5 col-md-offset-1">
-            @if(!profesores.isEmpty) {
-              <table class="table table-hover">
-                  <thead>
-                  <tr>
-                      <th>Nombre</th>
-                      <th>Video</th>
-                      <th>Constancia</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  @for(prof <- profesores) {
-                  <tr>
-                      <td>@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</td>
-                      <td>@prof.getVideo()</td>
-                      <td>@prof.getConstancia()</td>
-                  </tr>
-                  }
-                  <tr>
-                      <td>hola</td>
-                      <td>hola</td>
-                      <td>hola</td>
-                  </tr>
-                  </tbody>
-              </table>
-            } else {
-            <h3>No hay Profesores disponibles!</h3>
-            }
-          </div>
-          </section>
-          </div>
-
-          <div class="section">
-          <section id="horariosdiv">
-            @if(!horarios.isEmpty) {
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                      <th>Horario</th>
-                      <th>Nivel</th>
-                      <th>Profesor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for(h <- horarios) {
-                  <tr>
-                      <td>@h.getHorario()</td>
-                      <td>@h.getNivel()</td>
-                      <td>@h.getProfesor().getNombre()</td>
-                  </tr>
-                  }
-                </tbody>
+    <div class="section" id="profesoresdiv">
+      <div class="row">
+        <div class="col-md-3 col-md-offset-1 text-center">
+          <h2> Profesores : </h2>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+          @if(!profesores.isEmpty) {
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Video</th>
+                  <th>Constancia</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for(prof <- profesores) {
+                <tr>
+                    <td>@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</td>
+                    <td>@prof.getVideo()</td>
+                    <td>@prof.getConstancia()</td>
+                </tr>
+                }
+                <tr>
+                    <td>hola</td>
+                    <td>hola</td>
+                    <td>hola</td>
+                </tr>
+              </tbody>
             </table>
-            } else {
-            <h3>No hay horarios disponibles!</h3>
-            }
-          </section>
-          </div>
+          } else {
+            <h3>No hay Profesores disponibles!</h3>
+          }
+        </div>
+      </div>
+    </div>
 
-    <div class="container padContainer">
+    <div class="section" id="horariosdiv">
+      @if(!horarios.isEmpty) {
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th>Horario</th>
+                <th>Nivel</th>
+                <th>Profesor</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(h <- horarios) {
+            <tr>
+                <td>@h.getHorario()</td>
+                <td>@h.getNivel()</td>
+                <td>@h.getProfesor().getNombre()</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      } else {
+        <h3>No hay horarios disponibles!</h3>
+      }
+    </div>
+
+    <div class="section" id="contactodiv">
+      <footer>
+        <p class="text-center">&copy; SourceCode Company 2014</p>
+      </footer>
+    </div>
+
+    <!-- <div class="container padContainer">
     	<div class="row">
     		<div class="col-md-2 bs-docs-sidebar">
     			<ul class="nav nav-pills nav-stacked bs-docs-sidenav" data-spy="affix" data-offset-top="420">
@@ -189,11 +191,11 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </section>
-          </div>
+          </div> -->
           <!-- <div style="padding-top:15px; padding-bottom:15px">
             <hr>
           </div> -->
-          <div class="section">
+          <!-- <div class="section">
           <section id="profesoresdiv">
               <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -230,11 +232,11 @@
             <h3>No hay Profesores disponibles!</h3>
             }
           </section>
-          </div>
+          </div> -->
           <!-- <div style="padding-top:15px; padding-bottom:15px">
             <hr>
           </div> -->
-          <div class="section">
+          <!-- <div class="section">
           <section id="horariosdiv">
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -269,10 +271,9 @@
           </div>
     		</div>
     	</div>
-    </div>
+    </div> -->
 
-    <div class="container">
-      <!-- Example row of columns -->
+    <!-- <div class="container">
       <div class="row">
         <div class="col-md-4">
           <h2>Toefl gratis!</h2>
@@ -289,7 +290,7 @@
           <p>El Gobierno Federal apoyará la iniciativa de los Diputados para que modifiquen las leyes de educación de tal forma que, en apoyo a los estudiantes y personas de bajos recursos, la población se pueda certificar en el idioma inglés gratuitamente. </p>
           <p><a class="btn btn-default" href="#" role="button">Ver detalles &raquo;</a></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Modals -->
       <div class="modal fade bs-example-modal-sm" id="modalLogIn" tabindex="-1" role="dialog" aria-labelledby="modalLogInLabel" aria-hidden="true">
@@ -481,12 +482,6 @@
         </div>
       </div>
       <!-- endModals -->
-
-      <hr>
-
-      <footer>
-        <p>&copy; SourceCode Company 2014</p>
-      </footer>
     </div> <!-- /container -->
 
 
@@ -501,25 +496,25 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $.fn.fullpage({
-          css3:true,
+          css3:false,
           navigation:true,
-          fixedElements: '.navbar'
+          fixedElements: '.navbar',
+          autoScrolling: true,
+          paddingTop:'20px',
+          paddingBottom:'20px',
+          anchors: ['Principal', 'Conocenos', 'Profesores', 'Horarios', 'Contacto'],
+          menu: '#Mymenu',
+          navigationTooltips: ['Principal', 'Conocenos', 'Profesores', 'Horarios', 'Contacto'],
+          slidesColor: ['#f2f2f2', '#FFFFFF', '#A4A4A4', '#F3E2A9', '#0000'],
         });
         $('#footerstudentRegistrationSubmit').on('click', function(e){
-                // We don't want this to act as a link so cancel the link action
             e.preventDefault();
-
-            // Find form and submit it
             $('#studentRegistrationForm').submit();
         });
         $('#footerstudentLogInSubmit').on('click', function(e){
-                // We don't want this to act as a link so cancel the link action
             e.preventDefault();
             $('#studentLogIn').hide(400);
             $('#footerstudentLogIn').hide(400);
-            //$('#modalLogInProcessing').show(800);
-            //$("#footerstockLogIn").show(800);
-            // Find form and submit it
             
             $('#studentLoginForm').submit(function(e){
               e.preventDefault();
@@ -561,14 +556,10 @@
             $('#studentLoginForm').submit();
         });
         $('#footerprofessorLogInSubmit').on('click', function(e){
-                // We don't want this to act as a link so cancel the link action
             e.preventDefault();
             e.preventDefault();
             $('#professorLogIn').hide(400);
             $('#footerprofessorLogIn').hide(400);
-            //$('#modalLogInProcessing').show(800);
-            //$("#footerstockLogIn").show(800);
-            // Find form and submit it
             
             $('#professorLoginForm').submit(function(e){
               e.preventDefault();
@@ -583,30 +574,10 @@
                   $('#professorLogIn').html(jqXHR.responseText);
                   $('#professorLogIn').show(1000);
                   $('#footerprofessorLogIn').show(1000);
-                  // console.log(jqXHR);
-                  // if (jqXHR.status == 404) {
-                  //     alert('Requested page not found. [404]');
-                  // } else if (jqXHR.status == 500) {
-                  //     alert('Internal Server Error [500].');
-                  // } else if (jqXHR.status == 403) {
-                  //   $('#studentLogIn').html(jqXHR.responseText);
-                  //   $('#studentLogIn').show(1000);
-                  //   $('#footerstudentLogIn').show(1000);
-                  //   //$('#modalLogInProcessing').hide(200);
-                  //   //$("#footerstockLogIn").hide(200);
-                  // } else if (exception === 'parsererror') {
-                  //     alert('Requested JSON parse failed.');
-                  // } else if (exception === 'timeout') {
-                  //     alert('Time out error.');
-                  // } else if (exception === 'abort') {
-                  //     alert('Ajax request aborted.');
-                  // } else {
-                  //     alert('Uncaught Error.\n' + jqXHR.responseText);
-                  // }
                 }
               })
             });
-            // Find form and submit it
+
             $('#professorLoginForm').submit();
         });
         $('#modalLogIn').modal({show:false});
@@ -624,6 +595,7 @@
         $('#footerprofessorRegistration').hide();
         $('#modalRegistrationLabel2').hide();
         $('#modalRegistrationLabel3').hide();
+
         $("#studentbuttonLogIn").click(function(){
           $("#modal-buttonsLogIn").hide(400);
           $('#modalLogInLabel1').hide(400);
@@ -633,6 +605,7 @@
           $("#footerstockLogIn").hide(400);
           $('#footerstudentLogIn').show(1000);
         });
+
         $("#professorbuttonLogIn").click(function(){
           $("#modal-buttonsLogIn").hide(400);
           $('#modalLogInLabel1').hide(400);
@@ -642,6 +615,7 @@
           $("#footerstockLogIn").hide(400);
           $('#footerprofessorLogIn').show(1000);
         });
+
         $('#modalLogIn').on('hidden.bs.modal', function (e) {
           $('#modalLogInLabel1').show();
           $('#modalLogInLabel2').hide();
@@ -654,7 +628,8 @@
           $("#modalLogInProcessing").hide();
           $("#modaldialogLogIn").addClass('modal-sm');
           $("#footerstockLogIn").show();
-        })
+        });
+
         $("#studentbuttonRegistration").click(function(){
           $("#modal-buttonsRegistration").hide(400);
           $('#modalRegistrationLabel1').hide(400);
@@ -664,6 +639,7 @@
           $("#footerstockRegistration").hide(400);
           $('#footerstudentRegistration').show(1000);
         });
+
         $("#professorbuttonRegistration").click(function(){
           $("#modal-buttonsRegistration").hide(400);
           $('#modalRegistrationLabel1').hide(400);
@@ -673,6 +649,7 @@
           $("#footerstockRegistration").hide(400);
           $('#footerprofessorRegistration').show(1000);
         });
+
         $('#modalRegistration').on('hidden.bs.modal', function (e) {
           $('#modalRegistrationLabel1').show();
           $('#modalRegistrationLabel2').hide();
