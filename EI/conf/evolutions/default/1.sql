@@ -21,10 +21,18 @@ create table curso (
   constancia                varchar(255),
   calificacion              integer,
   nivel                     varchar(255),
-  horario                   datetime,
   alumno_id                 integer,
-  profesor_id               integer,
+  profesor_id               integer not null,
   constraint pk_curso primary key (id))
+;
+
+create table horario (
+  id                        integer auto_increment not null,
+  dia                       varchar(255),
+  hora_inicio               datetime,
+  hora_fin                  datetime,
+  curso_id                  integer not null,
+  constraint pk_horario primary key (id))
 ;
 
 create table profesor (
@@ -45,6 +53,8 @@ alter table curso add constraint fk_curso_alumno_1 foreign key (alumno_id) refer
 create index ix_curso_alumno_1 on curso (alumno_id);
 alter table curso add constraint fk_curso_profesor_2 foreign key (profesor_id) references profesor (id) on delete restrict on update restrict;
 create index ix_curso_profesor_2 on curso (profesor_id);
+alter table horario add constraint fk_horario_curso_3 foreign key (curso_id) references curso (id) on delete restrict on update restrict;
+create index ix_horario_curso_3 on horario (curso_id);
 
 
 
@@ -55,6 +65,8 @@ SET FOREIGN_KEY_CHECKS=0;
 drop table alumno;
 
 drop table curso;
+
+drop table horario;
 
 drop table profesor;
 

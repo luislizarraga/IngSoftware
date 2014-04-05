@@ -9,6 +9,8 @@ import models.*;
 import play.data.*;
 import java.util.*;
 import forms.*;
+import java.text.DateFormat;
+import java.text.ParseException;
 
 public class CBase extends Controller {
 
@@ -25,6 +27,18 @@ public class CBase extends Controller {
         Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
         List<Curso> cursos = Curso.find.all();
         List<Profesor> profesores = Profesor.find.all();
+        Profesor p    = Profesor.find.where()
+                            .eq("id", 1)
+                            .findUnique();
+        System.out.println(p.cursos.get(0).getNivel());
+        // Horario hor = null;
+        // try {
+        //     hor = new Horario("Lunes", (new Date().setHour), (DateFormat.getTimeInstance(DateFormat.HOUR_OF_DAY0_FIELD).parse("16")));
+        // } catch (ParseException pe) {
+        //     System.out.println("parse exception");
+        // }
+        // System.out.println(hor.getDia());
+        // System.out.println(hor.getHoraInicio());
         return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores));
     }
 

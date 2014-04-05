@@ -25,7 +25,6 @@ public class Profesor extends Model {
     @Column(nullable = false)
     public String apellidoPaterno;
 
-    
     public String apellidoMaterno;
 
     @Constraints.Required
@@ -40,7 +39,7 @@ public class Profesor extends Model {
 
     public String constancia;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profesor")
     public List<Curso> cursos;
 
 
@@ -49,6 +48,14 @@ public class Profesor extends Model {
     ); 
 
 
+    /**
+     * [Profesor description]
+     * @param  nombre            [description]
+     * @param  apellidoPaterno   [description]
+     * @param  apellidoMaterno   [description]
+     * @param  correoElectronico [description]
+     * @param  contrasena        [description]
+     */
     public Profesor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String contrasena) {
         this.nombre            = nombre;
         this.apellidoPaterno   = apellidoPaterno;
@@ -58,75 +65,143 @@ public class Profesor extends Model {
     }
 
 
+    /**
+     * [Profesor description]
+     */
     public Profesor(){}
 
 
+    /**
+     * [getId description]
+     * @return [description]
+     */
+    public Integer getId() {
+        return id;
+    }
+
+
+    /**
+     * [getNombre description]
+     * @return [description]
+     */
     public String getNombre() {
         return nombre;
     }
 
 
+    /**
+     * [getContrasena description]
+     * @return [description]
+     */
     public String getContrasena() {
         return contrasena;
     }
 
 
+    /**
+     * [getApellidoPaterno description]
+     * @return [description]
+     */
     public String getApellidoPaterno() {
         return apellidoPaterno;
     }
 
 
+    /**
+     * [getApellidoMaterno description]
+     * @return [description]
+     */
     public String getApellidoMaterno() {
         return apellidoMaterno;
     }
 
 
+    /**
+     * [getCorreoElectronico description]
+     * @return [description]
+     */
     public String getCorreoElectronico() {
         return correoElectronico;
     }
 
 
+    /**
+     * [getConstancia description]
+     * @return [description]
+     */
     public String getConstancia() {
         return constancia;
     }
 
 
+    /**
+     * [getVideo description]
+     * @return [description]
+     */
     public String getVideo() {
         return video;
     }
 
 
+    /**
+     * [setNombre description]
+     * @param nombre [description]
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
 
+    /**
+     * [setApellidoPaterno description]
+     * @param apellidoPaterno [description]
+     */
     public void setApellidoPaterno(String apellidoPaterno) {
         this.apellidoPaterno = apellidoPaterno;
     }
 
 
+    /**
+     * [setApellidoMaterno description]
+     * @param apellidoMaterno [description]
+     */
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
 
 
+    /**
+     * [setCorreoElectronico description]
+     * @param correoElectronico [description]
+     */
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
 
 
+    /**
+     * [setContrasena description]
+     * @param contrasena [description]
+     */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
 
+
+    /**
+     * [setConstancia description]
+     * @param constancia [description]
+     */
     public void setConstancia(String constancia) {
         this.constancia = constancia;
     }
 
+
+    /**
+     * [setVideo description]
+     * @param video [description]
+     */
     public void setVideo(String video) {
         this.video = video;
     }
-
-    
 }

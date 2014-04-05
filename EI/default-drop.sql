@@ -4,6 +4,8 @@ drop table alumno;
 
 drop table curso;
 
+drop table horario;
+
 drop table profesor;
 
 SET FOREIGN_KEY_CHECKS=1;

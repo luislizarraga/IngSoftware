@@ -32,3 +32,23 @@ profesores:
         apellidoMaterno: Torretes
         correoElectronico: tomas@gmail.com
         contrasena: tomas
+
+
+cursos:
+
+    - !!models.Curso
+        calificacion: 0
+        nivel: 5
+        profesor: !!models.Profesor
+                    id: 1
+
+
+
+horarios:
+
+    - !!models.Horario
+        dia: 2011-11-18
+        horaInicio: 2011-11-18 12:00:00 -6
+        horaFin: 2011-11-18 13:00:00 -6
+        curso: !!models.Curso
+                id: 1
