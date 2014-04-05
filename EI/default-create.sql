@@ -15,7 +15,7 @@ create table curso (
   aprobado                  tinyint(1) default 0,
   constancia                varchar(255),
   calificacion              integer,
-  nivel                     varchar(255),
+  nivel                     varchar(255) not null,
   alumno_id                 integer,
   profesor_id               integer not null,
   constraint pk_curso primary key (id))
@@ -23,9 +23,9 @@ create table curso (
 
 create table horario (
   id                        integer auto_increment not null,
-  dia                       varchar(255),
-  hora_inicio               datetime,
-  hora_fin                  datetime,
+  dia                       varchar(255) not null,
+  hora_inicio               varchar(255) not null,
+  hora_fin                  varchar(255) not null,
   curso_id                  integer not null,
   constraint pk_horario primary key (id))
 ;

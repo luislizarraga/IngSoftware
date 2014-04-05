@@ -47,8 +47,8 @@ cursos:
 horarios:
 
     - !!models.Horario
-        dia: 2011-11-18
-        horaInicio: 2011-11-18 12:00:00 -6
-        horaFin: 2011-11-18 13:00:00 -6
+        dia: Lunes
+        horaInicio: 16:00
+        horaFin: 18:00
         curso: !!models.Curso
                 id: 1

@@ -41,7 +41,7 @@ public class Horario extends Model {
      * @param  horaInicio [description]
      * @param  horaFin    [description]
      */
-    public Horario(String dia, Date horaInicio, Date horaFin) {
+    public Horario(String dia, String horaInicio, String horaFin) {
         this.dia        = dia;
         this.horaInicio = horaInicio;
         this.horaFin    = horaFin;
@@ -75,7 +75,7 @@ public class Horario extends Model {
      * [getHoraInicio description]
      * @return [description]
      */
-    public Date getHoraInicio() {
+    public String getHoraInicio() {
         return horaInicio;
     }
 
@@ -84,7 +84,7 @@ public class Horario extends Model {
      * [getHoraFin description]
      * @return [description]
      */
-    public Date getHoraFin() {
+    public String getHoraFin() {
         return horaFin;
     }
 
@@ -102,7 +102,7 @@ public class Horario extends Model {
      * [setHoraInicio description]
      * @param horaInicio [description]
      */
-    public void setHoraInicio(Date horaInicio) {
+    public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
     }
 
@@ -111,7 +111,7 @@ public class Horario extends Model {
      * [setHoraFin description]
      * @param horaFin [description]
      */
-    public void setHoraFin(Date horaFin) {
+    public void setHoraFin(String horaFin) {
         this.horaFin = horaFin;
     }
 
