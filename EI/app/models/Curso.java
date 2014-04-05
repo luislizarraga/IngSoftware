@@ -21,6 +21,7 @@ public class Curso extends Model {
     public Integer calificacion;
 
     @Constraints.Required
+    @Column(nullable = false)
     public String nivel;
 
     @ManyToOne()

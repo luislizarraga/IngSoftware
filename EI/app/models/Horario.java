@@ -15,15 +15,16 @@ public class Horario extends Model {
     public Integer id;
     
     @Constraints.Required
+    @Column(nullable = false)
     public String dia;
 
     @Constraints.Required
-    @Formats.DateTime(pattern="HH:mm")
-    public Date horaInicio = new Date();
+    @Column(nullable = false)
+    public String horaInicio;
 
     @Constraints.Required
-    @Formats.DateTime(pattern="HH:mm")
-    public Date horaFin = new Date();
+    @Column(nullable = false)
+    public String horaFin;
 
     @Constraints.Required
     @ManyToOne(optional = false)
