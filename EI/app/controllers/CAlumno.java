@@ -137,7 +137,8 @@ public class CAlumno extends Controller {
             List<Profesor> profesores = Profesor.find.all();
             Form<InicioSesionAlumno> formularioIniciarAlumno = Form.form(InicioSesionAlumno.class);
             Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores));
+            List<Horario> lunes = Horario.find.where().eq("dia", "Lunes").findList();
+            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores, lunes));
         } else {
             RegistroAlumno ra = formularioAlumno.get();
             Alumno user = new Alumno(ra.nombre,

@@ -143,6 +143,11 @@ public class Profesor extends Model {
     }
 
 
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+
     /**
      * [setNombre description]
      * @param nombre [description]

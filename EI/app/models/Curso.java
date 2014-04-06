@@ -128,6 +128,11 @@ public class Curso extends Model {
     }
 
 
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
+
+
     /**
      * [setProfesor description]
      * @param profesor [description]

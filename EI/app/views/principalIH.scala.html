@@ -1,4 +1,4 @@
-@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesionAlumno], profesorLoginForm: Form[forms.InicioSesionProfesor], horarios: List[Curso], profesores: List[Profesor])
+@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesionAlumno], profesorLoginForm: Form[forms.InicioSesionProfesor], horarios: List[Curso], profesores: List[Profesor], lunes: List[Horario])
 @import forms._
 @import helper._
 @import scala._
@@ -23,466 +23,405 @@
 <body>
  	
 	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="">Escuela de Inglés</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul id="Mymenu" class="nav navbar-nav">
-            <li data-menuanchor="Principal" class="active"><a href="#Principal">Principal</a></li>
-            <li data-menuanchor="Conocenos"><a href="#Conocenos">Conócenos</a></li>
-            <li data-menuanchor="Profesores"><a href="#Profesores">Profesores</a></li>
-            <li data-menuanchor="Horarios"><a href="#Horarios">Horarios</a></li>
-            <li data-menuanchor="Contacto"><a href="#Contacto">Contacto</a></li>
-          </ul>
-          <div class="navbar-right navbar-form">
-            <a href="#modalRegistration" role='button' data-toggle="modal" class="btn btn-primary">Registrarse</a>
-            <a href="#modalLogIn" role='button' data-toggle="modal" class="btn btn-success">Iniciar sesión</a>
-          </div>
-        </div><!--/.navbar-collapse -->
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">Escuela de Inglés</a>
       </div>
-    </nav>
+      <div class="navbar-collapse collapse">
+        <ul id="Mymenu" class="nav navbar-nav">
+          <li data-menuanchor="Principal" class="active"><a href="#Principal">Principal</a></li>
+          <li data-menuanchor="Conocenos"><a href="#Conocenos">Conócenos</a></li>
+          <li data-menuanchor="Profesores"><a href="#Profesores">Profesores</a></li>
+          <li data-menuanchor="Horarios"><a href="#Horarios">Horarios</a></li>
+          <li data-menuanchor="Contacto"><a href="#Contacto">Contacto</a></li>
+        </ul>
+        <div class="navbar-right navbar-form">
+          <a href="#modalRegistration" role='button' data-toggle="modal" class="btn btn-primary">Registrarse</a>
+          <a href="#modalLogIn" role='button' data-toggle="modal" class="btn btn-success">Iniciar sesión</a>
+        </div>
+      </div><!--/.navbar-collapse -->
+    </div>
+  </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div id="principal" class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2429pnfg.jpg');">
-      <div class="container">
-        <h1 class="jumbotronBackgroundTextShadow">Hola!</h1>
-        <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales</p>
-        <p class="jumbotronBackgroundTextShadow">Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>
-        <p data-menuanchor="Conocenos"><a href="#Conocenos" class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
+  <div id="principal" class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2429pnfg.jpg');">
+    <div class="container">
+      <h1 class="jumbotronBackgroundTextShadow">Hola!</h1>
+      <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales</p>
+      <p class="jumbotronBackgroundTextShadow">Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>
+      <p data-menuanchor="Conocenos"><a href="#Conocenos" class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
+    </div>
+  </div>
+
+  <div class="section" id="conocenos">
+    <div class="row">
+      <div class="col-md-7 col-md-offset-4">
+        <h1>
+          La primer escuela de inglés que realmente se preocupa por sus estudiantes!
+        </h1>
+        <br>
       </div>
     </div>
-
-    <div class="section" id="conocenos">
-      <div class="row">
-        <div class="col-md-7 col-md-offset-4">
-          <h1>
-            La primer escuela de inglés que realmente se preocupa por sus estudiantes!
-          </h1>
-          <br>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-7 col-md-offset-4">
-          <p class="lead" style="color:#808080">
-            Ven y prueba nuestro revolucional sistema de manejo de cursos, constancias y calificaciones totalmente en la nube.
-            Sólo con nosotros podrás tener esta experiencia.
-          </p>
-          <p class="lead" style="color:#808080">
-            Empezamos como cualquier escuela de inglés, con instalaciones humildes, pocos maestros, pocos estudiantes y pocos horarios.
-            Pero conforme pasa el tiempo hemos estado ganando reconocimiento de la sociedad por la calidad de nuestros cursos y de nuestros profesores altamente calificados.
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-9 col-md-offset-4">
-          <h1>Ven y compruébalo !</h1>
-        </div>
+    <div class="row">
+      <div class="col-md-7 col-md-offset-4">
+        <p class="lead" style="color:#808080">
+          Ven y prueba nuestro revolucional sistema de manejo de cursos, constancias y calificaciones totalmente en la nube.
+          Sólo con nosotros podrás tener esta experiencia.
+        </p>
+        <p class="lead" style="color:#808080">
+          Empezamos como cualquier escuela de inglés, con instalaciones humildes, pocos maestros, pocos estudiantes y pocos horarios.
+          Pero conforme pasa el tiempo hemos estado ganando reconocimiento de la sociedad por la calidad de nuestros cursos y de nuestros profesores altamente calificados.
+        </p>
       </div>
     </div>
-
-    <div class="section" id="profesoresdiv">
-      <div class="row">
-        <div class="col-md-3 col-md-offset-1 text-center">
-          <h2> Profesores : </h2>
-        </div>
-        <div class="col-md-5 col-md-offset-1">
-          @if(!profesores.isEmpty) {
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Video</th>
-                  <th>Constancia</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for(prof <- profesores) {
-                <tr>
-                    <td>@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</td>
-                    <td>@prof.getVideo()</td>
-                    <td>@prof.getConstancia()</td>
-                </tr>
-                }
-                <tr>
-                    <td>hola</td>
-                    <td>hola</td>
-                    <td>hola</td>
-                </tr>
-              </tbody>
-            </table>
-          } else {
-            <h3>No hay Profesores disponibles!</h3>
-          }
-        </div>
+    <div class="row">
+      <div class="col-md-9 col-md-offset-4">
+        <h1>Ven y compruébalo !</h1>
       </div>
     </div>
+  </div>
 
-    <div class="section" id="horariosdiv">
-      @if(!horarios.isEmpty) {
-        <table class="table table-hover">
-          <thead>
-            <tr>
-                <th>Horario</th>
-                <th>Nivel</th>
-                <th>Profesor</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for(h <- horarios) {
-            <tr>
-                <td>bla</td>
-                <td>@h.getNivel()</td>
-                <td>@h.getProfesor().getNombre()</td>
-            </tr>
+  <div class="section" id="profesoresdiv">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 text-center">
+        <h2> Profesores : </h2>
+      </div>
+      <div class="col-md-5 col-md-offset-1">
+        @if(!profesores.isEmpty) {
+          <!-- <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Video</th>
+                <th>Constancia</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(prof <- profesores) {
+              <tr>
+                  <td>@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</td>
+                  <td>@prof.getVideo()</td>
+                  <td>@prof.getConstancia()</td>
+              </tr>
+              }
+              <tr>
+                  <td>hola</td>
+                  <td>hola</td>
+                  <td>hola</td>
+              </tr>
+            </tbody>
+          </table> -->
+          <ul class="list-unstyled">
+            @for(prof <- profesores) {
+              <li>
+                <a href="" class="profesoresList" data-pk="@prof.id" style="color:#FFFFFF; font-size: 18px;">@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</a>
+              </li>
             }
-          </tbody>
-        </table>
-      } else {
-        <h3>No hay horarios disponibles!</h3>
-      }
+          </ul>
+        } else {
+          <h3>No hay Profesores disponibles!</h3>
+        }
+      </div>
     </div>
+  </div>
 
-    <div class="section" id="contactodiv">
-      <footer>
-        <p class="text-center">&copy; SourceCode Company 2014</p>
-      </footer>
-    </div>
-
-    <!-- <div class="container padContainer">
-    	<div class="row">
-    		<div class="col-md-2 bs-docs-sidebar">
-    			<ul class="nav nav-pills nav-stacked bs-docs-sidenav" data-spy="affix" data-offset-top="420">
-  					<li class="active">
-  						<a href="#conocenos">Conócenos</a>
-  					</li>
-            <li>
-              <a href="#profesoresdiv">Profesores</a>
-            </li>
-            <li>
-              <a href="#horariosdiv">Horarios</a>
-            </li>
-  					<li>
-  						<a href="#">Contáctanos</a>
-  					</li>
-				  </ul>
-    		</div>
-    		<div class="col-md-9 pull-right" style="margin-bottom:60px">
-    			<div class="section">
-          <section id="conocenos">
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      			</p>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </section>
-          </div> -->
-          <!-- <div style="padding-top:15px; padding-bottom:15px">
-            <hr>
-          </div> -->
-          <!-- <div class="section">
-          <section id="profesoresdiv">
-              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            @if(!profesores.isEmpty) {
-              <table class="table table-hover">
-                  <thead>
-                  <tr>
-                      <th>Nombre</th>
-                      <th>Video</th>
-                      <th>Constancia</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  @for(prof <- profesores) {
-                  <tr>
-                      <td>@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</td>
-                      <td>@prof.getVideo()</td>
-                      <td>@prof.getConstancia()</td>
-                  </tr>
-                  }
-                  <tr>
-                      <td>hola</td>
-                      <td>hola</td>
-                      <td>hola</td>
-                  </tr>
-                  </tbody>
-              </table>
-            } else {
-            <h3>No hay Profesores disponibles!</h3>
-            }
-          </section>
-          </div> -->
-          <!-- <div style="padding-top:15px; padding-bottom:15px">
-            <hr>
-          </div> -->
-          <!-- <div class="section">
-          <section id="horariosdiv">
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            @if(!horarios.isEmpty) {
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                      <th>Horario</th>
-                      <th>Nivel</th>
-                      <th>Profesor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for(h <- horarios) {
-                  <tr>
-                      <td>asd</td>
-                      <td>@h.getNivel()</td>
-                      <td>@h.getProfesor().getNombre()</td>
-                  </tr>
-                  }
-                </tbody>
-            </table>
-            } else {
-            <h3>No hay horarios disponibles!</h3>
-            }
-          </section>
-          </div>
-    		</div>
-    	</div>
-    </div> -->
-
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Toefl gratis!</h2>
-          <p>El Gobierno Federal apoyará la iniciativa de los Diputados para que modifiquen las leyes de educación de tal forma que, en apoyo a los estudiantes y personas de bajos recursos, la población se pueda certificar en el idioma inglés gratuitamente. </p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalles &raquo;</a></p>
+  <div class="section" id="horariosdiv">
+    @if(!horarios.isEmpty) {
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+              Lunes
+            </a>
+          </h4>
         </div>
-        <div class="col-md-4">
-          <h2>Toefl gratis!</h2>
-          <p>El Gobierno Federal apoyará la iniciativa de los Diputados para que modifiquen las leyes de educación de tal forma que, en apoyo a los estudiantes y personas de bajos recursos, la población se pueda certificar en el idioma inglés gratuitamente. </p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalles &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Toefl gratis!</h2>
-          <p>El Gobierno Federal apoyará la iniciativa de los Diputados para que modifiquen las leyes de educación de tal forma que, en apoyo a los estudiantes y personas de bajos recursos, la población se pueda certificar en el idioma inglés gratuitamente. </p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalles &raquo;</a></p>
-        </div>
-      </div> -->
-
-      <!-- Modals -->
-      <div class="modal fade bs-example-modal-sm" id="modalLogIn" tabindex="-1" role="dialog" aria-labelledby="modalLogInLabel" aria-hidden="true">
-        <div id="modaldialogLogIn" class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="modalLogInLabel1">Iniciar sesión como:</h4>
-              <h4 class="modal-title" id="modalLogInLabel2">Iniciar sesión Alumno</h4>
-              <h4 class="modal-title" id="modalLogInLabel3">Iniciar sesión Profesor</h4>
-            </div>
-            <div class="modal-body">
-              <div id="modal-buttonsLogIn" class="text-center">
-                  <button id="studentbuttonLogIn" class="btn btn-success">Alumno</button>
-                  <button id="professorbuttonLogIn" class="btn btn-success">Profesor</button>
-              </div>
-              <div id="modalLogInProcessing">
-                  <h3>Procesando ... </h3>
-              </div>
-              <div id="studentLogIn">
-                <form id="studentLoginForm" class="form-horizontal" role="form" method="POST">
-                    @helper.inputText(
-                        alumnoLoginForm("correoElectronico"), 
-                        '_label -> "E-mail", 
-                        '_error -> alumnoLoginForm.globalError,
-                        'class -> "form-control"
-                    )
-                    @helper.inputPassword(
-                        alumnoLoginForm("contrasena"), 
-                        '_label -> "Contraseña", 
-                        '_error -> alumnoLoginForm.globalError,
-                        'class -> "form-control"
-                    )
-                </form>
-              </div>
-              <div id="professorLogIn">
-                <form id="professorLoginForm" class="form-horizontal" role="form" method="POST">
-                    @helper.inputText(
-                        profesorLoginForm("correoElectronico"), 
-                        '_label -> "E-mail", 
-                        '_error -> profesorLoginForm.globalError,
-                        'class -> "form-control"
-                    )
-                    @helper.inputPassword(
-                        profesorLoginForm("contrasena"), 
-                        '_label -> "Contraseña", 
-                        '_error -> profesorLoginForm.globalError,
-                        'class -> "form-control"
-                    )
-                </form>
-              </div>
-            </div>
-            <div id="footerstockLogIn" class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-            <div id="footerstudentLogIn" class="modal-footer">
-              <button id="footerstudentLogInSubmit" type="submit" class="btn btn-primary">Iniciar Sesión</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-            <div id="footerprofessorLogIn" class="modal-footer">
-              <button id="footerprofessorLogInSubmit" type="button" class="btn btn-primary">Iniciar Sesión</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+          <div class="panel-bodyLunes">
+            @for(h <- lunes) {
+              <ul class="list-unstyled">
+                <li>Nivel:    @h.getCurso().getNivel()</li>
+                <li>Hora:     @h.getHoraInicio() - @h.getHoraFin()</li>
+                <li>Profesor: @h.getCurso().getProfesor().getNombre()</li>
+              </ul>
+            }
           </div>
         </div>
       </div>
-
-      <div class="modal fade bs-example-modal-sm" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistrationLabel" aria-hidden="true">
-        <div id="modaldialogRegistration" class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="modalRegistrationLabel1">Registrarse como:</h4>
-              <h4 class="modal-title" id="modalRegistrationLabel2">Registrarse como Alumno</h4>
-              <h4 class="modal-title" id="modalRegistrationLabel3">Registrarse como Profesor</h4>
-            </div>
-            <div class="modal-body">
-              <div id="modal-buttonsRegistration" class="text-center">
-                  <button id="studentbuttonRegistration" class="btn btn-success">Alumno</button>
-                  <button id="professorbuttonRegistration" class="btn btn-success">Profesor</button>
-              </div>
-              <div id="studentRegistration">
-                @helper.form(action = controllers.routes.CAlumno.registrarA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentRegistrationForm") {
-                  <fieldset>
-                    @inputText(
-                        alumnoForma("nombre"), 
-                        '_label -> "Nombre(s)", 
-                        '_error -> alumnoForma.globalError,
-                        'class -> "form-control"
-                    )
-                    @inputText(
-                        alumnoForma("apellidoPaterno"), 
-                        '_label -> "Apellido Paterno", 
-                        '_error -> alumnoForma.globalError,
-                        'class -> "form-control"
-                    )
-                    @inputText(
-                        alumnoForma("apellidoMaterno"), 
-                        '_label -> "Apellido Materno", 
-                        '_error -> alumnoForma.globalError,
-                        'class -> "form-control"
-                    )
-                    @inputText(
-                        alumnoForma("correoElectronico"), 
-                        '_label -> "Correo Electrónico", 
-                        '_error -> alumnoForma.globalError,
-                        'class -> "form-control"
-                    )
-                    @inputPassword(
-                        alumnoForma("contrasena"), 
-                        '_label -> "Contraseña", 
-                        '_error -> alumnoForma.globalError,
-                        'class -> "form-control"
-                    )
-                    @inputPassword(
-                        alumnoForma("confContrasena"), 
-                        '_label -> "Confirmar Contraseña", 
-                        '_error -> alumnoForma.globalError,
-                        'class -> "form-control"
-                    )
-                  </fieldset>
-                }
-              </div>
-              <div id="professorRegistration">
-                <form class="form-horizontal" role="form">
-                  <div class="form-group">
-                    <label for="mail" class="col-sm-3 control-label">Nombre(s)</label>
-                    <div class="col-sm-8">
-                      <input id="mail" type="text" placeholder="Nombre" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="mail" class="col-sm-3 control-label">Apellido Paterno</label>
-                    <div class="col-sm-8">
-                      <input id="mail" type="text" placeholder="Apellido Paterno" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="mail" class="col-sm-3 control-label">Apellido Materno</label>
-                    <div class="col-sm-8">
-                      <input id="mail" type="text" placeholder="Apellido Materno" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="mail" class="col-sm-3 control-label">Correo Electrónico</label>
-                    <div class="col-sm-8">
-                      <input id="mail" type="text" placeholder="Email" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="pass" class="col-sm-3 control-label">Contraseña</label>
-                    <div class="col-sm-8">
-                      <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="pass" class="col-sm-3 control-label">Confirmar Contraseña</label>
-                    <div class="col-sm-8">
-                      <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="pass" class="col-sm-3 control-label">Constancia de Profesor</label>
-                    <div class="col-sm-8">
-                      <input id="pass" type="File" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="pass" class="col-sm-3 control-label">Video</label>
-                    <div class="col-sm-8">
-                      <input id="pass" type="File" class="form-control">
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div id="footerstockRegistration" class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-            <div id="footerstudentRegistration" class="modal-footer">
-              <button id="footerstudentRegistrationSubmit" type="submit" class="btn btn-primary">Registrarse</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-            <div id="footerprofessorRegistration" class="modal-footer">
-              <button type="button" class="btn btn-primary">Registrarse</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+              Martes
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+          <div class="panel-bodyMartes">
           </div>
         </div>
       </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+              Miercoles
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-bodyMiercoles">
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+              Jueves
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+          <div class="panel-bodyJueves">
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+              Viernes
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse">
+          <div class="panel-bodyViernes">
+          </div>
+        </div>
+      </div>
+    </div>
+    } else {
+      <h3>No hay horarios disponibles!</h3>
+    }
+  </div>
+
+  <div class="section" id="contactodiv">
+    <footer>
+      <p class="text-center">&copy; SourceCode Company 2014</p>
+    </footer>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade bs-example-modal-sm" id="modalAssorted" tabindex="-1" role="dialog" aria-labelledby="modalAssortedLabel" aria-hidden="true">
+    <div id="modaldialogLogIn" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="modalAssortedLabel"></h4>
+        </div>
+        <div id="modalBodyAssorted" class="modal-body">
+          bla
+        </div>
+        <div id="footerstockAssorted" class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bs-example-modal-sm" id="modalLogIn" tabindex="-1" role="dialog" aria-labelledby="modalLogInLabel" aria-hidden="true">
+    <div id="modaldialogLogIn" class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="modalLogInLabel1">Iniciar sesión como:</h4>
+          <h4 class="modal-title" id="modalLogInLabel2">Iniciar sesión Alumno</h4>
+          <h4 class="modal-title" id="modalLogInLabel3">Iniciar sesión Profesor</h4>
+        </div>
+        <div class="modal-body">
+          <div id="modal-buttonsLogIn" class="text-center">
+              <button id="studentbuttonLogIn" class="btn btn-success">Alumno</button>
+              <button id="professorbuttonLogIn" class="btn btn-success">Profesor</button>
+          </div>
+          <div id="studentLogIn">
+            <form id="studentLoginForm" class="form-horizontal" role="form" method="POST">
+                @helper.inputText(
+                    alumnoLoginForm("correoElectronico"), 
+                    '_label -> "E-mail", 
+                    '_error -> alumnoLoginForm.globalError,
+                    'class -> "form-control"
+                )
+                @helper.inputPassword(
+                    alumnoLoginForm("contrasena"), 
+                    '_label -> "Contraseña", 
+                    '_error -> alumnoLoginForm.globalError,
+                    'class -> "form-control"
+                )
+            </form>
+          </div>
+          <div id="professorLogIn">
+            <form id="professorLoginForm" class="form-horizontal" role="form" method="POST">
+                @helper.inputText(
+                    profesorLoginForm("correoElectronico"), 
+                    '_label -> "E-mail", 
+                    '_error -> profesorLoginForm.globalError,
+                    'class -> "form-control"
+                )
+                @helper.inputPassword(
+                    profesorLoginForm("contrasena"), 
+                    '_label -> "Contraseña", 
+                    '_error -> profesorLoginForm.globalError,
+                    'class -> "form-control"
+                )
+            </form>
+          </div>
+        </div>
+        <div id="footerstockLogIn" class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+        <div id="footerstudentLogIn" class="modal-footer">
+          <button id="footerstudentLogInSubmit" type="submit" class="btn btn-primary">Iniciar Sesión</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+        <div id="footerprofessorLogIn" class="modal-footer">
+          <button id="footerprofessorLogInSubmit" type="button" class="btn btn-primary">Iniciar Sesión</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bs-example-modal-sm" id="modalRegistration" tabindex="-1" role="dialog" aria-labelledby="modalRegistrationLabel" aria-hidden="true">
+    <div id="modaldialogRegistration" class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="modalRegistrationLabel1">Registrarse como:</h4>
+          <h4 class="modal-title" id="modalRegistrationLabel2">Registrarse como Alumno</h4>
+          <h4 class="modal-title" id="modalRegistrationLabel3">Registrarse como Profesor</h4>
+        </div>
+        <div class="modal-body">
+          <div id="modal-buttonsRegistration" class="text-center">
+              <button id="studentbuttonRegistration" class="btn btn-success">Alumno</button>
+              <button id="professorbuttonRegistration" class="btn btn-success">Profesor</button>
+          </div>
+          <div id="studentRegistration">
+            @helper.form(action = controllers.routes.CAlumno.registrarA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentRegistrationForm") {
+              <fieldset>
+                @inputText(
+                    alumnoForma("nombre"), 
+                    '_label -> "Nombre(s)", 
+                    '_error -> alumnoForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    alumnoForma("apellidoPaterno"), 
+                    '_label -> "Apellido Paterno", 
+                    '_error -> alumnoForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    alumnoForma("apellidoMaterno"), 
+                    '_label -> "Apellido Materno", 
+                    '_error -> alumnoForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    alumnoForma("correoElectronico"), 
+                    '_label -> "Correo Electrónico", 
+                    '_error -> alumnoForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    alumnoForma("contrasena"), 
+                    '_label -> "Contraseña", 
+                    '_error -> alumnoForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    alumnoForma("confContrasena"), 
+                    '_label -> "Confirmar Contraseña", 
+                    '_error -> alumnoForma.globalError,
+                    'class -> "form-control"
+                )
+              </fieldset>
+            }
+          </div>
+          <div id="professorRegistration">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="mail" class="col-sm-3 control-label">Nombre(s)</label>
+                <div class="col-sm-8">
+                  <input id="mail" type="text" placeholder="Nombre" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mail" class="col-sm-3 control-label">Apellido Paterno</label>
+                <div class="col-sm-8">
+                  <input id="mail" type="text" placeholder="Apellido Paterno" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mail" class="col-sm-3 control-label">Apellido Materno</label>
+                <div class="col-sm-8">
+                  <input id="mail" type="text" placeholder="Apellido Materno" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mail" class="col-sm-3 control-label">Correo Electrónico</label>
+                <div class="col-sm-8">
+                  <input id="mail" type="text" placeholder="Email" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pass" class="col-sm-3 control-label">Contraseña</label>
+                <div class="col-sm-8">
+                  <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pass" class="col-sm-3 control-label">Confirmar Contraseña</label>
+                <div class="col-sm-8">
+                  <input id="pass" type="Contraseña" placeholder="Password" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pass" class="col-sm-3 control-label">Constancia de Profesor</label>
+                <div class="col-sm-8">
+                  <input id="pass" type="File" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pass" class="col-sm-3 control-label">Video</label>
+                <div class="col-sm-8">
+                  <input id="pass" type="File" class="form-control">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div id="footerstockRegistration" class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+        <div id="footerstudentRegistration" class="modal-footer">
+          <button id="footerstudentRegistrationSubmit" type="submit" class="btn btn-primary">Registrarse</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+        <div id="footerprofessorRegistration" class="modal-footer">
+          <button type="button" class="btn btn-primary">Registrarse</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
       <!-- endModals -->
-    </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
@@ -495,6 +434,7 @@
     <script type="text/javascript" src="/assets/javascripts/jquery.fullPage.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+        $('.collapse').collapse();
         $.fn.fullpage({
           css3:false,
           navigation:true,
@@ -505,7 +445,7 @@
           anchors: ['Principal', 'Conocenos', 'Profesores', 'Horarios', 'Contacto'],
           menu: '#Mymenu',
           navigationTooltips: ['Principal', 'Conocenos', 'Profesores', 'Horarios', 'Contacto'],
-          slidesColor: ['#f2f2f2', '#FFFFFF', '#A4A4A4', '#F3E2A9', '#0000'],
+          slidesColor: ['#f2f2f2', '#FFFFFF', '#A4A4A4', '#808080', '#0000'],
         });
         $('#footerstudentRegistrationSubmit').on('click', function(e){
             e.preventDefault();
@@ -556,7 +496,6 @@
             $('#studentLoginForm').submit();
         });
         $('#footerprofessorLogInSubmit').on('click', function(e){
-            e.preventDefault();
             e.preventDefault();
             $('#professorLogIn').hide(400);
             $('#footerprofessorLogIn').hide(400);
@@ -660,7 +599,28 @@
           $("#modal-buttonsRegistration").show();
           $("#modaldialogRegistration").addClass('modal-sm');
           $("#footerstockRegistration").show();
-        })
+        });
+        $('.profesoresList').each(function(){
+          var id = $(this).attr('data-pk');
+          console.log(id);
+          $(this).on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+              url: '@(base.routes.CBase.mostrarProfesor())',
+              type: 'POST',
+              data: {"idProf":id},
+              success: function(data){
+                $('#modalAssorted').modal({show:true});
+                $('#modalBodyAssorted').html(data);
+                $('#modalAssortedLabel').html($('#profNombre').html());
+                $('#profNombre').hide();
+              }
+            });
+          });
+        });
+        $('ul li').each(function(index) {
+          $(this).delay(4000 * index).fadeIn(500);
+        });
       });
     </script>
 

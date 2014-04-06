@@ -4,7 +4,7 @@
 
 # Página principal (CBase)
 GET     /                           base.CBase.index()
-
+POST    /getProfesor                base.CBase.mostrarProfesor()
 
 
 # Páginas de alumnos (CAlumno)

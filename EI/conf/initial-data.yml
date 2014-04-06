@@ -34,6 +34,14 @@ profesores:
         contrasena: tomas
 
 
+    - !!models.Profesor
+        nombre: Sancho
+        apellidoPaterno: Panza
+        apellidoMaterno: Carranza
+        correoElectronico: panza@gmail.com
+        contrasena: carranza
+
+
 cursos:
 
     - !!models.Curso
@@ -41,6 +49,12 @@ cursos:
         nivel: 5
         profesor: !!models.Profesor
                     id: 1
+
+    - !!models.Curso
+        calificacion: 0
+        nivel: 5
+        profesor: !!models.Profesor
+                    id: 2
 
 
 
@@ -52,3 +66,10 @@ horarios:
         horaFin: 18:00
         curso: !!models.Curso
                 id: 1
+
+    - !!models.Horario
+        dia: Lunes
+        horaInicio: 16:00
+        horaFin: 18:00
+        curso: !!models.Curso
+                id: 2

@@ -21,25 +21,19 @@ public class CBase extends Controller {
      * @return [description]
      */
     public static Result index() {
-        Form<RegistroAlumno> formularioAlumno      = Form.form(RegistroAlumno.class);
-        Form<Profesor> formularioProfesor          = Form.form(Profesor.class);
-        Form<InicioSesionAlumno> formularioIniciarAlumno   = Form.form(InicioSesionAlumno.class);
+        Form<RegistroAlumno> formularioAlumno                = Form.form(RegistroAlumno.class);
+        Form<Profesor> formularioProfesor                    = Form.form(Profesor.class);
+        Form<InicioSesionAlumno> formularioIniciarAlumno     = Form.form(InicioSesionAlumno.class);
         Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
-        List<Curso> cursos = Curso.find.all();
-        List<Profesor> profesores = Profesor.find.all();
-        Profesor p    = Profesor.find.where()
-                            .eq("id", 1)
-                            .findUnique();
-        System.out.println(p.cursos.get(0).getNivel());
-        // Horario hor = null;
-        // try {
-        //     hor = new Horario("Lunes", (new Date().setHour), (DateFormat.getTimeInstance(DateFormat.HOUR_OF_DAY0_FIELD).parse("16")));
-        // } catch (ParseException pe) {
-        //     System.out.println("parse exception");
-        // }
-        // System.out.println(hor.getDia());
-        // System.out.println(hor.getHoraInicio());
-        return ok(views.html.principalIH.render(formularioAlumno, formularioProfesor, formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores));
+        List<Curso> cursos                                   = Curso.find.all();
+        List<Profesor> profesores                            = Profesor.find.all();
+        List<Horario> lunes                                  = Horario.find.where().eq("dia", "Lunes").findList();
+        return ok(views.html.principalIH.render(formularioAlumno, 
+                                                formularioProfesor,
+                                                formularioIniciarAlumno, 
+                                                formularioIniciarProfesor, 
+                                                cursos, 
+                                                profesores, lunes));
     }
 
 
@@ -48,9 +42,10 @@ public class CBase extends Controller {
      * author: Luis Lizarraga
      * @return [description]
      */
-    public static Result MostrarProfesores() {
-        List<Alumno> alumnos = Alumno.find.all();
-        return ok(bla.render(alumnos));
+    public static Result mostrarProfesor() {
+        DynamicForm data = Form.form().bindFromRequest();
+        Profesor p = Profesor.find.byId(Integer.parseInt(data.get("idProf")));
+        return ok(views.html.principal.muestraProfesorIH.render(p));
     }
 
 
