@@ -22,7 +22,7 @@ public class CBase extends Controller {
      */
     public static Result index() {
         Form<RegistroAlumno> formularioAlumno                = Form.form(RegistroAlumno.class);
-        Form<Profesor> formularioProfesor                    = Form.form(Profesor.class);
+        Form<RegistroProfesor> formularioProfesor            = Form.form(RegistroProfesor.class);
         Form<InicioSesionAlumno> formularioIniciarAlumno     = Form.form(InicioSesionAlumno.class);
         Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
         List<Curso> cursos                                   = Curso.find.all();

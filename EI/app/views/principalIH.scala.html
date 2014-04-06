@@ -1,4 +1,4 @@
-@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[Profesor], alumnoLoginForm: Form[forms.InicioSesionAlumno], profesorLoginForm: Form[forms.InicioSesionProfesor], horarios: List[Curso], profesores: List[Profesor], lunes: List[Horario])
+@(alumnoForma: Form[forms.RegistroAlumno], profesorForma: Form[forms.RegistroProfesor], alumnoLoginForm: Form[forms.InicioSesionAlumno], profesorLoginForm: Form[forms.InicioSesionProfesor], horarios: List[Curso], profesores: List[Profesor], lunes: List[Horario])
 @import forms._
 @import helper._
 @import scala._
@@ -355,7 +355,60 @@
             }
           </div>
           <div id="professorRegistration">
-            <form class="form-horizontal" role="form">
+            @helper.form(action = controllers.routes.CAlumno.registrarA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "professorRegistrationForm") {
+              <fieldset>
+                @inputText(
+                    profesorForma("nombre"), 
+                    '_label -> "Nombre(s)", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    profesorForma("apellidoPaterno"), 
+                    '_label -> "Apellido Paterno", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    profesorForma("apellidoMaterno"), 
+                    '_label -> "Apellido Materno", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    profesorForma("correoElectronico"), 
+                    '_label -> "Correo Electrónico", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    profesorForma("contrasena"), 
+                    '_label -> "Contraseña", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    profesorForma("confContrasena"), 
+                    '_label -> "Confirmar Contraseña", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputFile(
+                    profesorForma("constancia"), 
+                    '_label -> "Constancia", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+                @inputFile(
+                    profesorForma("video"), 
+                    '_label -> "Video", 
+                    '_error -> profesorForma.globalError,
+                    'class -> "form-control"
+                )
+
+              </fieldset>
+            }
+            <!--<form class="form-horizontal" role="form">
               <div class="form-group">
                 <label for="mail" class="col-sm-3 control-label">Nombre(s)</label>
                 <div class="col-sm-8">
@@ -404,7 +457,7 @@
                   <input id="pass" type="File" class="form-control">
                 </div>
               </div>
-            </form>
+            </form>-->
           </div>
         </div>
         <div id="footerstockRegistration" class="modal-footer">
@@ -415,7 +468,8 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
         <div id="footerprofessorRegistration" class="modal-footer">
-          <button type="button" class="btn btn-primary">Registrarse</button>
+          <button id="footerprofessorRegistrationSubmit" type="submit" class="btn btn-primary">Registrarse</button>
+          <!--<button type="button" class="btn btn-primary">Registrarse</button>-->
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
@@ -450,6 +504,10 @@
         $('#footerstudentRegistrationSubmit').on('click', function(e){
             e.preventDefault();
             $('#studentRegistrationForm').submit();
+        });
+        $('#footerprofessorRegistrationSubmit').on('click', function(e){
+            e.preventDefault();
+            $('#professorRegistrationForm').submit();
         });
         $('#footerstudentLogInSubmit').on('click', function(e){
             e.preventDefault();

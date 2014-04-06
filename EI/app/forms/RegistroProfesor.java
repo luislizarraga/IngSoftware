@@ -1,5 +1,10 @@
 package forms;
 
+import java.util.*;
+import play.data.format.*;
+import play.data.validation.*;
+import models.*;
+
 public class RegistroProfesor {
 
 	public String nombre;

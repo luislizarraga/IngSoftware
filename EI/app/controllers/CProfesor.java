@@ -107,9 +107,15 @@ public class CProfesor extends Controller {
         Form<RegistroProfesor> formularioProfesor = Form.form(RegistroProfesor.class).bindFromRequest();
         System.out.println(formularioProfesor);
         if (formularioProfesor.hasErrors()) {
-            Form<Profesor> formularioAlumno  = Form.form(Alumno.class);
-            Form<InicioSesion> formularioIniciarProfesor = Form.form(InicioSesion.class);
-            return badRequest(views.html.principalIH.render(formularioProfesor, formularioAlumno,formularioIniciarProfesor));
+            Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class).bindFromRequest();
+            List<Curso> cursos = Curso.find.all();
+            List<Profesor> profesores = Profesor.find.all();
+            Form<InicioSesionAlumno> formularioIniciarAlumno = Form.form(InicioSesionAlumno.class);
+            Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
+            List<Horario> lunes = Horario.find.where().eq("dia", "Lunes").findList();
+            //return badRequest(views.html.principalIH.render(formularioProfesor, formularioAlumno,formularioIniciarProfesor));
+            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores, lunes));
+
         } else {
             RegistroProfesor rp = formularioProfesor.get();
             Profesor user = new Profesor(rp.nombre,
@@ -118,7 +124,8 @@ public class CProfesor extends Controller {
                                      rp.correoElectronico,
                                      rp.contrasena);
             user.save();
-            return redirect(base.routes.CBase.index());
+            return redirect(routes.CProfesor.index());
+            //return redirect(base.routes.CBase.index());
         }
     }
 
