@@ -1,4 +1,9 @@
-@(title: String, user: String)(content: Html)
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor])(content: Html)
+
+@import helper._
+
+@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +21,7 @@
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 </head>
 <body>
- 	
+      <header>
 	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,9 +64,10 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acciones <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Editar perfil</a></li>
-              <li><a href="#">Privacidad</a></li>
-              <li class="divider"></li>
+              <li><a href="#modalModification" role="button" data-toggle="modal">Editar perfil</a></li>
+              <li><a href="#">Privacidad</a></li>             
+ <li><a href="#eliminarPerfil" role="button" data-toggle="modal">Eliminar perfil</a></li>
+     <li class="divider"></li>
               <li><a href="@controllers.routes.CProfesor.cerrarSesionP">Salir</a></li>
             </ul>
           </li>
@@ -69,6 +75,91 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+ </header>
+
+
+<div class="modal fade bs-example-modal-sm" id="modalModification" tabindex="-1" role="dialog" aria-labelledby="modalRegistrationLabel" aria-hidden="true">
+    <div id="modaldialogRegistration" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="modalRegistrationLabel1">Editar datos</h4>
+        </div>
+        <div class="modal-body">
+          <div id="profesorRegistration">
+            @helper.form(action = controllers.routes.CProfesor.modificarInformacionP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "profesorModificationForm") {
+              <fieldset>
+                @inputText(
+                    modifyProfesor("nombre"), 
+                    '_label -> "Nombre(s)", 
+                    '_error -> modifyProfesor.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    modifyProfesor("apellidoPaterno"), 
+                    '_label -> "Apellido Paterno", 
+                    '_error -> modifyProfesor.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    modifyProfesor("apellidoMaterno"), 
+                    '_label -> "Apellido Materno", 
+                    '_error -> modifyProfesor.globalError,
+                    'class -> "form-control"
+                )
+                @inputText(
+                    modifyProfesor("correoElectronico"), 
+                    '_label -> "Correo Electrónico", 
+                    '_error -> modifyProfesor.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    modifyProfesor("contrasenaNueva"), 
+                    '_label -> "Nueva Contraseña", 
+                    '_error -> modifyProfesor.globalError,
+                    'class -> "form-control"
+                )
+                @inputPassword(
+                    modifyProfesor("confContrasena"), 
+                    '_label -> "Confirmar Contraseña", 
+                    '_error -> modifyProfesor.globalError,
+                    'class -> "form-control"
+                )
+              </fieldset>
+            }
+          </div>
+          <div id="footerprofesorModification" class="modal-footer">
+            <button id="profesorModificationSubmit" type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade bs-example-modal-sm" id="eliminarPerfil" tabindex="-1" role="dialog" aria-labelledby="modalRegistrationLabel" aria-hidden="true">
+    <div id="modaldialogRegistration2" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="modalRegistrationLabel2">Eliminar perfil</h4>
+        </div>
+        <div class="modal-body">
+<div id="profesorRegistration">
+            @helper.form(action = controllers.routes.CProfesor.eliminaRegistroP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "profesorEliminacionForm") {
+              <fieldset>
+               ¿Está seguro de que deseas eliminar su registro?
+              </fieldset>
+            }
+          </div>
+          <div id="footerprofesorEliminacion" class="modal-footer">
+            <button id="profesorEliminacionSubmit" type="submit" class="btn btn-primary">Eliminar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="content" style="margin-top:50px">
   @content
@@ -82,13 +173,26 @@
 
   <!-- Bootstrap core JavaScript
   ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
+  <!-- Placed at the end of the document so the pages load faster 
+-->
   <script src="/assets/javascripts/jquery-1.9.0.min.js"></script>
   <script src="/assets/javascripts/bootstrap-3.1.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      $('#myModal').modal({show:false});
+      $('#modalModification').modal({show:false});
+      $('#profesorModificationSubmit').on('click', function(e){
+          e.preventDefault();
+          $('#profesorModificationForm').submit();
+      });
     });
+$(document).ready(function() {
+      $('#eliminarPerfil').modal({show:false});
+      $('#profesorEliminacionSubmit').on('click', function(e){
+          e.preventDefault();
+          $('#profesorEliminacionForm').submit();
+      });
+    });
+
   </script>
 </body>
 </html> 

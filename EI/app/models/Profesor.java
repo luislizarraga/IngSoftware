@@ -209,4 +209,30 @@ public class Profesor extends Model {
     public void setVideo(String video) {
         this.video = video;
     }
+
+
+    /**
+     * [validate description]
+     * @return [description]
+     */
+    /**
+     * [validate description]
+     * @return [description]
+     */
+    public List<ValidationError> validate() {
+        List<ValidationError> errors = new ArrayList<ValidationError>();
+        Profesor p = Profesor.find.where().eq("correoElectronico", correoElectronico).findUnique();
+        System.out.println(p);
+        if (p != null) {
+            errors.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
+        }
+        //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"));
+        if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"))
+            errors.add(new ValidationError("correoElectronico", "Correo Electrónico inválido."));
+
+        return errors.isEmpty() ? null : errors;
+    }
+
+
+
 }

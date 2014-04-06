@@ -119,7 +119,13 @@ public class CAlumno extends Controller {
      */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result eliminaRegistroA() {
-        return redirect(routes.CAlumno.index());
+        Alumno a    = Alumno.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        Form<EliminacionAlumno> eliminacionForm = Form.form(EliminacionAlumno.class).bindFromRequest();
+        System.out.println(eliminacionForm);
+	a.delete();
+	return redirect(base.routes.CBase.index());
     }
 
 
@@ -133,7 +139,7 @@ public class CAlumno extends Controller {
         System.out.println(formularioAlumno);
         if (formularioAlumno.hasErrors()) {
             Form<Profesor> formularioProfesor  = Form.form(Profesor.class);
-            List<Curso> cursos = Curso.find.all();
+            List<Curso> cursos = Curso.find.all(); 
             List<Profesor> profesores = Profesor.find.all();
             Form<InicioSesionAlumno> formularioIniciarAlumno = Form.form(InicioSesionAlumno.class);
             Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);

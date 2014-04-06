@@ -19,8 +19,12 @@ public class CProfesor extends Controller {
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result index() {
-        Profesor p = Profesor.find.where().eq("correoElectronico", session().get("correoElectronico")).findUnique(); // aquí hago un query a la BD buscando a 
-                                                                                                    // aquellos alumnos que tengan el email dado
+ 
+Profesor p = Profesor.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+
+                   // aquellos profesores que tengan el email dado
                                                                                                     // eso de findUnique() se pone para que te regrese un
                                                                                                     // solo objeto y no una lista de objetos
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
@@ -76,14 +80,36 @@ public class CProfesor extends Controller {
         return redirect(base.routes.CBase.index());
     }
 
+
     /**
      * [modificarInformacionP description]
      * author: Lorena Mireles
      * @return [description]
      */
     @Security.Authenticated(SecuredProfesor.class)
-    public static Result modificarInformacionP() {
-        return redirect(base.routes.CBase.index());
+	    public static Result modificarInformacionP() {
+        Profesor p    = Profesor.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class).bindFromRequest();
+        System.out.println(modificacionFormulario);
+        if (modificacionFormulario.hasErrors()) {
+            String user = p.nombre + " " + p.apellidoPaterno;
+            return badRequest(views.html.profesor.profesorIniciado.render("Página Principal", user, modificacionFormulario, p));
+        } else {
+            ModificacionProfesor mp = modificacionFormulario.get();
+            p.setNombre(mp.nombre);
+            p.setApellidoPaterno(mp.apellidoPaterno);
+            p.setApellidoMaterno(mp.apellidoMaterno);
+            p.setCorreoElectronico(mp.correoElectronico);
+            session("correoElectronico", mp.correoElectronico);
+            if (!mp.contrasenaNueva.equals(""))
+                p.setContrasena(mp.contrasenaNueva);
+            p.save();
+            response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+            response().setHeader("Pragma","no-cache");
+            return redirect(routes.CProfesor.index());
+        }
     }
 
 
@@ -94,7 +120,14 @@ public class CProfesor extends Controller {
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result eliminaRegistroP() {
-        return redirect(base.routes.CBase.index());
+   Profesor p  = Profesor.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        Form<EliminacionProfesor> eliminacionForm = Form.form(EliminacionProfesor.class).bindFromRequest();
+        System.out.println(eliminacionForm);
+	p.delete();
+	return redirect(base.routes.CBase.index());
+
     }
 
 
@@ -130,7 +163,8 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result validaFormato() {
-        return redirect(base.routes.CBase.index());
+       // return redirect(base.routes.CBase.index());
+  return redirect(routes.CProfesor.index());
     }
 
 
@@ -150,6 +184,7 @@ public class CProfesor extends Controller {
      * @return [description]
      */
     public static Result eliminacionExitosa() {
-        return redirect(base.routes.CBase.index());
+        //return redirect(base.routes.CBase.index());
+return redirect(routes.CProfesor.index());
     }
 }
