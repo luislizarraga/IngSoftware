@@ -146,7 +146,7 @@
         </div>
         <div class="modal-body">
 <div id="profesorRegistration">
-            @helper.form(action = controllers.routes.CProfesor.eliminaRegistroP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "profesorEliminacionForm") {
+            @helper.form(action = controllers.routes.CProfesor.eliminaRegistroP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "profesorELiminacionForm") {
               <fieldset>
                ¿Está seguro de que deseas eliminar su registro?
               </fieldset>

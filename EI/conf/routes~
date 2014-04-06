@@ -14,7 +14,6 @@ POST    /iniciaSesionAlumno           controllers.CAlumno.iniciarSesionA()
 GET     /cerrarSesionAlumno           controllers.CAlumno.cerrarSesionA()
 POST    /registraAlumno               controllers.CAlumno.registrarA()
 POST    /modificaAlumno               controllers.CAlumno.modificarInformacionA()
-GET     /eliminaAlumno                controllers.CAlumno.eliminaRegistroA()
 
 
 # Páginas de profesores (CProfesor)

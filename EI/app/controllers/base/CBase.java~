@@ -30,7 +30,7 @@ public class CBase extends Controller {
         Profesor p    = Profesor.find.where()
                             .eq("id", 1)
                             .findUnique();
-        System.out.println(p.cursos.get(0).getNivel());
+        //System.out.println(p.cursos.get(0).getNivel());
        
  // Horario hor = null;
         // try {

@@ -124,7 +124,6 @@ public class CAlumno extends Controller {
                             .findUnique();
         Form<EliminacionAlumno> eliminacionForm = Form.form(EliminacionAlumno.class).bindFromRequest();
         System.out.println(eliminacionForm);
-	a.delete();
 	return redirect(base.routes.CBase.index());
     }
 

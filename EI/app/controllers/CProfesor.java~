@@ -125,7 +125,6 @@ Profesor p = Profesor.find.where()
                             .findUnique();
         Form<EliminacionProfesor> eliminacionForm = Form.form(EliminacionProfesor.class).bindFromRequest();
         System.out.println(eliminacionForm);
-	p.delete();
 	return redirect(base.routes.CBase.index());
 
     }

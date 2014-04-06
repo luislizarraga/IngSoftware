@@ -210,10 +210,6 @@ public class Profesor extends Model {
      * [validate description]
      * @return [description]
      */
-    /**
-     * [validate description]
-     * @return [description]
-     */
     public List<ValidationError> validate() {
         List<ValidationError> errors = new ArrayList<ValidationError>();
         Profesor p = Profesor.find.where().eq("correoElectronico", correoElectronico).findUnique();
@@ -227,7 +223,6 @@ public class Profesor extends Model {
 
         return errors.isEmpty() ? null : errors;
     }
-
 
 
 }

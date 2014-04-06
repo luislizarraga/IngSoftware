@@ -23,7 +23,7 @@ public class Global extends GlobalSettings {
                 Ebean.save(all.get("alumnos"));
                 Ebean.save(all.get("profesores"));
                 Ebean.save(all.get("cursos"));
-                Ebean.save(all.get("horarios"));
+               /* Ebean.save(all.get("horarios"));*/
             }
         }
     }

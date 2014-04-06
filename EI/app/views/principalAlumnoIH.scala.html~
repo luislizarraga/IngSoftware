@@ -56,7 +56,6 @@
               <ul class="dropdown-menu">
                 <li><a href="#modalModification" role='button' data-toggle="modal">Editar perfil</a></li>
                 <li><a href="#">Privacidad</a></li>
-		 <li><a href="#eliminarPerfil" role="button" data-toggle="modal">Eliminar perfil</a></li>
                 <li class="divider"></li>
                 <li><a href="@controllers.routes.CAlumno.cerrarSesionA">Salir</a></li>
               </ul>
