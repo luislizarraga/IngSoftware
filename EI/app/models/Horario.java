@@ -89,6 +89,11 @@ public class Horario extends Model {
     }
 
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+
     /**
      * [setDia description]
      * @param dia [description]
