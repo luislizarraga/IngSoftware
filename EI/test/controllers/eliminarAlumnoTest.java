@@ -26,7 +26,10 @@ public class eliminacionAlumnoTest extends WithApplication {
         DdlGenerator ddl = new DdlGenerator();
         ddl.setup((SpiEbeanServer) server, new MySqlPlatform(), config);
         start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        Ebean.save(new Alumno("ana","MartineS","Perez","ana@gmail.com","ana"));
+        Ebean.save(new Alumno("ana","Martines","Perez","ana@gmail.com","ana"));
+        session().clear();                                                          // Se borra toda la información de la sesión
+        session("correoElectronico", "ana@gmail.com");    // Se agrega el correoElectronico a la sesion
+        session("usuario", "alumno");
     }
 
 

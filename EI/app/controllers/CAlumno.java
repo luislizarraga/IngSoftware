@@ -17,9 +17,7 @@ public class CAlumno extends Controller {
      * @author Luis Lizarraga
      * @return [description]
      */
-    @Security.Authenticated(SecuredAlumno.class) // al poner esto encima de cualquier método o clase, se checara 
-                                                //si hay un usuario iniciado y es alumno, si no cumple, 
-                                                //lo manda a la pagina principal, dependiendo si es maestro o no
+    @Security.Authenticated(SecuredAlumno.class)
     public static Result index() {
         Alumno a    = Alumno.find.where()                                                    // aquí hago un query a la BD buscando a 
                             .eq("correoElectronico", session().get("correoElectronico"))     // aquellos alumnos que tengan el email dado
@@ -27,7 +25,6 @@ public class CAlumno extends Controller {
                                                                                              // solo objeto y no una lista de objetos                                                                                
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
-        //response().setDateHeader ("Expires", 0);
         String user = a.nombre + " " + a.apellidoPaterno;
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
@@ -91,7 +88,7 @@ public class CAlumno extends Controller {
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class).bindFromRequest();
-        System.out.println(modificacionFormulario);
+        //System.out.println(modificacionFormulario);
         if (modificacionFormulario.hasErrors()) {
             String user = a.nombre + " " + a.apellidoPaterno;
             return badRequest(views.html.alumno.alumnoIniciado.render("Página Principal", user, modificacionFormulario, a));
@@ -122,10 +119,10 @@ public class CAlumno extends Controller {
         Alumno a    = Alumno.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
-        Form<EliminacionAlumno> eliminacionForm = Form.form(EliminacionAlumno.class).bindFromRequest();
-        System.out.println(eliminacionForm);
-	a.delete();
-	return redirect(base.routes.CBase.index());
+	    a.delete();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+	    return redirect(base.routes.CBase.index());
     }
 
 

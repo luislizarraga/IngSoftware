@@ -19,14 +19,9 @@ public class CProfesor extends Controller {
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result index() {
- 
-Profesor p = Profesor.find.where()
+        Profesor p = Profesor.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
-
-                   // aquellos profesores que tengan el email dado
-                                                                                                    // eso de findUnique() se pone para que te regrese un
-                                                                                                    // solo objeto y no una lista de objetos
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
         String user = p.nombre + " " + p.apellidoPaterno;
@@ -87,12 +82,12 @@ Profesor p = Profesor.find.where()
      * @return [description]
      */
     @Security.Authenticated(SecuredProfesor.class)
-	    public static Result modificarInformacionP() {
+    public static Result modificarInformacionP() {
         Profesor p    = Profesor.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class).bindFromRequest();
-        System.out.println(modificacionFormulario);
+        //System.out.println(modificacionFormulario);
         if (modificacionFormulario.hasErrors()) {
             String user = p.nombre + " " + p.apellidoPaterno;
             return badRequest(views.html.profesor.profesorIniciado.render("Página Principal", user, modificacionFormulario, p));
@@ -120,14 +115,13 @@ Profesor p = Profesor.find.where()
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result eliminaRegistroP() {
-   Profesor p  = Profesor.find.where()
+        Profesor p  = Profesor.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
-        Form<EliminacionProfesor> eliminacionForm = Form.form(EliminacionProfesor.class).bindFromRequest();
-        System.out.println(eliminacionForm);
-	p.delete();
-	return redirect(base.routes.CBase.index());
-
+	    p.delete();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+	    return redirect(base.routes.CBase.index());
     }
 
 
@@ -185,6 +179,6 @@ Profesor p = Profesor.find.where()
      */
     public static Result eliminacionExitosa() {
         //return redirect(base.routes.CBase.index());
-return redirect(routes.CProfesor.index());
+        return redirect(routes.CProfesor.index());
     }
 }
