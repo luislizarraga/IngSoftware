@@ -57,13 +57,28 @@ public class CProfesor extends Controller {
     }
 
 
-    /**
+   /**
      * [registrarP description]
      * author: Norma Trinidad
      * @return [description]
      */
     public static Result registrarP() {
-        return redirect(base.routes.CBase.index());
+        Form<RegistroProfesor> formularioProfesor = Form.form(RegistroProfesor.class).bindFromRequest();
+        System.out.println(formularioProfesor);
+        if (formularioProfesor.hasErrors()) {
+            Form<Profesor> formularioAlumno  = Form.form(Alumno.class);
+            Form<InicioSesion> formularioIniciarProfesor = Form.form(InicioSesion.class);
+            return badRequest(views.html.principalIH.render(formularioProfesor, formularioAlumno,formularioIniciarProfesor));
+        } else {
+            RegistroProfesor rp = formularioProfesor.get();
+            Profesor user = new Profesor(rp.nombre,
+                                     rp.apellidoPaterno,
+                                     rp.apellidoMaterno,
+                                     rp.correoElectronico,
+                                     rp.contrasena);
+            user.save();
+            return redirect(base.routes.CBase.index());
+        }
     }
 
 
