@@ -25,13 +25,13 @@ public class CAlumno extends Controller {
                                                                                              // solo objeto y no una lista de objetos                                                                                
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
-        String user = a.nombre + " " + a.apellidoPaterno;
+        String user                                     = a.nombre + " " + a.apellidoPaterno;
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
                                                                                     a.apellidoPaterno,
                                                                                     a.apellidoMaterno,
                                                                                     a.correoElectronico));
-        return ok(views.html.alumno.alumnoIniciado.render("Página Principal", user, modificacionFormulario, a));
+        return ok(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a));
     }
 
 
@@ -43,7 +43,7 @@ public class CAlumno extends Controller {
     public static Result iniciarSesionA() {
         Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class).bindFromRequest();
         if (formularioIniciar.hasErrors()) {
-            return unauthorized(views.html.alumno.alumnoIniciarSesionFormulario.render(formularioIniciar));
+            return unauthorized(views.html.alumno.alumnoIniciarSesionFormularioIH.render(formularioIniciar));
         } else {
             session().clear();                                                          // Se borra toda la información de la sesión
             session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
@@ -91,7 +91,7 @@ public class CAlumno extends Controller {
         //System.out.println(modificacionFormulario);
         if (modificacionFormulario.hasErrors()) {
             String user = a.nombre + " " + a.apellidoPaterno;
-            return badRequest(views.html.alumno.alumnoIniciado.render("Página Principal", user, modificacionFormulario, a));
+            return badRequest(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a));
         } else {
             ModificacionAlumno ma = modificacionFormulario.get();
             a.setNombre(ma.nombre);
@@ -101,6 +101,7 @@ public class CAlumno extends Controller {
             session("correoElectronico", ma.correoElectronico);
             if (!ma.contrasenaNueva.equals(""))
                 a.setContrasena(ma.contrasenaNueva);
+            //System.out.println(ma.contrasenaNueva);
             a.save();
             response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
             response().setHeader("Pragma","no-cache");
@@ -133,15 +134,9 @@ public class CAlumno extends Controller {
      */
     public static Result registrarA() {
         Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class).bindFromRequest();
-        System.out.println(formularioAlumno);
+        //System.out.println(formularioAlumno);
         if (formularioAlumno.hasErrors()) {
-            Form<Profesor> formularioProfesor  = Form.form(Profesor.class);
-            List<Curso> cursos = Curso.find.all(); 
-            List<Profesor> profesores = Profesor.find.all();
-            Form<InicioSesionAlumno> formularioIniciarAlumno = Form.form(InicioSesionAlumno.class);
-            Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
-            List<Horario> lunes = Horario.find.where().eq("dia", "Lunes").findList();
-            return badRequest(views.html.principalIH.render(formularioAlumno, formularioProfesor,formularioIniciarAlumno, formularioIniciarProfesor, cursos, profesores, lunes));
+            return badRequest(views.html.alumno.alumnoRegistrarFormularioIH.render(formularioAlumno));
         } else {
             RegistroAlumno ra = formularioAlumno.get();
             Alumno user = new Alumno(ra.nombre,
@@ -150,7 +145,9 @@ public class CAlumno extends Controller {
                                      ra.correoElectronico,
                                      ra.contrasena);
             user.save();
-            return redirect(base.routes.CBase.index());
+            //return redirect(routes.CAlumno.index());
+            //return redirect(base.routes.CBase.index());
+            return ok();
         }
     }
 

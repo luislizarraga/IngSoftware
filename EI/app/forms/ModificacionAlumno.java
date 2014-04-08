@@ -27,11 +27,14 @@ public class ModificacionAlumno {
             errores.add(new ValidationError("correoElectronico", "Este campo es requerido."));
         } else {
             Alumno a = Alumno.find.where().eq("correoElectronico", correoElectronico).findUnique();
-            if (a != null && !a.getApellidoPaterno().equals(apellidoPaterno) 
-                && !a.getApellidoMaterno().equals(apellidoMaterno) && !a.getNombre().equals(nombre)) {
+            if (a != null && a.getApellidoPaterno().equals(apellidoPaterno) 
+                && a.getApellidoMaterno().equals(apellidoMaterno) && a.getNombre().equals(nombre)
+                && (!contrasenaNueva.equals("") && !confContrasena.equals(""))
+                && a.getContrasena().equals(contrasenaNueva)
+                && contrasenaNueva.equals(confContrasena)) {
                 errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
             }
-            System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
+            //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
             if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
                 errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
             }
@@ -40,6 +43,9 @@ public class ModificacionAlumno {
             if (!contrasenaNueva.equals(confContrasena)) {
                 errores.add(new ValidationError("contrasenaNueva", "Las contraseñas no coinciden."));
             }
+        }
+        if (!contrasenaNueva.equals("") && confContrasena.equals("")) {
+                errores.add(new ValidationError("contrasenaNueva", "Las contraseñas no coinciden.")); 
         }
         if (nombre.equals("")) {
             errores.add(new ValidationError("nombre", "Este campo es requerido."));

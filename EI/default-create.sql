@@ -1,5 +1,5 @@
 create table alumno (
-  id                        integer auto_increment not null,
+  id                        integer not null,
   activo                    tinyint(1) default 1,
   nombre                    varchar(255) not null,
   apellido_paterno          varchar(255) not null,
@@ -11,8 +11,8 @@ create table alumno (
 ;
 
 create table curso (
-  id                        integer auto_increment not null,
-  aprobado                  tinyint(1) default 0,
+  id                        integer not null,
+  aprobado                  boolean,
   constancia                varchar(255),
   calificacion              integer,
   nivel                     varchar(255) not null,
@@ -22,7 +22,7 @@ create table curso (
 ;
 
 create table horario (
-  id                        integer auto_increment not null,
+  id                        integer not null,
   dia                       varchar(255) not null,
   hora_inicio               varchar(255) not null,
   hora_fin                  varchar(255) not null,
@@ -31,7 +31,7 @@ create table horario (
 ;
 
 create table profesor (
-  id                        integer auto_increment not null,
+  id                        integer not null,
   activo                    tinyint(1) default 1,
   nombre                    varchar(255) not null,
   apellido_paterno          varchar(255) not null,
@@ -43,6 +43,14 @@ create table profesor (
   constraint uq_profesor_correo_electronico unique (correo_electronico),
   constraint pk_profesor primary key (id))
 ;
+
+create sequence alumno_seq;
+
+create sequence curso_seq;
+
+create sequence horario_seq;
+
+create sequence profesor_seq;
 
 alter table curso add constraint fk_curso_alumno_1 foreign key (alumno_id) references alumno (id) on delete restrict on update restrict;
 create index ix_curso_alumno_1 on curso (alumno_id);

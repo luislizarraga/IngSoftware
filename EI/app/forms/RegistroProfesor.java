@@ -1,5 +1,11 @@
 package forms;
 
+import java.util.*;
+import play.data.format.*;
+import play.data.validation.*;
+import models.*;
+import java.io.File;
+
 public class RegistroProfesor {
 
 	public String nombre;
@@ -14,9 +20,9 @@ public class RegistroProfesor {
 
     public String confContrasena;
 
-    public String constancia;
+    public File constancia;
 
-    public String video;
+    public File video;
 
 
     public List<ValidationError> validate() {
@@ -28,8 +34,8 @@ public class RegistroProfesor {
             if (p != null) {
                 errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
             }
-            System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
-            if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
+            //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
+            if (!correoElectronico.matches("[a-zA-Z0-9-._\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
                 errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
             }
         }
@@ -45,15 +51,6 @@ public class RegistroProfesor {
         if (apellidoPaterno.equals("")) {
             errores.add(new ValidationError("apellidoPaterno", "Este campo es requerido."));
         }
-
-        if (constancia.equals("")) {
-            errores.add(new ValidationError("constancia", "Este campo es requerido."));
-        }
-
-        if (video.equals("")) {
-            errores.add(new ValidationError("video", "Este campo es requerido."));
-        }
-
         return errores.isEmpty() ? null : errores;
     }
 

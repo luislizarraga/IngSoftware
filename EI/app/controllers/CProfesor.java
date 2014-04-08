@@ -2,12 +2,20 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.mvc.Http.MultipartFormData;
 
 import views.html.*;
 import models.*;
 import play.data.*;
 import java.util.*;
 import forms.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import play.mvc.Http.MultipartFormData.FilePart;
+import java.io.InputStream;
+import java.io.FileInputStream;
+import org.apache.commons.io.*;
 
 public class CProfesor extends Controller {
 
@@ -24,13 +32,13 @@ public class CProfesor extends Controller {
                             .findUnique();
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
-        String user = p.nombre + " " + p.apellidoPaterno;
+        String user                                       = p.nombre + " " + p.apellidoPaterno;
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
                                                                                     p.apellidoMaterno,
                                                                                     p.correoElectronico));
-        return ok(views.html.profesor.profesorIniciado.render("Página Principal", user, modificacionFormulario, p));
+        return ok(views.html.profesor.profesorIniciadoIH.render("Página Principal", user, modificacionFormulario, p));
     }
 
 
@@ -41,16 +49,15 @@ public class CProfesor extends Controller {
      */
     public static Result iniciarSesionP() {
         Form<InicioSesionProfesor> formularioIniciar = Form.form(InicioSesionProfesor.class).bindFromRequest();
-        System.out.println(formularioIniciar);
         if (formularioIniciar.hasErrors()) {
-            return forbidden(views.html.profesor.profesorIniciarSesionFormulario.render(formularioIniciar));
+            return forbidden(views.html.profesor.profesorIniciarSesionFormularioIH.render(formularioIniciar));
         } else {
-            session().clear();                                                          // Se borra toda la información de la sesión
-            session("correoElectronico", formularioIniciar.get().correoElectronico);    // Se agrega el correoElectronico a la sesion
-            session("usuario", "profesor");                                               // Se agrega el tipo de usuario a la sesion
+            session().clear();
             Profesor p = Profesor.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (p.getContrasena().equals(formularioIniciar.get().contrasena)) {
                 //return redirect(routes.CProfesor.index());
+                session("correoElectronico", formularioIniciar.get().correoElectronico);
+                session("usuario", "profesor");
                 response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
                 response().setHeader("Pragma","no-cache");
                 return ok();
@@ -90,7 +97,7 @@ public class CProfesor extends Controller {
         //System.out.println(modificacionFormulario);
         if (modificacionFormulario.hasErrors()) {
             String user = p.nombre + " " + p.apellidoPaterno;
-            return badRequest(views.html.profesor.profesorIniciado.render("Página Principal", user, modificacionFormulario, p));
+            return badRequest(views.html.profesor.profesorIniciadoIH.render("Página Principal", user, modificacionFormulario, p));
         } else {
             ModificacionProfesor mp = modificacionFormulario.get();
             p.setNombre(mp.nombre);
@@ -132,11 +139,13 @@ public class CProfesor extends Controller {
      */
     public static Result registrarP() {
         Form<RegistroProfesor> formularioProfesor = Form.form(RegistroProfesor.class).bindFromRequest();
-        System.out.println(formularioProfesor);
+        //System.out.println(new File("public/1/const.txt").getAbsolutePath());
+        //boolean f = (new File("public/1")).mkdirs();
+        MultipartFormData body = request().body().asMultipartFormData();
+        //System.out.println(formularioProfesorMultipart);
+        //System.out.println(formularioProfesor);
         if (formularioProfesor.hasErrors()) {
-            Form<Profesor> formularioAlumno  = Form.form(Alumno.class);
-            Form<InicioSesion> formularioIniciarProfesor = Form.form(InicioSesion.class);
-            return badRequest(views.html.principalIH.render(formularioProfesor, formularioAlumno,formularioIniciarProfesor));
+            return badRequest(views.html.profesor.profesorRegistrarFormularioIH.render(formularioProfesor));
         } else {
             RegistroProfesor rp = formularioProfesor.get();
             Profesor user = new Profesor(rp.nombre,
@@ -145,7 +154,67 @@ public class CProfesor extends Controller {
                                      rp.correoElectronico,
                                      rp.contrasena);
             user.save();
-            return redirect(base.routes.CBase.index());
+            if (body != null) {
+            FilePart filePart1 = body.getFile("constancia");
+            FilePart filePart2 = body.getFile("video");
+            boolean sePudo = (new File("public/professordata/"+user.getId())).mkdirs();
+            File file1 = filePart1.getFile();
+            File file2 = filePart2.getFile();
+            System.out.println(filePart1.getFilename() + filePart2.getFilename());
+            System.out.println(sePudo);
+            System.out.println(user.getId());
+            File newFile1 = new File("public/professordata/"+user.getId()+"/" + filePart1.getFilename());
+            File newFile2 = new File("public/professordata/"+user.getId()+"/" + filePart2.getFilename());
+            try {
+                InputStream isFile1 = new FileInputStream(file1);
+                InputStream isFile2 = new FileInputStream(file2);
+
+                byte[] byteFile1 = IOUtils.toByteArray(isFile1);
+                byte[] byteFile2 = IOUtils.toByteArray(isFile2);
+
+                FileUtils.writeByteArrayToFile(newFile1, byteFile1);
+                FileUtils.writeByteArrayToFile(newFile2, byteFile2);
+
+                isFile1.close();
+                isFile2.close();
+            } catch (FileNotFoundException fnfe) {
+                System.out.println("No se encontró el archivo");
+            } catch (IOException ioe) {
+                System.out.println("Error");
+            }
+            }
+            Form<CrearCurso> formularioCurso = Form.form(CrearCurso.class);
+            session().clear();
+            session("correoElectronico", rp.correoElectronico);
+            session("usuario", "profesor");
+            response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+            response().setHeader("Pragma","no-cache");
+            return ok(views.html.profesor.profesorAgregarCursoFormularioIH.render(formularioCurso));
+            //return redirect(base.routes.CBase.index());
+        }
+    }
+
+
+    @Security.Authenticated(SecuredProfesor.class)
+    public static Result agregarCursoP() {
+        Profesor p = Profesor.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        Form<CrearCurso> cursoFormulario = Form.form(CrearCurso.class).bindFromRequest();
+        if (p == null) {
+            return badRequest("No se pudo crear un horario, favor de iniciar sesion y crear uno");
+        }
+        if (cursoFormulario.hasErrors()) {
+            return badRequest(views.html.profesor.profesorAgregarCursoFormularioIH.render(cursoFormulario));
+        } else {
+            CrearCurso cc = cursoFormulario.get();
+            Curso c = new Curso(false, " ", 0, cc.nivel, p);
+            Horario h = new Horario(cc.dias, cc.horaInicio, cc.horaFin, c);
+            c.save();
+            h.save();
+            response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+            response().setHeader("Pragma","no-cache");
+            return redirect(routes.CProfesor.index());
         }
     }
 
@@ -158,7 +227,7 @@ public class CProfesor extends Controller {
      */
     public static Result validaFormato() {
        // return redirect(base.routes.CBase.index());
-  return redirect(routes.CProfesor.index());
+       return redirect(routes.CProfesor.index());
     }
 
 

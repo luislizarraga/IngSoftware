@@ -1,12 +1,20 @@
-SET FOREIGN_KEY_CHECKS=0;
+SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table alumno;
+drop table if exists alumno;
 
-drop table curso;
+drop table if exists curso;
 
-drop table horario;
+drop table if exists horario;
 
-drop table profesor;
+drop table if exists profesor;
 
-SET FOREIGN_KEY_CHECKS=1;
+SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists alumno_seq;
+
+drop sequence if exists curso_seq;
+
+drop sequence if exists horario_seq;
+
+drop sequence if exists profesor_seq;
 

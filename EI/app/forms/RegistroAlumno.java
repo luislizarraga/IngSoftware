@@ -30,8 +30,8 @@ public class RegistroAlumno {
             if (a != null) {
                 errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
             }
-            System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
-            if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
+            //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
+            if (!correoElectronico.matches("[a-zA-Z0-9-._\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
                 errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
             }
         }
@@ -48,5 +48,17 @@ public class RegistroAlumno {
             errores.add(new ValidationError("apellidoPaterno", "Este campo es requerido."));
         }
         return errores.isEmpty() ? null : errores;
+    }
+
+    public RegistroAlumno (String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String contrasena, String confContrasena) {
+        this.nombre            = nombre;
+        this.apellidoPaterno   = apellidoPaterno;
+        this.apellidoMaterno   = apellidoMaterno;
+        this.correoElectronico = correoElectronico;
+        this.contrasena        = contrasena;
+        this.confContrasena    = confContrasena;
+    }
+
+    public RegistroAlumno () {
     }
 }

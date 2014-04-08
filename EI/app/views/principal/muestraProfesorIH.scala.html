@@ -1,24 +1,28 @@
 @(p: Profesor)
 
-<h3 id="profNombre">@(p.getNombre + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno())</h3>
-<p>Correo Electronico: @p.getCorreoElectronico()</p>
-<p>Horarios y niveles:</p>
-<ul class="list-unstyled">
-    <li>
-        <ul>
-            @for(c <- p.getCursos()){
-                @if(c.getAlumno() == null) {
-                    <li>Nivel : @c.getNivel()</li>
-                    <ul class="list-unstyled">
-                        @for(h <- c.getHorarios()){
-                            <li>Dia: @h.getDia()</li>
-                            <li>Hora: @h.getHoraInicio() - @h.getHoraFin()</li>
-                        }
-                    </ul>
-                } else {
-
+@if(p == null) {
+    Profesor no encontrado !
+} else {
+    <h3 id="profNombre">@(p.getNombre + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno())</h3>
+    <p>Correo Electronico: @p.getCorreoElectronico()</p>
+    <p>Horarios y niveles:</p>
+    <ul class="list-unstyled">
+        <li>
+            <ul>
+                @for(c <- p.getCursos()){
+                    @if(c.getAlumno() == null) {
+                        <li>Nivel : @c.getNivel()</li>
+                        <ul class="list-unstyled">
+                            @for(h <- c.getHorarios()){
+                                <li>Dia: @h.getDia()</li>
+                                <li>Hora: @h.getHoraInicio() - @h.getHoraFin()</li>
+                            }
+                        </ul>
+                    } else {
+                        <li>Este profesor aún no tiene cursos registrados</li>
+                    }
                 }
-            }
-        </ul>
-    </li>
-</ul>
+            </ul>
+        </li>
+    </ul>
+}

@@ -31,7 +31,7 @@ public class Curso extends Model {
     @ManyToOne(optional = false)
     public Profesor profesor;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "curso")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "curso")
     public List<Horario> horarios;
 
     public static Finder<Integer,Curso> find = new Finder<Integer,Curso>(
@@ -47,12 +47,13 @@ public class Curso extends Model {
      * @param  nivel        [description]
      * @param  alumno       [description]
      */
-    public Curso(boolean aprobado, String constancia, Integer calificacion, String nivel, Alumno alumno) {
+    public Curso(boolean aprobado, String constancia, Integer calificacion, String nivel, Alumno alumno, Profesor profesor) {
         this.aprobado     = aprobado;
         this.constancia   = constancia;
         this.calificacion = calificacion;
         this.nivel        = nivel;
         this.alumno       = alumno;
+        this.profesor     = profesor;
     }
 
 
@@ -63,8 +64,8 @@ public class Curso extends Model {
      * @param  calificacion [description]
      * @param  nivel        [description]
      */
-    public Curso(boolean aprobado, String constancia, Integer calificacion, String nivel) {
-        this(aprobado, constancia, calificacion, nivel, null);
+    public Curso(boolean aprobado, String constancia, Integer calificacion, String nivel, Profesor profesor) {
+        this(aprobado, constancia, calificacion, nivel, null, profesor);
     }
 
 

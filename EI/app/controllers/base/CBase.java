@@ -22,18 +22,22 @@ public class CBase extends Controller {
      */
     public static Result index() {
         Form<RegistroAlumno> formularioAlumno                = Form.form(RegistroAlumno.class);
-        Form<Profesor> formularioProfesor                    = Form.form(Profesor.class);
+        Form<RegistroProfesor> formularioProfesor            = Form.form(RegistroProfesor.class);
         Form<InicioSesionAlumno> formularioIniciarAlumno     = Form.form(InicioSesionAlumno.class);
         Form<InicioSesionProfesor> formularioIniciarProfesor = Form.form(InicioSesionProfesor.class);
         List<Curso> cursos                                   = Curso.find.all();
         List<Profesor> profesores                            = Profesor.find.all();
         List<Horario> lunes                                  = Horario.find.where().eq("dia", "Lunes").findList();
+        List<Horario> martes                                 = Horario.find.where().eq("dia", "Martes").findList();
+        List<Horario> miercoles                              = Horario.find.where().eq("dia", "Miércoles").findList();
+        List<Horario> jueves                                 = Horario.find.where().eq("dia", "Jueves").findList();
+        List<Horario> viernes                                = Horario.find.where().eq("dia", "Viernes").findList();
         return ok(views.html.principalIH.render(formularioAlumno, 
                                                 formularioProfesor,
                                                 formularioIniciarAlumno, 
                                                 formularioIniciarProfesor, 
                                                 cursos, 
-                                                profesores, lunes));
+                                                profesores, lunes, martes, miercoles, jueves, viernes));
     }
 
 

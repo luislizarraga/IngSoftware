@@ -39,7 +39,7 @@ public class Profesor extends Model {
 
     public String constancia;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profesor")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "profesor")
     public List<Curso> cursos;
 
 

@@ -41,10 +41,11 @@ public class Horario extends Model {
      * @param  horaInicio [description]
      * @param  horaFin    [description]
      */
-    public Horario(String dia, String horaInicio, String horaFin) {
+    public Horario(String dia, String horaInicio, String horaFin, Curso curso) {
         this.dia        = dia;
         this.horaInicio = horaInicio;
         this.horaFin    = horaFin;
+        this.curso      = curso;
     }
 
 
