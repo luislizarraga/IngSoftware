@@ -1,0 +1,61 @@
+@(profesorForma: Form[forms.RegistroProfesor])
+
+@import forms._
+@import helper._
+@import scala._
+
+@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+
+
+<form id="professorRegistrationForm" class="form-horizontal" role="form" enctype="multipart/form-data" method="POST">
+    @helper.inputText(
+        profesorForma("nombre"), 
+        '_label -> "Nombre(s)", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        profesorForma("apellidoPaterno"), 
+        '_label -> "Apellido Paterno", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        profesorForma("apellidoMaterno"), 
+        '_label -> "Apellido Materno", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        profesorForma("correoElectronico"), 
+        '_label -> "Correo Electrónico", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputPassword(
+        profesorForma("contrasena"), 
+        '_label -> "Contraseña", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputPassword(
+        profesorForma("confContrasena"), 
+        '_label -> "Confirmar Contraseña", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputFile(
+        profesorForma("constancia"), 
+        '_label -> "Constancia", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control",
+        '_help -> "El archivo debe ser formato .pdf"
+    )
+    @helper.inputFile(
+        profesorForma("video"), 
+        '_label -> "Video", 
+        '_error -> profesorForma.globalError,
+        'class -> "form-control",
+        '_help -> "El video debe ser formato .mp4"
+    )
+</form>

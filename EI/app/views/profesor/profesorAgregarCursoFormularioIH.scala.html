@@ -1,0 +1,76 @@
+@(cursoForma: Form[forms.CrearCurso])
+@import forms._
+@import helper._
+@import scala._
+
+@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+
+
+<form id="cursoRegistrationForm" class="form-horizontal" role="form" enctype="multipart/form-data" method="POST">
+    @helper.select(
+        cursoForma("nivel"),
+        options("Basico 1" -> "Básico 1",
+                "Basico 2" -> "Básico 2",
+                "Basico 3" -> "Básico 3",
+                "Intermedio 1" -> "Intermedio 1",
+                "Intermedio 2" -> "Intermedio 2",
+                "Intermedio 3" -> "Intermedio 3",
+                "Avanzado 1" -> "Avanzado 1",
+                "Avanzado 2" -> "Avanzado 2",
+                "Avanzado 3" -> "Avanzado 3"
+        ),
+        '_label -> "Nivel", 
+        '_error -> cursoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.select(
+        cursoForma("dias"), 
+        options("Lunes" -> "Lunes",
+                "Martes" -> "Martes",
+                "Miercoles" -> "Miércoles",
+                "Jueves" -> "Jueves",
+                "Viernes" -> "Viernes"
+        ),
+        '_label -> "Apellido Paterno", 
+        '_error -> cursoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.select(
+        cursoForma("horaInicio"),
+        options("8:00" -> "8:00",
+                "9:00" -> "9:00",
+                "10:00" -> "10:00",
+                "11:00" -> "11:00",
+                "12:00" -> "12:00",
+                "13:00" -> "13:00",
+                "14:00" -> "14:00",
+                "15:00" -> "15:00",
+                "16:00" -> "16:00",
+                "17:00" -> "17:00",
+                "18:00" -> "18:00",
+                "19:00" -> "19:00"
+        ),
+        '_label -> "Hora de inicio", 
+        '_error -> cursoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.select(
+        cursoForma("horaFin"),
+        options("9:00" -> "9:00",
+                "10:00" -> "10:00",
+                "11:00" -> "11:00",
+                "12:00" -> "12:00",
+                "13:00" -> "13:00",
+                "14:00" -> "14:00",
+                "15:00" -> "15:00",
+                "16:00" -> "16:00",
+                "17:00" -> "17:00",
+                "18:00" -> "18:00",
+                "19:00" -> "19:00",
+                "20:00" -> "20:00"
+        ),
+        '_label -> "Hora de termino", 
+        '_error -> cursoForma.globalError,
+        'class -> "form-control"
+    )
+</form>

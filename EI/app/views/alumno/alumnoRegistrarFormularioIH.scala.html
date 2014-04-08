@@ -1,0 +1,45 @@
+@(alumnoForma: Form[forms.RegistroAlumno])
+@import forms._
+@import helper._
+
+@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+
+
+<form id="studentRegistrationForm" class="form-horizontal" role="form" method="POST">
+    @helper.inputText(
+        alumnoForma("nombre"), 
+        '_label -> "Nombre(s)", 
+        '_error -> alumnoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        alumnoForma("apellidoPaterno"), 
+        '_label -> "Apellido Paterno", 
+        '_error -> alumnoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        alumnoForma("apellidoMaterno"), 
+        '_label -> "Apellido Materno", 
+        '_error -> alumnoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        alumnoForma("correoElectronico"), 
+        '_label -> "Correo Electrónico", 
+        '_error -> alumnoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputPassword(
+        alumnoForma("contrasena"), 
+        '_label -> "Contraseña", 
+        '_error -> alumnoForma.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputPassword(
+        alumnoForma("confContrasena"), 
+        '_label -> "Confirmar Contraseña", 
+        '_error -> alumnoForma.globalError,
+        'class -> "form-control"
+    )
+</form>
