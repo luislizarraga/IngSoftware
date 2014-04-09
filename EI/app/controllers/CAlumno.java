@@ -9,13 +9,17 @@ import play.data.*;
 import java.util.*;
 import forms.*;
 
+
+/**
+ * Clase CAlumno el controlador del Alumno
+ */
 public class CAlumno extends Controller {
 
 
     /**
-     * [index description]
+     * Método index que muestra la página principal para el alumno en el servidor
      * @author Luis Lizarraga
-     * @return [description]
+     * @return una página html que se despliega en el explorador
      */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result index() {
@@ -36,9 +40,9 @@ public class CAlumno extends Controller {
 
 
     /**
-     * [iniciarSesionA description]
+     * Método que verifica que la contrasña dada sea la misma que el usuario dado y crea una sesion con el usuario
      * author: Jose Vargas
-     * @return [description]
+     * @return un Http response 200 si se pudo iniciar sesión, 401 si no correspondió la contraseña con el usuario
      */
     public static Result iniciarSesionA() {
         Form<InicioSesionAlumno> formularioIniciar = Form.form(InicioSesionAlumno.class).bindFromRequest();
@@ -55,7 +59,6 @@ public class CAlumno extends Controller {
                 response().setHeader("Pragma","no-cache");  
                 return ok();
             } else {
-                //return redirect(base.routes.CBase.index());
                 return ok("noup");
             }
         }
@@ -63,14 +66,13 @@ public class CAlumno extends Controller {
 
 
     /**
-     * [cerrarSesionA description]
+     * Método que invalida la sesión del usuario
      * author: Jose Vargas
-     * @return [description]
+     * @return un http response 303, redireccionando a la página principal del servidor
      */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result cerrarSesionA() {
         session().clear(); // Se borra toda la información de la sesión
-        //flash("success", "You've been logged out");
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
         return redirect(base.routes.CBase.index());
@@ -78,9 +80,9 @@ public class CAlumno extends Controller {
 
 
     /**
-     * [modificarInformacionA description]
+     * Método que modifica la información en la base de datos de un usuario(Alumno) dado.
      * author: Lorena Mireles
-     * @return [description]
+     * @return un Http response 200 si se pudo modificar la información o un Http response 403 si no pasó la verificación
      */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result modificarInformacionA() {
@@ -88,7 +90,6 @@ public class CAlumno extends Controller {
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class).bindFromRequest();
-        //System.out.println(modificacionFormulario);
         if (modificacionFormulario.hasErrors()) {
             String user = a.nombre + " " + a.apellidoPaterno;
             return badRequest(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a));
@@ -101,7 +102,6 @@ public class CAlumno extends Controller {
             session("correoElectronico", ma.correoElectronico);
             if (!ma.contrasenaNueva.equals(""))
                 a.setContrasena(ma.contrasenaNueva);
-            //System.out.println(ma.contrasenaNueva);
             a.save();
             response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
             response().setHeader("Pragma","no-cache");
@@ -111,9 +111,9 @@ public class CAlumno extends Controller {
 
 
     /**
-     * [eliminaRegistroA description]
+     * Método que elimina a un usuario(Alumno) de la base de datos
      * author: Lorena Mireles
-     * @return [description]
+     * @return un Http response 303 que redirecciona a la página principal
      */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result eliminaRegistroA() {
@@ -121,6 +121,7 @@ public class CAlumno extends Controller {
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
 	    a.delete();
+        session().clear();
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
 	    return redirect(base.routes.CBase.index());
@@ -128,13 +129,12 @@ public class CAlumno extends Controller {
 
 
     /**
-     * [registrarA description]
+     * Método que registra un alumno dado un formulario
      * author: Norma Trinidad
-     * @return [description]
+     * @return un Http Response 200 si no hubo errores de verificacion, Http response 401 si los hubo
      */
     public static Result registrarA() {
         Form<RegistroAlumno> formularioAlumno = Form.form(RegistroAlumno.class).bindFromRequest();
-        //System.out.println(formularioAlumno);
         if (formularioAlumno.hasErrors()) {
             return badRequest(views.html.alumno.alumnoRegistrarFormularioIH.render(formularioAlumno));
         } else {
@@ -145,43 +145,7 @@ public class CAlumno extends Controller {
                                      ra.correoElectronico,
                                      ra.contrasena);
             user.save();
-            //return redirect(routes.CAlumno.index());
-            //return redirect(base.routes.CBase.index());
             return ok();
         }
     }
-
-    
-
-
-    /**
-     * [validaFormato description]
-     * Posiblemente se necesite uno para inicio de sesion y otro diferente para registro y modificar info
-     * author:varios
-     * @return [description]
-     */
-    public static Result validaFormato() {
-        return redirect(routes.CAlumno.index());
-    }
-
-
-    /**
-     * [modificacionExitosa description]
-     * author: Lorena Mireles
-     * @return [description]
-     */
-    public static Result modificacionExitosa() {
-        return redirect(routes.CAlumno.index());
-    }
-
-
-    /**
-     * [eliminacionExitosa description]
-     * author: Lorena Mireles
-     * @return [description]
-     */
-    public static Result eliminacionExitosa() {
-        return redirect(routes.CAlumno.index());
-    }
-
 }

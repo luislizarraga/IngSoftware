@@ -7,6 +7,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
+/**
+ * Clase Curso que modela a un curso en la base de datos
+ */
 @Entity
 public class Curso extends Model {
 
@@ -40,12 +43,12 @@ public class Curso extends Model {
 
 
     /**
-     * [Curso description]
-     * @param  aprobado     [description]
-     * @param  constancia   [description]
-     * @param  calificacion [description]
-     * @param  nivel        [description]
-     * @param  alumno       [description]
+     * Constructor de curso que recibe 5 parámetros.
+     * @param  aprobado     un booleano que nos dice si fué aprobado el curso
+     * @param  constancia   la constancia del curso
+     * @param  calificacion la calificación del curso
+     * @param  nivel        el nivel del curso
+     * @param  alumno       el alumno del curso
      */
     public Curso(boolean aprobado, String constancia, Integer calificacion, String nivel, Alumno alumno, Profesor profesor) {
         this.aprobado     = aprobado;
@@ -58,11 +61,11 @@ public class Curso extends Model {
 
 
     /**
-     * [Curso description]
-     * @param  aprobado     [description]
-     * @param  constancia   [description]
-     * @param  calificacion [description]
-     * @param  nivel        [description]
+     * Constructor de curso que recibe 4 parámetros.
+     * @param  aprobado     un booleano que nos dice si fué aprobado el curso
+     * @param  constancia   la constancia del curso
+     * @param  calificacion la calificación del curso
+     * @param  nivel        el nivel del curso
      */
     public Curso(boolean aprobado, String constancia, Integer calificacion, String nivel, Profesor profesor) {
         this(aprobado, constancia, calificacion, nivel, null, profesor);
@@ -70,14 +73,14 @@ public class Curso extends Model {
 
 
     /**
-     * [Curso description]
+     * Constructor de curso que no recibe parámetros.
      */
     public Curso() {}
 
 
     /**
-     * [getId description]
-     * @return [description]
+     * Metodo get
+     * @return Integer el identificador del curso
      */
     public Integer getId() {
         return id;
@@ -85,8 +88,8 @@ public class Curso extends Model {
 
 
     /**
-     * [getProfesor description]
-     * @return [description]
+     * Metodo get
+     * @return Profesor El profesor del curso
      */
     public Profesor getProfesor() {
         return profesor;
@@ -94,8 +97,8 @@ public class Curso extends Model {
 
 
     /**
-     * [getAlumno description]
-     * @return [description]
+     * Metodo get
+     * @return Alumno El alumno del curso
      */
     public Alumno getAlumno() {
         return alumno;
@@ -103,8 +106,8 @@ public class Curso extends Model {
 
 
     /**
-     * [getNivel description]
-     * @return [description]
+     * Metodo get
+     * @return String el nivel del curso
      */
     public String getNivel() {
         return nivel;
@@ -112,8 +115,8 @@ public class Curso extends Model {
 
 
     /**
-     * [getAprobado description]
-     * @return [description]
+     * Metodo get
+     * @return boolean Si fue aprobado el curso
      */
     public boolean getAprobado() {
         return aprobado;
@@ -121,22 +124,26 @@ public class Curso extends Model {
 
 
     /**
-     * [getCalificacion description]
-     * @return [description]
+     * Metodo get
+     * @return Integer La calificacion del curso
      */
     public Integer getCalificacion() {
         return calificacion;
     }
 
 
+    /**
+     * Metodo get
+     * @return List<Horario> Los horarios del curso
+     */
     public List<Horario> getHorarios() {
         return horarios;
     }
 
 
     /**
-     * [setProfesor description]
-     * @param profesor [description]
+     * Metodo set
+     * @param profesor El nuevo profesor del curso
      */
     public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
@@ -144,8 +151,8 @@ public class Curso extends Model {
 
 
     /**
-     * [setAlumno description]
-     * @param alumno [description]
+     * Metodo set
+     * @param alumno El nuevo alumno del curso
      */
     public void setAlumno(Alumno alumno) {
         this.alumno = alumno;
@@ -153,8 +160,8 @@ public class Curso extends Model {
 
 
     /**
-     * [setNivel description]
-     * @param nivel [description]
+     * Metodo set
+     * @param nivel El nuevo nivel del curso
      */
     public void setNivel(String nivel) {
         this.nivel = nivel;
@@ -162,8 +169,8 @@ public class Curso extends Model {
 
 
     /**
-     * [setAprobado description]
-     * @param aprobado [description]
+     * Metodo set
+     * @param aprobado Si fue aprobado el curso
      */
     public void setAprobado(boolean aprobado) {
         this.aprobado = aprobado;
@@ -171,8 +178,8 @@ public class Curso extends Model {
 
 
     /**
-     * [setCalificacion description]
-     * @param calificacion [description]
+     * Metodo set
+     * @param calificacion La nueva calificacion del curso
      */
     public void setCalificacion(Integer calificacion) {
         this.calificacion = calificacion;

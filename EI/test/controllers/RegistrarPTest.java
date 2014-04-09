@@ -17,22 +17,33 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
+
+/**
+ * Pruebas unitarias para regitrar un profesor
+ */
 @SuppressWarnings("unchecked")
 public class RegistrarPTest extends WithApplication {
     
+
+    /**
+     * Crea un servidor, una base de datos temporal y da de alta un profesor 
+     * para las pruebas
+     */
     @Before
     public void setUp() {
-        //start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        //Ebean.save((List) Yaml.load("test-data.yml"));
         EbeanServer server = Ebean.getServer("default");
         ServerConfig config = new ServerConfig();
         DdlGenerator ddl = new DdlGenerator();
         ddl.setup((SpiEbeanServer) server, new MySqlPlatform(), config);
         start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        //Ebean.save(new Profesor("luis","lizarraga","santos","luis@gmail.com","luis"));
+        Ebean.save(new Profesor("luis","lizarraga","santos","luis@gmail.com","luis"));
     }
 
 
+    /**
+     * Verifica que un profesor pueda registrarse cuando los datos proporcionados
+     * sean correctos
+     */
     @Test
     public void registerSuccess() {
         Map<String,String> form  = new HashMap();
@@ -46,10 +57,8 @@ public class RegistrarPTest extends WithApplication {
             controllers.routes.ref.CProfesor.registrarP(),
             fakeRequest().withFormUrlEncodedBody(form)
         );
-        //System.out.println(session(result));
         assertEquals(200, status(result));
         Profesor a = Profesor.find.where().eq("correoElectronico", "maria@gmail.com").findUnique();
-        //System.out.println(a + " ");
         assert(a != null);
         assertEquals(a.getNombre(), "Maria");
         assertEquals(a.getApellidoPaterno(), "Toyos");
@@ -68,7 +77,6 @@ public class RegistrarPTest extends WithApplication {
             controllers.routes.ref.CProfesor.registrarP(),
             fakeRequest().withFormUrlEncodedBody(form)
         );
-        //System.out.println(session(result));
         assertEquals(200, status(result));
         a = Profesor.find.where().eq("correoElectronico", "maria1@gmail.com").findUnique();
         assert(a != null);
@@ -81,6 +89,10 @@ public class RegistrarPTest extends WithApplication {
     }
 
 
+    /**
+     * Verifica que un profesor no pueda registrarse cuando al menos uno de los datos
+     * proporcionados no es correcto
+     */
     @Test
     public void registerFailed() {
         Map<String,String> form  = new HashMap();

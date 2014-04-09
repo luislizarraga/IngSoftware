@@ -6,6 +6,9 @@ import play.data.validation.*;
 import models.*;
 import java.io.File;
 
+/**
+ * Clase RegistroProfesor, el formulario para registrar a un profesor.
+ */
 public class RegistroProfesor {
 
 	public String nombre;
@@ -25,6 +28,10 @@ public class RegistroProfesor {
     public File video;
 
 
+    /**
+     * Método que valida si la información introducida al formulario es correcta.
+     * @return una lista de errores de validación
+     */
     public List<ValidationError> validate() {
         List<ValidationError> errores = new ArrayList<ValidationError>();
         if (correoElectronico.equals("")) {
@@ -34,7 +41,6 @@ public class RegistroProfesor {
             if (p != null) {
                 errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
             }
-            //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
             if (!correoElectronico.matches("[a-zA-Z0-9-._\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
                 errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
             }

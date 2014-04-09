@@ -6,6 +6,9 @@ import play.mvc.Http.*;
 
 import models.*;
 
+/**
+ * Clase SecuredAlumno que verifica que haya un alumno con sesión iniciada
+ */
 public class SecuredAlumno extends Security.Authenticator {
 
     @Override

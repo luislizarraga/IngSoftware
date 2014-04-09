@@ -5,7 +5,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
-
+/**
+ * Clase ModificacionProfesor, el formulario para modificar la información del profesor.
+ */
 public class ModificacionProfesor {
 
     public String nombre;
@@ -21,6 +23,10 @@ public class ModificacionProfesor {
     public String confContrasena;
 
 
+    /**
+     * Método que valida si la información introducida al formulario es correcta.
+     * @return una lista de errores de validación
+     */
     public List<ValidationError> validate() {
         List<ValidationError> errores = new ArrayList<ValidationError>();
         if (correoElectronico.equals("")) {
@@ -34,8 +40,7 @@ public class ModificacionProfesor {
                 && contrasenaNueva.equals(confContrasena)) {
                 errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
             }
-            //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
-            if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
+            if (!correoElectronico.matches("[a-zA-Z0-9-._\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
                 errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
             }
         }
@@ -57,6 +62,13 @@ public class ModificacionProfesor {
     }
 
 
+    /**
+     * Constructor de ModificacionProfesor que recibe 4 parámetros
+     * @param  nombre            el nombre para el profesor
+     * @param  apellidoPaterno   el apellido paterno para el profesor
+     * @param  apellidoMaterno   el apellido materno para el profesor
+     * @param  correoElectronico el correo electrónico para el profesor
+     */
     public ModificacionProfesor (String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico) {
         this.nombre            = nombre;
         this.apellidoPaterno   = apellidoPaterno;
@@ -64,6 +76,10 @@ public class ModificacionProfesor {
         this.correoElectronico = correoElectronico;
     }
 
+
+    /**
+     * Constructor de ModificacionProfesor que no recibe parámetros
+     */
     public ModificacionProfesor () {
     }
 

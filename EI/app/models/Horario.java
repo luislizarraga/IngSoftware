@@ -7,6 +7,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
+/**
+ * Clase Horario que modela a un horario de un curso en la base de datos
+ */
 @Entity
 public class Horario extends Model {
 
@@ -36,10 +39,10 @@ public class Horario extends Model {
 
 
     /**
-     * [Horario description]
-     * @param  dia        [description]
-     * @param  horaInicio [description]
-     * @param  horaFin    [description]
+     * Constructor de Horario que recibe 3 parámetros
+     * @param  dia        el día del curso
+     * @param  horaInicio la hora de inicio del curso
+     * @param  horaFin    la hora de termino del curso
      */
     public Horario(String dia, String horaInicio, String horaFin, Curso curso) {
         this.dia        = dia;
@@ -50,13 +53,13 @@ public class Horario extends Model {
 
 
     /**
-     * [Horario description]
+     * Constructor de Horario que no recibe parámetros
      */
     public Horario() {}
 
     /**
-     * [getId description]
-     * @return [description]
+     * Metodo get
+     * @return Integer el identificador del horario
      */
     public Integer getId() {
         return id;
@@ -64,8 +67,8 @@ public class Horario extends Model {
 
     
     /**
-     * [getDia description]
-     * @return [description]
+     * Metodo get
+     * @return String El dia del horario
      */
     public String getDia() {
         return dia;
@@ -73,8 +76,8 @@ public class Horario extends Model {
 
 
     /**
-     * [getHoraInicio description]
-     * @return [description]
+     * Metodo get
+     * @return String La hora de inicio del horario
      */
     public String getHoraInicio() {
         return horaInicio;
@@ -82,22 +85,26 @@ public class Horario extends Model {
 
 
     /**
-     * [getHoraFin description]
-     * @return [description]
+     * Metodo get
+     * @return String la hora de termino del horario
      */
     public String getHoraFin() {
         return horaFin;
     }
 
 
+    /**
+     * Metodo get
+     * @return Curso El curso relacionado a este horario
+     */
     public Curso getCurso() {
         return curso;
     }
 
 
     /**
-     * [setDia description]
-     * @param dia [description]
+     * Metodo set
+     * @param dia el nuevo dia del horario
      */
     public void setDia(String dia) {
         this.dia = dia;
@@ -105,8 +112,8 @@ public class Horario extends Model {
 
 
     /**
-     * [setHoraInicio description]
-     * @param horaInicio [description]
+     * Metodo set
+     * @param horaInicio La nueva hora de inicio del horario
      */
     public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
@@ -114,8 +121,8 @@ public class Horario extends Model {
 
 
     /**
-     * [setHoraFin description]
-     * @param horaFin [description]
+     * Metodo set
+     * @param horaFin La nueva hora de termino del horario
      */
     public void setHoraFin(String horaFin) {
         this.horaFin = horaFin;

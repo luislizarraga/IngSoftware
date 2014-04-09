@@ -5,7 +5,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
-
+/**
+ * Clase ModificacionAlumno, el formulario para modificar la información del alumno.
+ */
 public class ModificacionAlumno {
 
     public String nombre;
@@ -21,6 +23,10 @@ public class ModificacionAlumno {
     public String confContrasena;
 
 
+    /**
+     * Método que valida si la información introducida al formulario es correcta.
+     * @return una lista de errores de validación
+     */
     public List<ValidationError> validate() {
         List<ValidationError> errores = new ArrayList<ValidationError>();
         if (correoElectronico.equals("")) {
@@ -34,8 +40,7 @@ public class ModificacionAlumno {
                 && contrasenaNueva.equals(confContrasena)) {
                 errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
             }
-            //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+"));
-            if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
+            if (!correoElectronico.matches("[a-zA-Z0-9-._\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
                 errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
             }
         }
@@ -57,6 +62,13 @@ public class ModificacionAlumno {
     }
 
 
+    /**
+     * Constructor de ModificacionAlumno que recibe 4 parámetros
+     * @param  nombre            el nombre para el alumno
+     * @param  apellidoPaterno   el apellido paterno para el alumno
+     * @param  apellidoMaterno   el apellido materno para el alumno
+     * @param  correoElectronico el correo electrónico para el alumno
+     */
     public ModificacionAlumno (String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico) {
         this.nombre            = nombre;
         this.apellidoPaterno   = apellidoPaterno;
@@ -64,8 +76,11 @@ public class ModificacionAlumno {
         this.correoElectronico = correoElectronico;
     }
 
-    public ModificacionAlumno () {
-    }
+
+    /**
+     * Constructor de ModificacionAlumno que no recibe parámetros
+     */
+    public ModificacionAlumno () {}
 
 
 }

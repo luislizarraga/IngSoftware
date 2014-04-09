@@ -17,13 +17,16 @@ import java.io.InputStream;
 import java.io.FileInputStream;
 import org.apache.commons.io.*;
 
+/**
+ * Clase CProfesor, el controlador para profesor
+ */
 public class CProfesor extends Controller {
 
 
     /**
-     * [index description]
+     * Método index que muestra la página principal para el profesor en el servidor
      * author: Luis Lizarraga
-     * @return [description]
+     * @return Http response 200, que contiene la página principal del profesor
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result index() {
@@ -43,9 +46,9 @@ public class CProfesor extends Controller {
 
 
     /**
-     * [iniciarSesionP description]
+     * Método que verifica que la contrasña dada sea la misma que el usuario dado y crea una sesion con el usuario
      * author: Jose Vargas
-     * @return [description]
+     * @return un Http response 200 si se pudo iniciar sesión, 401 si no correspondió la contraseña con el usuario
      */
     public static Result iniciarSesionP() {
         Form<InicioSesionProfesor> formularioIniciar = Form.form(InicioSesionProfesor.class).bindFromRequest();
@@ -55,28 +58,25 @@ public class CProfesor extends Controller {
             session().clear();
             Profesor p = Profesor.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (p.getContrasena().equals(formularioIniciar.get().contrasena)) {
-                //return redirect(routes.CProfesor.index());
                 session("correoElectronico", formularioIniciar.get().correoElectronico);
                 session("usuario", "profesor");
                 response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
                 response().setHeader("Pragma","no-cache");
                 return ok();
             } else {
-                //return redirect(base.routes.CBase.index());
                 return ok("noup");
             }
         }
     } 
 
     /**
-     * [cerrarSesionP description]
+     * Método que invalida la sesión del usuario
      * author: Jose Vargas
-     * @return [description]
+     * @return un http response 303, redireccionando a la página principal del servidor
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result cerrarSesionP() {
         session().clear(); // Se borra toda la información de la sesión
-        //flash("success", "You've been logged out");
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
         return redirect(base.routes.CBase.index());
@@ -84,9 +84,9 @@ public class CProfesor extends Controller {
 
 
     /**
-     * [modificarInformacionP description]
+     * Método que modifica la información en la base de datos de un usuario(Profesor) dado.
      * author: Lorena Mireles
-     * @return [description]
+     * @return un Http response 200 si se pudo modificar la información o un Http response 403 si no pasó la verificación
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result modificarInformacionP() {
@@ -94,7 +94,6 @@ public class CProfesor extends Controller {
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class).bindFromRequest();
-        //System.out.println(modificacionFormulario);
         if (modificacionFormulario.hasErrors()) {
             String user = p.nombre + " " + p.apellidoPaterno;
             return badRequest(views.html.profesor.profesorIniciadoIH.render("Página Principal", user, modificacionFormulario, p));
@@ -116,9 +115,9 @@ public class CProfesor extends Controller {
 
 
     /**
-     * [eliminaRegistroP description]
+     * Método que elimina a un usuario(Profesor) de la base de datos
      * author: Lorena Mireles
-     * @return [description]
+     * @return un Http response 303 que redirecciona a la página principal
      */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result eliminaRegistroP() {
@@ -126,24 +125,21 @@ public class CProfesor extends Controller {
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
 	    p.delete();
+        session().clear();
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
 	    return redirect(base.routes.CBase.index());
     }
 
 
-   /**
-     * [registrarP description]
+    /**
+     * Método que registra un profesor dado un formulario que contiene la constancia y el video
      * author: Norma Trinidad
-     * @return [description]
+     * @return un Http Response 200 si no hubo errores de verificacion, Http response 401 si los hubo
      */
     public static Result registrarP() {
         Form<RegistroProfesor> formularioProfesor = Form.form(RegistroProfesor.class).bindFromRequest();
-        //System.out.println(new File("public/1/const.txt").getAbsolutePath());
-        //boolean f = (new File("public/1")).mkdirs();
         MultipartFormData body = request().body().asMultipartFormData();
-        //System.out.println(formularioProfesorMultipart);
-        //System.out.println(formularioProfesor);
         if (formularioProfesor.hasErrors()) {
             return badRequest(views.html.profesor.profesorRegistrarFormularioIH.render(formularioProfesor));
         } else {
@@ -175,6 +171,10 @@ public class CProfesor extends Controller {
                 FileUtils.writeByteArrayToFile(newFile1, byteFile1);
                 FileUtils.writeByteArrayToFile(newFile2, byteFile2);
 
+                user.setConstancia("/assets/profesorData/"+user.getId()+"/" + filePart1.getFilename());
+                user.setVideo("/assets/profesorData/"+user.getId()+"/" + filePart2.getFilename());
+                user.save();
+
                 isFile1.close();
                 isFile2.close();
             } catch (FileNotFoundException fnfe) {
@@ -190,7 +190,6 @@ public class CProfesor extends Controller {
             response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
             response().setHeader("Pragma","no-cache");
             return ok(views.html.profesor.profesorAgregarCursoFormularioIH.render(formularioCurso));
-            //return redirect(base.routes.CBase.index());
         }
     }
 
@@ -216,38 +215,5 @@ public class CProfesor extends Controller {
             response().setHeader("Pragma","no-cache");
             return redirect(routes.CProfesor.index());
         }
-    }
-
-
-    /**
-     * [validaFormato description]
-     * Posiblemente se necesite uno para inicio de sesion y otro diferente para registro y modificar info
-     * author:varios
-     * @return [description]
-     */
-    public static Result validaFormato() {
-       // return redirect(base.routes.CBase.index());
-       return redirect(routes.CProfesor.index());
-    }
-
-
-    /**
-     * [modificacionExitosa description]
-     * author: Lorena Mireles
-     * @return [description]
-     */
-    public static Result modificacionExitosa() {
-        return redirect(base.routes.CBase.index());
-    }
-
-
-    /**
-     * [eliminacionExitosa description]
-     * author: Lorena Mireles
-     * @return [description]
-     */
-    public static Result eliminacionExitosa() {
-        //return redirect(base.routes.CBase.index());
-        return redirect(routes.CProfesor.index());
     }
 }

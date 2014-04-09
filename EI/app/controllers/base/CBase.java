@@ -11,14 +11,19 @@ import java.util.*;
 import forms.*;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.io.File;
 
+
+/**
+ * Clase CBase, el controlador para la página principal
+ */
 public class CBase extends Controller {
 
 
     /**
-     * [index description]
-     * author:
-     * @return [description]
+     * Método index que muestra la página principal del servidor
+     * author: Luis Lizárraga
+     * @return un Http response 200, que contiene la página principal del servidor
      */
     public static Result index() {
         Form<RegistroAlumno> formularioAlumno                = Form.form(RegistroAlumno.class);
@@ -42,36 +47,16 @@ public class CBase extends Controller {
 
 
     /**
-     * [MostrarProfesores description]
+     * Método que obtiene la información de un profesor dado su identificador
      * author: Luis Lizarraga
-     * @return [description]
+     * @return un Http response 200 que contiene una parte de la página principal que se despliega en el explorador
      */
     public static Result mostrarProfesor() {
         DynamicForm data = Form.form().bindFromRequest();
         Profesor p = Profesor.find.byId(Integer.parseInt(data.get("idProf")));
+        File constancia = new File(p.getConstancia());
+        File video = new File(p.getVideo());
         return ok(views.html.principal.muestraProfesorIH.render(p));
-    }
-
-
-    /**
-     * [mostrarHorarios description]
-     * author: Luis Lizarraga
-     * @return [description]
-     */
-    public static Result mostrarHorarios() {
-        List<Alumno> alumnos = Alumno.find.all();
-        return ok(bla.render(alumnos));
-    }
-
-
-    /**
-     * [mostrarNiveles description]
-     * author: Luis Lizarraga
-     * @return [description]
-     */
-    public static Result mostrarNiveles() {
-        List<Alumno> alumnos = Alumno.find.all();
-        return ok(bla.render(alumnos));
     }
 
 }

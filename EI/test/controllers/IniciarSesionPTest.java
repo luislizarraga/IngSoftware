@@ -17,12 +17,20 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
+
+/**
+ * Pruebas unitarias para iniciar sesion como profesor
+ * @extends WithApplication
+ */
 public class IniciarSesionPTest extends WithApplication {
     
+
+    /**
+     * Crea un servidor, una base de datos temporal y da de alta un profesor 
+     * para las pruebas
+     */
     @Before
     public void setUp() {
-        //start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        //Ebean.save((List) Yaml.load("test-data.yml"));
         EbeanServer server = Ebean.getServer("default");
         ServerConfig config = new ServerConfig();
         DdlGenerator ddl = new DdlGenerator();
@@ -32,6 +40,10 @@ public class IniciarSesionPTest extends WithApplication {
     }
 
 
+    /**
+     * Verifica que el usuario pueda iniciar sesión sin problema, asumiendo
+     * que esta registrado en la base de datos
+     */
     @Test
     public void authenticateSuccess() {
         Result result = callAction(
@@ -40,14 +52,16 @@ public class IniciarSesionPTest extends WithApplication {
                 "correoElectronico", "luis@gmail.com",
                 "contrasena", "luis"))
         );
-        //System.out.println(session(result));
         assertEquals(200, status(result));
         assertEquals("luis@gmail.com", session(result).get("correoElectronico"));
         assertEquals("profesor", session(result).get("usuario"));
     }
 
 
-
+    /**
+     * Verifica que se rechaze el inicio de sesion del usuario debido a que 
+     * los campos proporcionados no son correctos
+     */
     @Test
     public void authenticateFailed() {
         Result result = callAction(
@@ -58,7 +72,6 @@ public class IniciarSesionPTest extends WithApplication {
         );
         assertEquals(401, status(result));
         assert(contentAsString(result).contains("Contraseña incorrecta."));
-        //assertEquals("alumno", session(result).get("usuario"));
         
         result = callAction(
             controllers.routes.ref.CAlumno.iniciarSesionA(),
@@ -75,7 +88,6 @@ public class IniciarSesionPTest extends WithApplication {
                 "correoElectronico", "",
                 "contrasena", "bla"))
         );
-        //System.out.println(result);
         assertEquals(401, status(result));
         assert(contentAsString(result).contains("Este campo es requerido."));
         
@@ -85,7 +97,6 @@ public class IniciarSesionPTest extends WithApplication {
                 "correoElectronico", "adsfadsf",
                 "contrasena", "bla"))
         );
-        //System.out.println(result);
         assertEquals(401, status(result));
         assert(contentAsString(result).contains("Usuario inexistente."));
 
@@ -95,10 +106,8 @@ public class IniciarSesionPTest extends WithApplication {
                 "correoElectronico", "",
                 "contrasena", ""))
         );
-        //System.out.println(result);
         assertEquals(401, status(result));
         assert(contentAsString(result).contains("Este campo es requerido."));
     }
-
 
 }

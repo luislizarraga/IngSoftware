@@ -18,9 +18,18 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
+
+/**
+ * Pruebas unitarias para Cerrar Sesion profesor
+ * @extends WithApplication
+ */
 public class CerrarSesionPTest extends WithApplication {
 
 
+    /**
+     * Crea un servidor, una base de datos temporal y da de alta un profesor 
+     * para las pruebas
+     */
     @Before
     public void setUp() {
         EbeanServer server = Ebean.getServer("default");
@@ -32,6 +41,10 @@ public class CerrarSesionPTest extends WithApplication {
     }
 
 
+    /**
+     * Trata de iniciar con un usuario registrado
+     * @return Result Resultado del inicio de sesión
+     */
     public Result login() {
         return callAction(
                 controllers.routes.ref.CProfesor.iniciarSesionP(),
@@ -42,6 +55,9 @@ public class CerrarSesionPTest extends WithApplication {
     }
 
 
+    /**
+     * Trata de cerrar sesion
+     */
     @Test
     public void logOutSuccess() {
         Result result = login();
@@ -53,7 +69,6 @@ public class CerrarSesionPTest extends WithApplication {
             fakeRequest().withCookies(playSession)
         );
         assertEquals(303, status(result));
-        //System.out.println(session(result).isEmpty());
         assert(session(result).isEmpty());
     }
 

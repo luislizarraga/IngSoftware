@@ -31,7 +31,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="">Escuela de Inglés</a>
+        <a class="navbar-brand">Escuela de Inglés</a>
       </div>
       <div class="navbar-collapse collapse">
         <ul id="Mymenu" class="nav navbar-nav">
@@ -52,9 +52,9 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
   <div id="principal" class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2429pnfg.jpg');">
     <div class="container">
-      <h1 class="jumbotronBackgroundTextShadow">Hola!</h1>
-      <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales</p>
-      <p class="jumbotronBackgroundTextShadow">Tu eliges con que profesor y a que hora tomarás las clases, ¡tu controlas todo!</p>
+      <h1 class="jumbotronBackgroundTextShadow">¡Hola!</h1>
+      <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales.</p>
+      <p class="jumbotronBackgroundTextShadow">Tú eliges con qué profesor y a qué hora tomarás las clases, ¡tú controlas todo!</p>
       <p data-menuanchor="Conocenos"><a href="#Conocenos" class="btn btn-primary btn-lg" role="button">Conócenos &raquo;</a></p>
     </div>
   </div>
@@ -63,7 +63,7 @@
     <div class="row row-fluid">
       <div class="col-md-7 col-md-offset-4">
         <h1>
-          La primer escuela de inglés que realmente se preocupa por sus estudiantes!
+          ¡La primer escuela de inglés que realmente se preocupa por sus estudiantes!
         </h1>
         <br>
       </div>
@@ -82,7 +82,7 @@
     </div>
     <div class="row">
       <div class="col-md-9 col-md-offset-4">
-        <h1>Ven y compruébalo !</h1>
+        <h1>¡Ven y compruébalo!</h1>
       </div>
     </div>
   </div>
@@ -102,7 +102,7 @@
             }
           </ul>
         } else {
-          <h3>No hay Profesores disponibles!</h3>
+          <h3>¡No hay Profesores disponibles!</h3>
         }
       </div>
     </div>
@@ -132,7 +132,7 @@
                     </ul>
                   }
                 } else {
-                  No hay horarios disponibles para el día Lunes!
+                  ¡No hay horarios disponibles para el día Lunes!
                 }
               </div>
             </div>
@@ -156,7 +156,7 @@
                     </ul>
                   }
                 } else {
-                  No hay horarios disponibles para el día Martes!
+                  ¡No hay horarios disponibles para el día Martes!
                 }
               </div>
             </div>
@@ -180,7 +180,7 @@
                     </ul>
                   }
                 } else {
-                  No hay horarios disponibles para el día Miercoles!
+                  ¡No hay horarios disponibles para el día Miercoles!
                 }
               </div>
             </div>
@@ -204,7 +204,7 @@
                     </ul>
                   }
                 } else {
-                  No hay horarios disponibles para el día Jueves!
+                  ¡No hay horarios disponibles para el día Jueves!
                 }
               </div>
             </div>
@@ -228,7 +228,7 @@
                     </ul>
                   }
                 } else {
-                  No hay horarios disponibles para el día Martes!
+                  ¡No hay horarios disponibles para el día Viernes!
                 }
               </div>
             </div>
@@ -237,7 +237,7 @@
       </div>
     </div>
     } else {
-      <h3>No hay horarios disponibles!</h3>
+      <h3>!No hay horarios disponibles!</h3>
     }
   </div>
 
@@ -283,7 +283,7 @@
             <form id="studentLoginForm" class="form-horizontal" role="form" method="POST">
                 @helper.inputText(
                     alumnoLoginForm("correoElectronico"), 
-                    '_label -> "E-mail", 
+                    '_label -> "Correo Electrónico", 
                     '_error -> alumnoLoginForm.globalError,
                     'class -> "form-control"
                 )
@@ -299,7 +299,7 @@
             <form id="professorLoginForm" class="form-horizontal" role="form" method="POST">
                 @helper.inputText(
                     profesorLoginForm("correoElectronico"), 
-                    '_label -> "E-mail", 
+                    '_label -> "Correo Electrónico", 
                     '_error -> profesorLoginForm.globalError,
                     'class -> "form-control"
                 )
@@ -343,7 +343,7 @@
               <button id="professorbuttonRegistration" class="btn btn-success">Profesor</button>
           </div>
           <div id="processingRegistration">
-            <h3>Procesando ... </h3>
+            <h4>Procesando ... </h4>
           </div>
           <div id="cursoRegistration">
           </div>
@@ -602,8 +602,8 @@
                 },
                 error: function(jqXHR, exception) {
                   $('#studentLogIn').html(jqXHR.responseText);
-                  $('#studentLogIn').show(1000);
-                  $('#footerstudentLogIn').show(1000);
+                  $('#studentLogIn').show(700);
+                  $('#footerstudentLogIn').show(700);
                   // console.log(jqXHR);
                   // if (jqXHR.status == 404) {
                   //     alert('Requested page not found. [404]');
@@ -646,8 +646,8 @@
                 },
                 error: function(jqXHR, exception) {
                   $('#professorLogIn').html(jqXHR.responseText);
-                  $('#professorLogIn').show(1000);
-                  $('#footerprofessorLogIn').show(1000);
+                  $('#professorLogIn').show(700);
+                  $('#footerprofessorLogIn').show(700);
                 }
               });
             });

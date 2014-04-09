@@ -7,6 +7,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
+/**
+ * Clase Profesor que modela a un profesor en la base de datos
+ */
 @Entity
 public class Profesor extends Model {
 
@@ -49,12 +52,12 @@ public class Profesor extends Model {
 
 
     /**
-     * [Profesor description]
-     * @param  nombre            [description]
-     * @param  apellidoPaterno   [description]
-     * @param  apellidoMaterno   [description]
-     * @param  correoElectronico [description]
-     * @param  contrasena        [description]
+     * Constructor de Profesor que recibe 5 parámetros.
+     * @param  nombre            el nombre para el profesor
+     * @param  apellidoPaterno   el apellido paterno para el profesor
+     * @param  apellidoMaterno   el apellido materno para el profesor
+     * @param  correoElectronico el correo electrónico para el profesor
+     * @param  contrasena        la contraseña para el profesor
      */
     public Profesor(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String contrasena) {
         this.nombre            = nombre;
@@ -66,14 +69,14 @@ public class Profesor extends Model {
 
 
     /**
-     * [Profesor description]
+     * Constructor de profesor que no recibe parámetros.
      */
     public Profesor(){}
 
 
     /**
-     * [getId description]
-     * @return [description]
+     * Metodo get
+     * @return Integer El identificador del profesor
      */
     public Integer getId() {
         return id;
@@ -81,8 +84,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [getNombre description]
-     * @return [description]
+     * Metodo get
+     * @return String El nombre del profesor
      */
     public String getNombre() {
         return nombre;
@@ -90,8 +93,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [getContrasena description]
-     * @return [description]
+     * Metodo get
+     * @return String La contrasena del profesor
      */
     public String getContrasena() {
         return contrasena;
@@ -99,8 +102,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [getApellidoPaterno description]
-     * @return [description]
+     * Metodo get
+     * @return String El apellido paterno del profesor
      */
     public String getApellidoPaterno() {
         return apellidoPaterno;
@@ -108,8 +111,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [getApellidoMaterno description]
-     * @return [description]
+     * Metodo get
+     * @return String El apellido materno del profesor
      */
     public String getApellidoMaterno() {
         return apellidoMaterno;
@@ -117,8 +120,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [getCorreoElectronico description]
-     * @return [description]
+     * Metodo get
+     * @return String El correo electronico del profesor
      */
     public String getCorreoElectronico() {
         return correoElectronico;
@@ -126,8 +129,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [getConstancia description]
-     * @return [description]
+     * Metodo get
+     * @return String La direccion donde esta guardada la constancia del profesor
      */
     public String getConstancia() {
         return constancia;
@@ -135,22 +138,26 @@ public class Profesor extends Model {
 
 
     /**
-     * [getVideo description]
-     * @return [description]
+     * Metodo get
+     * @return String La direccion donde esta guardada la constancia del profesor
      */
     public String getVideo() {
         return video;
     }
 
 
+    /**
+     * Metodo get
+     * @return List<Curso> La lista de cursos del profesor
+     */
     public List<Curso> getCursos() {
         return cursos;
     }
 
 
     /**
-     * [setNombre description]
-     * @param nombre [description]
+     * Metodo set
+     * @param nombre El nuevo nombre del profesor
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -158,8 +165,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [setApellidoPaterno description]
-     * @param apellidoPaterno [description]
+     * Metodo set
+     * @param apellidoPaterno El nuevo apellido paterno del profesor
      */
     public void setApellidoPaterno(String apellidoPaterno) {
         this.apellidoPaterno = apellidoPaterno;
@@ -167,8 +174,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [setApellidoMaterno description]
-     * @param apellidoMaterno [description]
+     * Metodo set
+     * @param apellidoMaterno El nuevo apellido materno del profesor
      */
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
@@ -176,8 +183,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [setCorreoElectronico description]
-     * @param correoElectronico [description]
+     * Metodo set
+     * @param correoElectronico El nuevo correo electronico del profesor
      */
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
@@ -185,8 +192,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [setContrasena description]
-     * @param contrasena [description]
+     * Metodo set
+     * @param contrasena La nueva contrasena del profesor
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
@@ -194,8 +201,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [setConstancia description]
-     * @param constancia [description]
+     * Metodo set
+     * @param constancia La nueva constancia del profesor
      */
     public void setConstancia(String constancia) {
         this.constancia = constancia;
@@ -203,8 +210,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [setVideo description]
-     * @param video [description]
+     * Metodo set
+     * @param video El nuevo video del profesor
      */
     public void setVideo(String video) {
         this.video = video;
@@ -212,12 +219,8 @@ public class Profesor extends Model {
 
 
     /**
-     * [validate description]
-     * @return [description]
-     */
-    /**
-     * [validate description]
-     * @return [description]
+     * Método que valida si la información introducida al formulario es correcta.
+     * @return una lista de errores de validación
      */
     public List<ValidationError> validate() {
         List<ValidationError> errors = new ArrayList<ValidationError>();

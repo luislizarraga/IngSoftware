@@ -17,13 +17,20 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
+/**
+ * Pruebas unitarias para mostrar informacion del profesor
+ * @extends WithApplication
+ */
 @SuppressWarnings("unchecked")
 public class MostrarProfesorTest extends WithApplication {
     
+
+    /**
+     * Crea un servidor, una base de datos temporal y da de alta un profesor 
+     * para las pruebas
+     */
     @Before
     public void setUp() {
-        //start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        //Ebean.save((List) Yaml.load("test-data.yml"));
         EbeanServer server = Ebean.getServer("default");
         ServerConfig config = new ServerConfig();
         DdlGenerator ddl = new DdlGenerator();
@@ -33,6 +40,9 @@ public class MostrarProfesorTest extends WithApplication {
     }
 
 
+    /**
+     * Verifica que la informacion de profesor y los cursos se muestren correctamente
+     */
     @Test
     public void mostrarSuccess() {
         Map<String,String> form  = new HashMap();
@@ -41,7 +51,6 @@ public class MostrarProfesorTest extends WithApplication {
             base.routes.ref.CBase.mostrarProfesor(),
             fakeRequest().withFormUrlEncodedBody(form)
         );
-        //System.out.println(session(result));
         assertEquals(200, status(result));
         assert(contentAsString(result).contains("luis"));
         assert(contentAsString(result).contains("lizarraga"));
@@ -51,6 +60,9 @@ public class MostrarProfesorTest extends WithApplication {
     }
 
 
+    /**
+     * Verifica que no se pueda mostrar un profesor no encontrado
+     */
     @Test
     public void mostrarFailed() {
         Map<String,String> form  = new HashMap();
@@ -59,7 +71,6 @@ public class MostrarProfesorTest extends WithApplication {
             base.routes.ref.CBase.mostrarProfesor(),
             fakeRequest().withFormUrlEncodedBody(form)
         );
-        //System.out.println(session(result));
         assertEquals(200, status(result));
         assert(contentAsString(result).contains("Profesor no encontrado !"));
     }

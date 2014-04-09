@@ -5,15 +5,22 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
+/**
+ * Clase InicioSesionProfesor, el formulario para inicio de sesión del profesor.
+ */
 public class InicioSesionProfesor {
 
     public String correoElectronico;
 
     public String contrasena;
 
+
+    /**
+     * Método que valida si la información introducida al formulario es correcta.
+     * @return List<ValidationError> Una lista de errores de validación
+     */
     public List<ValidationError> validate() {
         List<ValidationError> errores = new ArrayList<ValidationError>();
-        //System.out.println(correoElectronico);
         if (correoElectronico.equals("")) {
             errores.add(new ValidationError("correoElectronico", "Este campo es requerido."));
         } else {

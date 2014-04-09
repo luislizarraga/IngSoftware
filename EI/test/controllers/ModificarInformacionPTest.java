@@ -18,13 +18,21 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
+
+/**
+ * Pruebas unitarias para modificar informacion del profesor
+ * @extends WithApplication
+ */
 @SuppressWarnings("unchecked")
 public class ModificarInformacionPTest extends WithApplication {
-    
+
+
+    /**
+     * Crea un servidor, una base de datos temporal y da de alta un profesor 
+     * para las pruebas
+     */    
     @Before
     public void setUp() {
-        //start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        //Ebean.save((List) Yaml.load("test-data.yml"));
         EbeanServer server = Ebean.getServer("default");
         ServerConfig config = new ServerConfig();
         DdlGenerator ddl = new DdlGenerator();
@@ -34,6 +42,10 @@ public class ModificarInformacionPTest extends WithApplication {
     }
 
 
+    /**
+     * Trata de iniciar con un usuario registrado
+     * @return Result Resultado del inicio de sesión
+     */
     public Result login() {
         return callAction(
                 controllers.routes.ref.CProfesor.iniciarSesionP(),
@@ -44,6 +56,10 @@ public class ModificarInformacionPTest extends WithApplication {
     }
 
 
+    /**
+     * Verifica que una modificacion a los datos del usuario sea exitosa siempre
+     * y cuando todos los campos sean correctos
+     */
     @Test
     public void modifySuccess() {
         Result result = login();
@@ -133,6 +149,10 @@ public class ModificarInformacionPTest extends WithApplication {
     }
 
 
+    /**
+     * Verifica que una modificacion a los datos del usuario falle cuando al menos
+     * un campo sea incorrecto
+     */
     @Test
     public void modifyFailed() {
         Result result = login();

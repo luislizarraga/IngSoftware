@@ -7,6 +7,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
+/**
+ * Clase Alumno que modela a un alumno en la base de datos
+ */
 @Entity
 public class Alumno extends Model {
 
@@ -45,12 +48,12 @@ public class Alumno extends Model {
 
 
     /**
-     * [Alumno description]
-     * @param  nombre            [description]
-     * @param  apellidoPaterno   [description]
-     * @param  apellidoMaterno   [description]
-     * @param  correoElectronico [description]
-     * @param  contrasena        [description]
+     * Constructor de Alumno que recibe 5 parámetros.
+     * @param  nombre            el nombre del alumno
+     * @param  apellidoPaterno   el apellido paterno del alumno
+     * @param  apellidoMaterno   el apellido materno del alumno
+     * @param  correoElectronico el correo electrónico del alumno
+     * @param  contrasena        la contraseña del alumno
      */
     public Alumno(String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, String contrasena) {
         this.nombre            = nombre;
@@ -62,14 +65,14 @@ public class Alumno extends Model {
 
 
     /**
-     * [Alumno description]
+     * Constructor de Alumno que no recibe parámetros.
      */
     public Alumno(){}
 
 
     /**
-     * [getId description]
-     * @return [description]
+     * Metodo de acceso
+     * @return Integer El id del alumno
      */
     public Integer getId() {
         return id;
@@ -77,8 +80,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [getNombre description]
-     * @return [description]
+     * Metodo de acceso
+     * @return String El nombre del alumno
      */
     public String getNombre() {
         return nombre;
@@ -86,8 +89,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [getContrasena description]
-     * @return [description]
+     * Metodo de acceso
+     * @return String La contrasena del alumno
      */
     public String getContrasena() {
         return contrasena;
@@ -95,8 +98,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [getApellidoPaterno description]
-     * @return [description]
+     * Metodo de acceso
+     * @return String El apellido paterno del alumno
      */
     public String getApellidoPaterno() {
         return apellidoPaterno;
@@ -104,8 +107,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [getApellidoMaterno description]
-     * @return [description]
+     * Metodo de acceso
+     * @return String El apellido materno del alumno
      */
     public String getApellidoMaterno() {
         return apellidoMaterno;
@@ -113,8 +116,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [getCorreoElectronico description]
-     * @return [description]
+     * Metodo de acceso
+     * @return String El correo electronico del alumno
      */
     public String getCorreoElectronico() {
         return correoElectronico;
@@ -122,8 +125,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [setNombre description]
-     * @param nombre [description]
+     * Metodo set
+     * @param nombre Nuevo valor nombre del alumno
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -131,8 +134,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [setApellidoPaterno description]
-     * @param apellidoPaterno [description]
+     * Metodo set
+     * @param apellidoPaterno Nuevo valor de apellido paterno del alumno
      */
     public void setApellidoPaterno(String apellidoPaterno) {
         this.apellidoPaterno = apellidoPaterno;
@@ -140,8 +143,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [setApellidoMaterno description]
-     * @param apellidoMaterno [description]
+     * Metodo set
+     * @param apellidoMaterno Nuevo valor de apellido materno del alumno
      */
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
@@ -149,8 +152,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [setCorreoElectronico description]
-     * @param correoElectronico [description]
+     * Metodo set
+     * @param correoElectronico Nuevo valor de correo electronico del alumno
      */
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
@@ -158,8 +161,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [setContrasena description]
-     * @param contrasena [description]
+     * Metodo set
+     * @param contrasena Nuevo valor de la contrasena del alumno
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
@@ -167,8 +170,8 @@ public class Alumno extends Model {
 
 
     /**
-     * [validate description]
-     * @return [description]
+     * Método que valida si la información introducida al formulario es correcta.
+     * @return una lista de errores de validación
      */
     public List<ValidationError> validate() {
         List<ValidationError> errors = new ArrayList<ValidationError>();
@@ -177,7 +180,6 @@ public class Alumno extends Model {
         if (a != null) {
             errors.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
         }
-        //System.out.println(correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"));
         if (!correoElectronico.matches("[a-zA-Z0-9-\\+]+@[a-zA-Z0-9-\\+]+"))
             errors.add(new ValidationError("correoElectronico", "Correo Electrónico inválido."));
 

@@ -17,22 +17,32 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
+
+/**
+ * Pruebas unitarias para regitrar un alumno
+ */
 @SuppressWarnings("unchecked")
 public class RegistrarATest extends WithApplication {
-    
+
+
+    /**
+     * Crea un servidor, una base de datos temporal y da de alta un alumno 
+     * para las pruebas
+     */    
     @Before
     public void setUp() {
-        //start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        //Ebean.save((List) Yaml.load("test-data.yml"));
         EbeanServer server = Ebean.getServer("default");
         ServerConfig config = new ServerConfig();
         DdlGenerator ddl = new DdlGenerator();
         ddl.setup((SpiEbeanServer) server, new MySqlPlatform(), config);
         start(fakeApplication(inMemoryDatabase(), fakeGlobal()));
-        //Ebean.save(new Alumno("luis","lizarraga","santos","luis@gmail.com","luis"));
     }
 
 
+    /**
+     * Verifica que un alumno pueda registrarse cuando los datos proporcionados
+     * sean correcto
+     */
     @Test
     public void registerSuccess() {
         Map<String,String> form  = new HashMap();
@@ -46,7 +56,6 @@ public class RegistrarATest extends WithApplication {
             controllers.routes.ref.CAlumno.registrarA(),
             fakeRequest().withFormUrlEncodedBody(form)
         );
-        //System.out.println(session(result));
         assertEquals(200, status(result));
         Alumno a = Alumno.find.where().eq("correoElectronico", "maria@gmail.com").findUnique();
         assert(a != null);
@@ -67,7 +76,6 @@ public class RegistrarATest extends WithApplication {
             controllers.routes.ref.CAlumno.registrarA(),
             fakeRequest().withFormUrlEncodedBody(form)
         );
-        //System.out.println(session(result));
         assertEquals(200, status(result));
         a = Alumno.find.where().eq("correoElectronico", "maria1@gmail.com").findUnique();
         assert(a != null);
@@ -79,6 +87,10 @@ public class RegistrarATest extends WithApplication {
     }
 
 
+    /**
+     * Verifica que un alumno no pueda registrarse cuando al menos uno de los datos
+     * proporcionados no es correcto
+     */
     @Test
     public void registerFailed() {
         Map<String,String> form  = new HashMap();

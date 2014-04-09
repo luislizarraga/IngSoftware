@@ -18,8 +18,17 @@ import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.collect.ImmutableMap;
 
+/**
+ * Pruebas unitarias para eliminar profesor
+ * @extends WithApplication
+ */
 public class EliminarProfesorTest extends WithApplication {
     
+
+    /**
+     * Crea un servidor, una base de datos temporal y da de alta un profesor 
+     * para las pruebas
+     */
     @Before
     public void setUp() {
         EbeanServer server = Ebean.getServer("default");
@@ -31,6 +40,10 @@ public class EliminarProfesorTest extends WithApplication {
     }
 
     
+    /**
+     * Trata de iniciar con un usuario registrado
+     * @return Result Resultado del inicio de sesión
+     */
     public Result login() {
         return callAction(
                 controllers.routes.ref.CProfesor.iniciarSesionP(),
@@ -41,7 +54,10 @@ public class EliminarProfesorTest extends WithApplication {
     }
 
 
-
+    /**
+     * Elimina a un profesor para despues verificar que éste ya no exista en la
+     * base de datos
+     */
     @Test
     public void deleteSuccess() {
         Result result = login();
@@ -57,6 +73,9 @@ public class EliminarProfesorTest extends WithApplication {
     }   
 
 
+    /**
+     * Trata de eliminar a un profesor que ya no esta en la base de datos
+     */
     @Test
     public void deleteFailed() {
         Result result = callAction(

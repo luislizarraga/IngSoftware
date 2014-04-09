@@ -5,6 +5,9 @@ import play.data.format.*;
 import play.data.validation.*;
 import models.*;
 
+/**
+ * Clase CrearCurso, el formulario para crear un curso
+ */
 public class CrearCurso {
 
     public String nivel;
@@ -15,6 +18,10 @@ public class CrearCurso {
 
     public String horaFin;
 
+    /**
+     * Método que valida si la información introducida al formulario es correcta.
+     * @return una lista de errores de validación
+     */
     public List<ValidationError> validate() {
         List<ValidationError> errores = new ArrayList<ValidationError>();
         if (nivel.equals("")) {
