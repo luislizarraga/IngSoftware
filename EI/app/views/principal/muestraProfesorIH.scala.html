@@ -3,12 +3,49 @@
 @if(p == null) {
     Profesor no encontrado !
 } else {
+    <div class="paddingCollapse">
     <h3 id="profNombre">@(p.getNombre + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno())</h3>
-    <p>Correo Electronico: @p.getCorreoElectronico()</p>
-    <p>Horarios y niveles:</p>
+    <div id="footer">
+      <p>
+        <div class="pull-left">
+          <a href="@(controllers.routes.CProfesor.descargaArchivos(p.id, 1))" target="blank" class="btn" role="button"><span class="glyphicon glyphicon-download-alt"></span> Constancia</a>
+          <a href="@(controllers.routes.CProfesor.descargaArchivos(p.id, 2))" target="blank" class="btn" role="button"><span class="glyphicon glyphicon-download-alt"></span> Video</a>
+        </div> 
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </p>
+    </div>
+    <br><p><strong>Correo Electronico:</strong> @p.getCorreoElectronico()</p>
+    <p><strong>Horarios y niveles:</strong></p>
+    <!-- <div class="row paddingCollapse">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <td>Nivel</td>
+                    <td>Dia</td>
+                    <td>Hora</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if(p.getCursos() != null){
+                    @for(c <- p.getCursos()){
+                        @if(c.getAlumno() == null) {
+                            <tr>
+                                <td>@c.getNivel()</td>
+                                <td>h.getDia()</td>
+                                <td>h.getHoraInicio() - h.getHoraFin()</td>
+                            </tr>
+                        }
+                    }
+                } else {
+                    <p class="text-center">Este profesor aún no tiene cursos registrados</p>
+                }
+            </tbody>
+        </table>
+    </div> -->
     <ul class="list-unstyled">
         <li>
             <ul>
+                @if(p.getCursos() != null) {
                 @for(c <- p.getCursos()){
                     @if(c.getAlumno() == null) {
                         <li>Nivel : @c.getNivel()</li>
@@ -18,13 +55,18 @@
                                 <li>Hora: @h.getHoraInicio() - @h.getHoraFin()</li>
                             }
                         </ul>
-                    } else {
-                        <li>Este profesor aún no tiene cursos registrados</li>
                     }
+                }
+                } else {
+                    <p class="text-center">Este profesor aún no tiene cursos registrados</p>
                 }
             </ul>
         </li>
     </ul>
-    <p><a href="#">Constancia</a></p>
-    <p><a href="#">Video</a></p>
+    <video width="320" height="240" controls>
+      <source src="/assets/professordata/1/MVI_2781.mp4" type="video/mp4">
+      <!-- <source src="movie.ogg" type="video/ogg"> -->
+        Your browser does not support the video tag.
+    </video>
+    </div>
 }

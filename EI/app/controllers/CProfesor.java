@@ -171,8 +171,8 @@ public class CProfesor extends Controller {
                 FileUtils.writeByteArrayToFile(newFile1, byteFile1);
                 FileUtils.writeByteArrayToFile(newFile2, byteFile2);
 
-                user.setConstancia("/assets/profesorData/"+user.getId()+"/" + filePart1.getFilename());
-                user.setVideo("/assets/profesorData/"+user.getId()+"/" + filePart2.getFilename());
+                user.setConstancia("public/professordata/"+user.getId()+"/" + filePart1.getFilename());
+                user.setVideo("public/professordata/"+user.getId()+"/" + filePart2.getFilename());
                 user.save();
 
                 isFile1.close();
@@ -215,5 +215,16 @@ public class CProfesor extends Controller {
             response().setHeader("Pragma","no-cache");
             return redirect(routes.CProfesor.index());
         }
+    }
+
+    public static Result descargaArchivos(Integer id, int file) {
+        Profesor p = Profesor.find.byId(id);
+        File f = null;
+        if (file == 1) {
+            f = new File(p.getConstancia());
+        } else if (file == 2) {
+            f = new File(p.getVideo());
+        }
+        return ok(f);
     }
 }

@@ -17,12 +17,13 @@
 	<link rel="stylesheet" href="/assets/stylesheets/bootstrap-3.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/assets/stylesheets/styles.css">
   <link rel="stylesheet" type="text/css" href="/assets/stylesheets/jquery.fullPage.css" />
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/transitions.css"/>
 
 </head>
 <!-- <body data-spy="scroll" data-target=".navbar-nav"> -->
 <body>
  	
-	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
+	<nav id="menu" class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,7 +35,7 @@
         <a class="navbar-brand">Escuela de Inglés</a>
       </div>
       <div class="navbar-collapse collapse">
-        <ul id="Mymenu" class="nav navbar-nav">
+        <ul class="nav navbar-nav">
           <li data-menuanchor="Principal" class="active"><a href="#Principal">Principal</a></li>
           <li data-menuanchor="Conocenos"><a href="#Conocenos">Conócenos</a></li>
           <li data-menuanchor="Profesores"><a href="#Profesores">Profesores</a></li>
@@ -50,7 +51,7 @@
   </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div id="principal" class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2429pnfg.jpg');">
+  <div id="principaldiv" class="jumbotron jumbotronBackground section" style="background-image: url('/assets/images/IMG_2972.jpg');">
     <div class="container">
       <h1 class="jumbotronBackgroundTextShadow">¡Hola!</h1>
       <p class="jumbotronBackgroundTextShadow">Somos la primer escuela de inglés con precios accesibles y clases personales.</p>
@@ -59,17 +60,20 @@
     </div>
   </div>
 
-  <div class="section" id="conocenos">
-    <div class="row row-fluid">
-      <div class="col-md-7 col-md-offset-4">
-        <h1>
-          ¡La primer escuela de inglés que realmente se preocupa por sus estudiantes!
-        </h1>
-        <br>
+  <div class="section conocenosBackground" id="conocenosdiv" style="background-image: url('/assets/images/IMG_2870.jpg');">
+    <div id="conocenosData" class="row row-fluid pushDownWhite">
+      <div class="col-md-6 col-md-offset-3 text-center" style="padding-top:1%">
+        <p class="lead">
+          Nos preocupamos por nuestros estudiantes
+        </p>
+        <h4 class="" style="color:#808080">
+          Ven y prueba nuestro revolucional sistema de manejo de cursos, constancias y calificaciones totalmente en la nube.
+          Sólo con nosotros podrás tener esta experiencia.
+        </h4>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-7 col-md-offset-4">
+    <!-- <div class="row">
+      <div class="col-md-12">
         <p class="lead" style="color:#808080">
           Ven y prueba nuestro revolucional sistema de manejo de cursos, constancias y calificaciones totalmente en la nube.
           Sólo con nosotros podrás tener esta experiencia.
@@ -81,16 +85,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-9 col-md-offset-4">
+      <div class="col-md-12">
         <h1>¡Ven y compruébalo!</h1>
       </div>
-    </div>
+    </div> -->
   </div>
 
-  <div class="section" id="profesoresdiv">
+  <div class="section profesoresBackground" id="profesoresdiv" style="background-image: url('/assets/images/IMG_2889.jpg');">
     <div class="row row-fluid">
       <div class="col-md-3 col-md-offset-1 text-center">
-        <h2> Profesores : </h2>
+        <h2 style="color:#FFFFFF"> Profesores : </h2>
       </div>
       <div class="col-md-5 col-md-offset-1">
         @if(!profesores.isEmpty) {
@@ -108,7 +112,7 @@
     </div>
   </div>
 
-  <div class="section" id="horariosdiv">
+  <div class="section profesoresBackground" id="horariosdiv" style="background-image: url('/assets/images/IMG_2872.jpg');">
     @if(!horarios.isEmpty) {
     <div class="row row-fluid">
       <div class="col-md-7 col-md-offset-2">
@@ -122,17 +126,28 @@
               </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
-              <div class="panel-bodyLunes">
+              <div class="panel-bodyLunes paddingCollapse">
                 @if(!lunes.isEmpty) {
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                    <th>Nivel</th>
+                    <th>Hora</th>
+                    <th>Profesor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                   @for(h <- lunes) {
-                    <ul class="list-unstyled">
-                      <li>Nivel:    @h.getCurso().getNivel()</li>
-                      <li>Hora:     @h.getHoraInicio() - @h.getHoraFin()</li>
-                      <li>Profesor: @h.getCurso().getProfesor().getNombre()</li>
-                    </ul>
+                    <tr>
+                    <td>@h.getCurso().getNivel()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                    <td>@h.getCurso().getProfesor().getNombre()</td>
+                    </tr>
                   }
+                  </tbody>
+                </table>
                 } else {
-                  ¡No hay horarios disponibles para el día Lunes!
+                  <p>¡No hay horarios disponibles para el día Lunes!</p>
                 }
               </div>
             </div>
@@ -146,7 +161,7 @@
               </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
-              <div class="panel-bodyMartes">
+              <div class="panel-bodyMartes paddingCollapse">
                 @if(!martes.isEmpty) {
                   @for(h <- martes) {
                     <ul class="list-unstyled">
@@ -156,7 +171,7 @@
                     </ul>
                   }
                 } else {
-                  ¡No hay horarios disponibles para el día Martes!
+                  <p class="text-center">¡No hay horarios disponibles para el día Martes!</p>
                 }
               </div>
             </div>
@@ -170,7 +185,7 @@
               </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
-              <div class="panel-bodyMiercoles">
+              <div class="panel-bodyMiercoles paddingCollapse">
                 @if(!miercoles.isEmpty) {
                   @for(h <- miercoles) {
                     <ul class="list-unstyled">
@@ -180,7 +195,7 @@
                     </ul>
                   }
                 } else {
-                  ¡No hay horarios disponibles para el día Miercoles!
+                  <p class="text-center">¡No hay horarios disponibles para el día Miercoles!</p>
                 }
               </div>
             </div>
@@ -194,7 +209,7 @@
               </h4>
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
-              <div class="panel-bodyJueves">
+              <div class="panel-bodyJueves paddingCollapse">
                 @if(!jueves.isEmpty) {
                   @for(h <- jueves) {
                     <ul class="list-unstyled">
@@ -204,7 +219,7 @@
                     </ul>
                   }
                 } else {
-                  ¡No hay horarios disponibles para el día Jueves!
+                  <p class="text-center">¡No hay horarios disponibles para el día Jueves!</p>
                 }
               </div>
             </div>
@@ -218,7 +233,7 @@
               </h4>
             </div>
             <div id="collapseFive" class="panel-collapse collapse">
-              <div class="panel-bodyViernes">
+              <div class="panel-bodyViernes paddingCollapse">
                 @if(!viernes.isEmpty) {
                   @for(h <- viernes) {
                     <ul class="list-unstyled">
@@ -228,7 +243,7 @@
                     </ul>
                   }
                 } else {
-                  ¡No hay horarios disponibles para el día Viernes!
+                  <p class="text-center">¡No hay horarios disponibles para el día Viernes!</p>
                 }
               </div>
             </div>
@@ -241,10 +256,31 @@
     }
   </div>
 
-  <div class="section" id="contactodiv">
-    <footer>
-      <p class="text-center">&copy; SourceCode Company 2014</p>
-    </footer>
+  <div class="section contactoBackground" id="contactodiv" style="background-image: url('/assets/images/IMG_2891.jpg');">
+    <div id="contactoData" class="pushDownWhite" style="background-color:#BDBDBD">
+        <div class="container-fluid" style="padding-top:1%">
+          <div class="row text-center">
+            <div class="col-md-6 headerDivider">
+              <h4>
+                Somos un equipo de computólogos capaces
+              </h4>
+              <h4>
+                y creativos los que desarrollamos este
+              </h4>
+              <h4>
+                sistema para un proyecto de nuestra carrera.
+              </h4>
+            </div>
+          <div class="col-md-6">
+            <footer>
+              <p class="text-center">Facultad de Ciencias, UNAM</p>
+              <p class="text-center">México, Distrito Federal</p>
+              <p class="text-center">Contáctanos: info@@sourcecode.us</p>
+              <p class="text-center">&copy; SourceCode Company 2014</p>
+            </footer>
+          </div>
+      </div>
+    </div>
   </div>
 
   <!-- Modals -->
@@ -471,20 +507,65 @@
     <script src="/assets/javascripts/jquery.easings.min.js"></script>
     <script src="/assets/javascripts/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="/assets/javascripts/jquery.fullPage.min.js"></script>
+    <script type="text/javascript" src="/assets/javascripts/jquery.collagePlus.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         var registroTerminado = true;
+        $('#conocenosData').fadeOut();
+        $('#contactoData').fadeOut();
         $.fn.fullpage({
-          css3:false,
+          css3:true,
           navigation:true,
-          fixedElements: '.navbar',
+          fixedElements: '.modal',
           autoScrolling: true,
-          paddingTop:'50px',
+          paddingTop:'10px',
           paddingBottom:'0px',
           anchors: ['Principal', 'Conocenos', 'Profesores', 'Horarios', 'Contacto'],
-          menu: '#Mymenu',
+          menu: '#menu',
           navigationTooltips: ['Principal', 'Conocenos', 'Profesores', 'Horarios', 'Contacto'],
-          slidesColor: ['#f2f2f2', '#FFFFFF', '#A4A4A4', '#808080', '#0000'],
+          slidesColor: ['#FFFFFF', '#A4A4A4', '#808080', '#0000', '#FFFFFF'],
+          afterLoad: function(anchorLink, index){
+            //using index
+            // if(index == '2'){
+            //     alert("Section 3 ended loading");
+            // }
+
+            //using anchorLink
+             if(anchorLink == 'Conocenos'){
+                 //alert("Section 2 ended loading");
+                 $('#conocenosData').fadeIn();
+             }
+
+             else if (anchorLink == 'Contacto'){
+                $('#contactoData').fadeIn();
+             }
+          },
+          onLeave: function(index, direction){
+            //after leaving section 2
+            if(index == '2'){
+                //alert("Going to section 3!");
+                $('#conocenosData').fadeOut();
+            }
+
+            // else if(index == '1' && direction == 'down') {
+            //   $('#conocenosData').fadeIn();
+            // }
+
+            else if(index == '3' && direction == 'up') {
+              $('#conocenosData').fadeIn();
+            }
+
+            // else if(index == '4' && direction == 'down') {
+            //   $('#contactoData').fadeIn();
+            // }
+
+            else if(index == '5') {
+              $('#contactoData').fadeOut();
+            }
+            // else if(index == '2' && direction == 'up'){
+            //     alert("Going to section 1!");
+            // }
+          }
         });
         $('#footerstudentRegistrationSubmit').on('click', function(e){
             e.preventDefault();
@@ -763,15 +844,23 @@
                 $('#modalBodyAssorted').html(data);
                 $('#modalAssortedLabel').html($('#profNombre').html());
                 $('#profNombre').hide();
+                $('#footerstockAssorted').html($('#footer').html());
+                $('#footer').hide();
+                var sources = document.getElementsByTagName('source'),
+                i;
+
+                for (i = 0; i < sources.length; i++) {
+                    (function (i) {
+                        sources[i].addEventListener('error', function (e) {
+                            console.log('Error loading: '+e.target.src);
+                        });
+                    }(i));
+                }
               }
             });
           });
         });
-        $('ul li').each(function(index) {
-          $(this).delay(4000 * index).fadeIn(500);
-        });
       });
     </script>
-)
 </body>
 </html>

@@ -1,11 +1,31 @@
 .jumbotronBackground {
 	color: white;
-	background-position: 20% 60%;
+	background-position: 100% 100%;
     background-size: cover;
     background-repeat: no-repeat;
     padding-top: 100px;
     padding-bottom: 100px;
 }
+
+.profesoresBackground {
+  background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.conocenosBackground {
+  background-position: 50% 99%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.contactoBackground {
+  background-position: 50% 15%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 
 .jumbotronBackgroundTextShadow
 {
@@ -48,4 +68,44 @@
     background-repeat: no-repeat;
     padding-top: 100px;
     padding-bottom: 100px;
+}
+
+.paddingCollapse {
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 30% auto -4em;
+}
+.footer, .push {
+height: 4em;
+}
+
+
+.pushDownWhite {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 14% auto -4em;
+position: fixed;
+right: 0;
+left: 0;
+background-color:#FFFFFF
+}
+
+
+column {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.headerDivider {
+     border-right:1px solid #dadada; 
+     height:80%;
+ 
 }

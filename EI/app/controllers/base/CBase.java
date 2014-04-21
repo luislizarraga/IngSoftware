@@ -54,8 +54,6 @@ public class CBase extends Controller {
     public static Result mostrarProfesor() {
         DynamicForm data = Form.form().bindFromRequest();
         Profesor p = Profesor.find.byId(Integer.parseInt(data.get("idProf")));
-        File constancia = new File(p.getConstancia());
-        File video = new File(p.getVideo());
         return ok(views.html.principal.muestraProfesorIH.render(p));
     }
 

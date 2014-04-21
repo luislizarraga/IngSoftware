@@ -26,6 +26,7 @@ POST    /registraProfesor             controllers.CProfesor.registrarP()
 POST    /modificaProfesor             controllers.CProfesor.modificarInformacionP()
 POST    /eliminaProfesor              controllers.CProfesor.eliminaRegistroP()
 POST    /agregarCursoProfesor         controllers.CProfesor.agregarCursoP()
+GET     /descargarArchivo/:id/:file   controllers.CProfesor.descargaArchivos(id: Integer, file: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                 controllers.Assets.at(path="/public", file)
