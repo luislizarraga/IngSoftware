@@ -3,7 +3,7 @@ alumnos:
         nombre: Luis
         apellidoPaterno: Lizarraga
         apellidoMaterno: Santos
-        correoElectronico: luis@gmail.com
+        correoElectronico: luis.lzrg@gmail.com
         contrasena: luis
 
 
@@ -32,6 +32,8 @@ profesores:
         apellidoMaterno: Torretes
         correoElectronico: tomas@gmail.com
         contrasena: tomas
+        constancia: public/professordata/1/1.pdf
+        video: public/professordata/1/2.mp4
 
 
     - !!models.Profesor
@@ -40,22 +42,83 @@ profesores:
         apellidoMaterno: Carranza
         correoElectronico: panza@gmail.com
         contrasena: carranza
+        constancia: public/professordata/1/1.pdf
+        video: public/professordata/1/2.mp4
 
+
+    - !!models.Profesor
+        nombre: Luis
+        apellidoPaterno: Lizarraga
+        correoElectronico: siul.al4@gmail.com
+        contrasena: luislizarraga
+        constancia: public/professordata/1/1.pdf
+        video: public/professordata/1/2.mp4
+
+
+    - !!models.Profesor
+        nombre: José
+        apellidoPaterno: Vargas
+        correoElectronico: j.vargas.munoz@gmail.com
+        contrasena: josevargas
+        constancia: public/professordata/1/1.pdf
+        video: public/professordata/1/2.mp4
+
+
+    - !!models.Profesor
+        nombre: Norma
+        apellidoPaterno: Trinidad
+        correoElectronico: nvth28@gmail.com
+        contrasena: normatrinidad
+        constancia: public/professordata/1/1.pdf
+        video: public/professordata/1/2.mp4
+
+
+    - !!models.Profesor
+        nombre: Lorena
+        apellidoPaterno: Mireles
+        correoElectronico: lmirelesrivero@gmail.com
+        contrasena: lorenamireles
+        constancia: public/professordata/1/1.pdf
+        video: public/professordata/1/2.mp4
 
 cursos:
 
     - !!models.Curso
         calificacion: 0
-        nivel: 5
+        nivel: Intermedio 1
         profesor: !!models.Profesor
                     id: 1
 
     - !!models.Curso
         calificacion: 0
-        nivel: 5
+        nivel: Intermedio 3
         profesor: !!models.Profesor
                     id: 2
 
+    - !!models.Curso
+        calificacion: 0
+        nivel: Avanzado 2
+        profesor: !!models.Profesor
+                    id: 3
+
+    - !!models.Curso
+        calificacion: 0
+        nivel: Avanzado 3
+        profesor: !!models.Profesor
+                    id: 4
+
+    - !!models.Curso
+        calificacion: 0
+        nivel: Básico 3
+        constancia: bla
+        profesor: !!models.Profesor
+                    id: 5
+
+    - !!models.Curso
+        calificacion: 0
+        nivel: Básico 1
+        profesor: !!models.Profesor
+                    id: 6
 
 
 horarios:
@@ -73,3 +136,31 @@ horarios:
         horaFin: 18:00
         curso: !!models.Curso
                 id: 2
+
+    - !!models.Horario
+        dia: Martes
+        horaInicio: 16:00
+        horaFin: 18:00
+        curso: !!models.Curso
+                id: 3
+
+    - !!models.Horario
+        dia: Miércoles
+        horaInicio: 16:00
+        horaFin: 18:00
+        curso: !!models.Curso
+                id: 4
+
+    - !!models.Horario
+        dia: Jueves
+        horaInicio: 16:00
+        horaFin: 18:00
+        curso: !!models.Curso
+                id: 5
+
+    - !!models.Horario
+        dia: Viernes
+        horaInicio: 16:00
+        horaFin: 18:00
+        curso: !!models.Curso
+                id: 6

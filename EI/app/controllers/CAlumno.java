@@ -8,6 +8,7 @@ import models.*;
 import play.data.*;
 import java.util.*;
 import forms.*;
+import com.typesafe.plugin.*;
 
 
 /**
@@ -33,9 +34,10 @@ public class CAlumno extends Controller {
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
                                                                                     a.apellidoPaterno,
-                                                                                    a.apellidoMaterno,
-                                                                                    a.correoElectronico));
-        return ok(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a));
+                                                                                    a.apellidoMaterno));
+        List<Curso> cursos = a.getCursos();
+        System.out.println(cursos);
+        return ok(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a, cursos));
     }
 
 
@@ -92,20 +94,25 @@ public class CAlumno extends Controller {
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class).bindFromRequest();
         if (modificacionFormulario.hasErrors()) {
             String user = a.nombre + " " + a.apellidoPaterno;
-            return badRequest(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a));
+            //return badRequest(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a));
+            return badRequest(views.html.alumno.alumnoModificarDatosFormularioIH.render(modificacionFormulario,a));
         } else {
             ModificacionAlumno ma = modificacionFormulario.get();
             a.setNombre(ma.nombre);
             a.setApellidoPaterno(ma.apellidoPaterno);
             a.setApellidoMaterno(ma.apellidoMaterno);
-            a.setCorreoElectronico(ma.correoElectronico);
-            session("correoElectronico", ma.correoElectronico);
+            //a.setCorreoElectronico(ma.correoElectronico);
+            //session("correoElectronico", ma.correoElectronico);
             if (!ma.contrasenaNueva.equals(""))
                 a.setContrasena(ma.contrasenaNueva);
             a.save();
             response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
             response().setHeader("Pragma","no-cache");
-            return redirect(routes.CAlumno.index());
+            modificacionFormulario = Form.form(ModificacionAlumno.class);
+            modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
+                                                                                    a.apellidoPaterno,
+                                                                                    a.apellidoMaterno));
+            return ok(views.html.alumno.alumnoModificarDatosFormularioIH.render(modificacionFormulario,a));
         }
     }
 
@@ -139,13 +146,95 @@ public class CAlumno extends Controller {
             return badRequest(views.html.alumno.alumnoRegistrarFormularioIH.render(formularioAlumno));
         } else {
             RegistroAlumno ra = formularioAlumno.get();
-            Alumno user = new Alumno(ra.nombre,
-                                     ra.apellidoPaterno,
-                                     ra.apellidoMaterno,
-                                     ra.correoElectronico,
-                                     ra.contrasena);
+            Alumno user       = new Alumno(ra.nombre,
+                                        ra.apellidoPaterno,
+                                        ra.apellidoMaterno,
+                                        ra.correoElectronico,
+                                        ra.contrasena);
             user.save();
-            return ok();
+            formularioAlumno  = Form.form(RegistroAlumno.class);
+            return ok(views.html.alumno.alumnoRegistrarFormularioIH.render(formularioAlumno));
         }
+    }
+
+
+    @Security.Authenticated(SecuredAlumno.class)
+    public static Result agregarCursoA() {
+        DynamicForm data = Form.form().bindFromRequest();
+        Curso c = Curso.find.byId(Integer.parseInt(data.get("idCurso")));
+        System.out.println(c);
+        Alumno a    = Alumno.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        c.setAlumno(a);
+        c.save();
+        Profesor p = c.getProfesor();
+        System.out.println(a.getCursos());
+        MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
+        mail.setSubject("Alumno registrado!");
+        mail.setRecipient(p.getNombre() + " " + p.getApellidoPaterno() + " <" + p.getCorreoElectronico() + "> ");
+        mail.setFrom("Escuela de Inglés <noreply@escueladeingles.com>");
+        String htmls = views.html.alumno.alumnoCorreoIH.render(p,a).toString();
+        mail.sendHtml(htmls);
+        //mail.send( "text", "<html>html</html>");
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        return ok();
+    }
+
+
+    @Security.Authenticated(SecuredAlumno.class)
+    public static Result eliminarCursoA() {
+        DynamicForm data = Form.form().bindFromRequest();
+        Curso c = Curso.find.byId(Integer.parseInt(data.get("idCurso")));
+        c.setAlumno(null);
+        c.save();
+        return ok();
+    }
+
+
+    @Security.Authenticated(SecuredAlumno.class)
+    public static Result verCursoA(Integer id) {
+        Curso c = Curso.find.byId(id);
+        Alumno a    = Alumno.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        String user                                     = a.nombre + " " + a.apellidoPaterno;
+        Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
+        modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
+                                                                                    a.apellidoPaterno,
+                                                                                    a.apellidoMaterno));
+        return ok(views.html.alumno.alumnoMuestraCursoIH.render("Ver Curso", user, modificacionFormulario,a,c));
+    }
+
+
+    @Security.Authenticated(SecuredAlumno.class)
+    public static Result obtenerConstancia() {
+        return ok();
+    }
+
+
+    @Security.Authenticated(SecuredAlumno.class)
+    public static Result obtenerCursos() {
+        Alumno a    = Alumno.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        String user                                     = a.nombre + " " + a.apellidoPaterno;
+        Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
+        modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
+                                                                                    a.apellidoPaterno,
+                                                                                    a.apellidoMaterno));
+        List<Curso> cursos     = Curso.find.all();
+        return ok(views.html.alumno.alumnoListaCursosIH.render("Cursos Disponibles",user,modificacionFormulario,a, cursos));
+    }
+
+
+    @Security.Authenticated(SecuredAlumno.class)
+    public static Result obtenerHorario() {
+        return ok();
     }
 }

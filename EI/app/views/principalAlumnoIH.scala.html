@@ -1,8 +1,8 @@
-@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno])(content: Html)
+@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno], alumno: Alumno, content: Html, extraScripts: Html)
 
 @import helper._
 
-@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@
 	<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
 </head>
 <body>
- 	
+ 	<div id="wrap"> 
   <header>
   	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
       <div class="container-fluid">
@@ -39,13 +39,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Inicio</a></li>
+            <li class="active"><a href="@(controllers.routes.CAlumno.index())">Inicio</a></li>
             <li><a href="#">Mi Horario</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Profesores</a></li>
-                <li><a href="#">Horarios</a></li>
+                <li><a href="@(controllers.routes.CAlumno.obtenerCursos())">Horarios</a></li>
                 <li><a href="#">Mis cursos inscritos</a></li>
               </ul>
             </li>
@@ -75,6 +75,9 @@
           <h4 class="modal-title" id="modalRegistrationLabel1">Editar datos</h4>
         </div>
         <div class="modal-body">
+          <div id="successRegistration">
+            <h3>Listo!</h3><br>
+          </div>
           <div id="studentRegistration">
             @helper.form(action = controllers.routes.CAlumno.modificarInformacionA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "studentModificationForm") {
               <fieldset>
@@ -96,12 +99,12 @@
                     '_error -> modifyAlumno.globalError,
                     'class -> "form-control"
                 )
-                @inputText(
-                    modifyAlumno("correoElectronico"), 
-                    '_label -> "Correo Electrónico", 
-                    '_error -> modifyAlumno.globalError,
-                    'class -> "form-control"
-                )
+                <div class="form-group">
+                  <label for="correoElectronico" class="col-sm-3 control-label">Correo Electrónico</label>
+                  <div class="col-sm-8">
+                    <p class="control-form-static">@alumno.getCorreoElectronico()</p>
+                  </div>
+                </div>
                 @inputPassword(
                     modifyAlumno("contrasenaNueva"), 
                     '_label -> "Nueva Contraseña", 
@@ -134,7 +137,7 @@
           <h4 class="modal-title" id="modalRegistrationLabel2">Eliminar perfil</h4>
         </div>
         <div class="modal-body">
-<div id="alumnoRegistration">
+          <div id="alumnoRegistration">
             @helper.form(action = controllers.routes.CAlumno.eliminaRegistroA(), 'class -> "form-horizontal", 'role -> "form", 'id -> "alumnoEliminacionForm") {
               <fieldset>
                ¿Estás seguro de que deseas eliminar tu registro?
@@ -150,13 +153,21 @@
     </div>
   </div>
 
-  <div id="content" style="margin-top:50px">
-  @content
+  
+    <div class="container-fluid clear-top">
+      <div id="content" style="margin-top:50px">
+      @content
+      </div>
+    </div>
+    <div id="pushh"></div>
   </div>
 
+  
+  <div id="footter">
   <footer>
-    <p>&copy; SourceCode Company 2014</p>
+    <p class="text-center">&copy; SourceCode Company 2014</p>
   </footer>
+  </div>
 
 
   <!-- Bootstrap core JavaScript
@@ -167,18 +178,42 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('#modalModification').modal({show:false});
+      $('#successRegistration').hide();
       $('#studentModificationSubmit').on('click', function(e){
           e.preventDefault();
+          $('#studentModificationForm').submit(function(e){
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+              url: '@(controllers.routes.CAlumno.modificarInformacionA())',
+              type: 'POST',
+              data: $(this).serialize(),
+              success: function(e){
+                // $('#studentRegistration').html("<h2>Listo!</h2><br><h3>Ya puedes iniciar sesión</h3>");
+                // $('#studentRegistration').show(400);
+                // $('#footerstockRegistration').show(400);
+                $('#successRegistration').show(400);
+                $('#studentRegistration').html(e);
+                //window.location.replace('@(controllers.routes.CAlumno.index())');
+              },
+              error: function(jqXHR, exception) {
+                console.log(jqXHR);
+                $('#studentRegistration').html(jqXHR.responseText);
+              }
+            });
+          });
           $('#studentModificationForm').submit();
       });
-    });
-$(document).ready(function() {
       $('#eliminarPerfil').modal({show:false});
       $('#alumnoEliminacionSubmit').on('click', function(e){
           e.preventDefault();
           $('#alumnoEliminacionForm').submit();
       });
+      $('#modalModification').on('hidden.bs.modal', function (e) {
+        $('#successRegistration').hide();
+      });
     });
+    @extraScripts
   </script>
 </body>
 </html> 

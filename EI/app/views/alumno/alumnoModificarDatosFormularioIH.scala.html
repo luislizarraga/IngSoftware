@@ -1,0 +1,45 @@
+@(modifyAlumno: Form[forms.ModificacionAlumno], alumno: Alumno)
+@import forms._
+@import helper._
+
+@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
+
+
+<form id="studentModificationForm" class="form-horizontal" role="form" method="POST">
+    @helper.inputText(
+        modifyAlumno("nombre"), 
+        '_label -> "Nombre(s)", 
+        '_error -> modifyAlumno.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        modifyAlumno("apellidoPaterno"), 
+        '_label -> "Apellido Paterno", 
+        '_error -> modifyAlumno.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputText(
+        modifyAlumno("apellidoMaterno"), 
+        '_label -> "Apellido Materno", 
+        '_error -> modifyAlumno.globalError,
+        'class -> "form-control"
+    )
+    <div class="form-group">
+        <label for="correoElectronico" class="col-sm-3 control-label">Correo Electrónico</label>
+        <div class="col-sm-8">
+            <p class="control-form-static">@alumno.getCorreoElectronico()</p>
+        </div>
+    </div>
+    @helper.inputPassword(
+        modifyAlumno("contrasenaNueva"), 
+        '_label -> "Contraseña", 
+        '_error -> modifyAlumno.globalError,
+        'class -> "form-control"
+    )
+    @helper.inputPassword(
+        modifyAlumno("confContrasena"), 
+        '_label -> "Confirmar Contraseña", 
+        '_error -> modifyAlumno.globalError,
+        'class -> "form-control"
+    )
+</form>

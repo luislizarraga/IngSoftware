@@ -76,7 +76,7 @@ public class ModificarInformacionATest extends WithApplication {
             controllers.routes.ref.CAlumno.modificarInformacionA(),
             fakeRequest().withCookies(playSession).withFormUrlEncodedBody(form)
         );
-        assertEquals(303, status(result));
+        assertEquals(200, status(result));
         Alumno a = Alumno.find.where().eq("correoElectronico", "maria@gmail.com").findUnique();
         assert(a != null);
         assertEquals("Maria Ana", a.getNombre());
@@ -92,7 +92,7 @@ public class ModificarInformacionATest extends WithApplication {
             controllers.routes.ref.CAlumno.modificarInformacionA(),
             fakeRequest().withCookies(playSession).withFormUrlEncodedBody(form)
         );
-        assertEquals(303, status(result));
+        assertEquals(200, status(result));
         a = Alumno.find.where().eq("correoElectronico", "maria@gmail.com").findUnique();
         assert(a != null);
         assertEquals("Elizalde", a.getApellidoPaterno());
@@ -108,7 +108,7 @@ public class ModificarInformacionATest extends WithApplication {
             controllers.routes.ref.CAlumno.modificarInformacionA(),
             fakeRequest().withCookies(playSession).withFormUrlEncodedBody(form)
         );
-        assertEquals(303, status(result));
+        assertEquals(200, status(result));
         a = Alumno.find.where().eq("correoElectronico", "maria@gmail.com").findUnique();
         assert(a != null);
         assertEquals("Potrillo", a.getApellidoMaterno());
@@ -124,7 +124,7 @@ public class ModificarInformacionATest extends WithApplication {
             controllers.routes.ref.CAlumno.modificarInformacionA(),
             fakeRequest().withCookies(playSession).withFormUrlEncodedBody(form)
         );
-        assertEquals(303, status(result));
+        assertEquals(200, status(result));
         a = Alumno.find.where().eq("correoElectronico", "maria@gmail.com").findUnique();
         assert(a == null);
         a = Alumno.find.where().eq("correoElectronico", "ana@gmail.com").findUnique();
@@ -142,7 +142,7 @@ public class ModificarInformacionATest extends WithApplication {
             controllers.routes.ref.CAlumno.modificarInformacionA(),
             fakeRequest().withCookies(playSession2).withFormUrlEncodedBody(form)
         );
-        assertEquals(303, status(result));
+        assertEquals(200, status(result));
         a = Alumno.find.where().eq("correoElectronico", "ana@gmail.com").findUnique();
         assert(a != null);
         assertEquals("bla", a.getContrasena());
@@ -241,6 +241,34 @@ public class ModificarInformacionATest extends WithApplication {
         );
         assertEquals(400, status(result));
         assert(contentAsString(result).contains("Las contraseñas no coinciden."));
+
+        form  = new HashMap();
+        form.put("nombre", "Maria Ana345234");
+        form.put("apellidoPaterno", "Toyos");
+        form.put("apellidoMaterno", "Swanson");
+        form.put("correoElectronico", "maria@gmail.com");
+        form.put("contrasenaNueva", "");
+        form.put("confContrasena", "");
+        result = callAction(
+            controllers.routes.ref.CAlumno.modificarInformacionA(),
+            fakeRequest().withCookies(playSession).withFormUrlEncodedBody(form)
+        );
+        assertEquals(400, status(result));
+        assert(contentAsString(result).contains("Nombre inválido."));
+
+        form  = new HashMap();
+        form.put("nombre", "Maria Ana");
+        form.put("apellidoPaterno", "Toyos34345");
+        form.put("apellidoMaterno", "Swanson");
+        form.put("correoElectronico", "maria@gmail.com");
+        form.put("contrasenaNueva", "");
+        form.put("confContrasena", "");
+        result = callAction(
+            controllers.routes.ref.CAlumno.modificarInformacionA(),
+            fakeRequest().withCookies(playSession).withFormUrlEncodedBody(form)
+        );
+        assertEquals(400, status(result));
+        assert(contentAsString(result).contains("Apellido paterno inválido."));
     }
 
 }

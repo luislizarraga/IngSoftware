@@ -23,6 +23,10 @@ public class Curso extends Model {
     
     public Integer calificacion;
 
+    public boolean autorizado;
+
+    public String notas;
+
     @Constraints.Required
     @Column(nullable = false)
     public String nivel;
@@ -134,6 +138,33 @@ public class Curso extends Model {
 
     /**
      * Metodo get
+     * @return String La constancia del curso
+     */
+    public String getConstancia() {
+        return constancia;
+    }
+
+
+    /**
+     * Metodo get
+     * @return String Las notas del curso
+     */
+    public String getNotas() {
+        return notas;
+    }
+
+
+    /**
+     * Metodo get
+     * @return boolean La autorizacion del curso
+     */
+    public boolean getAutorizado() {
+        return autorizado;
+    }
+
+
+    /**
+     * Metodo get
      * @return List<Horario> Los horarios del curso
      */
     public List<Horario> getHorarios() {
@@ -186,4 +217,29 @@ public class Curso extends Model {
     }
 
 
+    /**
+     * Metodo set
+     * @param constancia La nueva constancia del curso
+     */
+    public void setConstancia(Integer calificacion) {
+        this.calificacion = calificacion;
+    }
+
+
+    /**
+     * Metodo set
+     * @param autorizado La nueva autorizacion del curso
+     */
+    public void setAutorizado(boolean autorizado) {
+        this.autorizado = autorizado;
+    }
+
+
+    /**
+     * Metodo set
+     * @param notas Las nuevas notas del curso
+     */
+    public void setNotas(String notas) {
+        this.notas = notas;
+    }
 }

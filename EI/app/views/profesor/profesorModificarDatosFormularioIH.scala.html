@@ -1,45 +1,45 @@
-@(alumnoForma: Form[forms.RegistroAlumno])
+@(modifyProfesor: Form[forms.ModificacionProfesor])
 @import forms._
 @import helper._
 
 @implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
 
 
-<form id="studentRegistrationForm" class="form-horizontal" role="form" method="POST">
+<form id="profesorModificationForm" class="form-horizontal" role="form" method="POST">
     @helper.inputText(
-        alumnoForma("nombre"), 
+        modifyProfesor("nombre"), 
         '_label -> "Nombre(s)", 
-        '_error -> alumnoForma.globalError,
+        '_error -> modifyProfesor.globalError,
         'class -> "form-control"
     )
     @helper.inputText(
-        alumnoForma("apellidoPaterno"), 
+        modifyProfesor("apellidoPaterno"), 
         '_label -> "Apellido Paterno", 
-        '_error -> alumnoForma.globalError,
+        '_error -> modifyProfesor.globalError,
         'class -> "form-control"
     )
     @helper.inputText(
-        alumnoForma("apellidoMaterno"), 
+        modifyProfesor("apellidoMaterno"), 
         '_label -> "Apellido Materno", 
-        '_error -> alumnoForma.globalError,
+        '_error -> modifyProfesor.globalError,
         'class -> "form-control"
     )
     @helper.inputText(
-        alumnoForma("correoElectronico"), 
+        modifyProfesor("correoElectronico"), 
         '_label -> "Correo Electrónico", 
-        '_error -> alumnoForma.globalError,
+        '_error -> modifyProfesor.globalError,
         'class -> "form-control"
     )
     @helper.inputPassword(
-        alumnoForma("contrasena"), 
+        modifyProfesor("contrasenaNueva"), 
         '_label -> "Contraseña", 
-        '_error -> alumnoForma.globalError,
+        '_error -> modifyProfesor.globalError,
         'class -> "form-control"
     )
     @helper.inputPassword(
-        alumnoForma("confContrasena"), 
+        modifyProfesor("confContrasena"), 
         '_label -> "Confirmar Contraseña", 
-        '_error -> alumnoForma.globalError,
+        '_error -> modifyProfesor.globalError,
         'class -> "form-control"
     )
 </form>

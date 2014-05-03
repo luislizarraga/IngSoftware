@@ -1,12 +1,14 @@
-@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor])(profesor: Profesor)
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor],profesor: Profesor)
 
-@principalProfesorIH(title, user, modifyProfesor) {
+@extraScripts={}
 
+@content = {
   <div class="container-fluid">  
     <div class="row">
       <h1>Éxito</h1>
       <h2>Hola @user !</h2>
     </div>
   </div>
-
 }
+
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)

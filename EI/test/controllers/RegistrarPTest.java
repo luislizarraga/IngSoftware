@@ -197,6 +197,36 @@ public class RegistrarPTest extends WithApplication {
         );
         assertEquals(400, status(result));
         assert(contentAsString(result).contains("Correo electrónico inválido."));
+
+        form  = new HashMap();
+        form.put("nombre", "Maria456475");
+        form.put("apellidoPaterno", "Toyos");
+        form.put("apellidoMaterno", "Swanson");
+        form.put("correoElectronico", "maria@gmail.com");
+        form.put("contrasena", "maria");
+        form.put("confContrasena", "maria");
+        result = callAction(
+            controllers.routes.ref.CProfesor.registrarP(),
+            fakeRequest().withFormUrlEncodedBody(form)
+        );
+        assertEquals(400, status(result));
+        assert(contentAsString(result).contains("Nombre inválido."));
+        assert(contentAsString(result).contains("Este correo ya se encuentra registrado."));
+
+        form  = new HashMap();
+        form.put("nombre", "Maria");
+        form.put("apellidoPaterno", "Toyos457");
+        form.put("apellidoMaterno", "Swanson");
+        form.put("correoElectronico", "maria@gmail.com");
+        form.put("contrasena", "maria");
+        form.put("confContrasena", "maria");
+        result = callAction(
+            controllers.routes.ref.CProfesor.registrarP(),
+            fakeRequest().withFormUrlEncodedBody(form)
+        );
+        assertEquals(400, status(result));
+        assert(contentAsString(result).contains("Ápellido paterno inválido."));
+        assert(contentAsString(result).contains("Este correo ya se encuentra registrado."));
     }
 
 }

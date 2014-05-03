@@ -1,0 +1,69 @@
+@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno], alumno: Alumno, c: Curso)
+
+@extraScripts={}
+
+@content = {
+  <div class="container-fluid padContainer">  
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Curso de @(c.getProfesor().getNombre() + " " + c.getProfesor().getApellidoPaterno())</h3>
+      </div>
+    </div>
+    <div class="row padContainer">
+      <div class="col-md-12">
+        <form class="form-horizontal" role="form">
+          @for(h <- c.getHorarios()) {
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Dia</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">@h.getDia</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Hora</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">@(h.getHoraInicio()+ " - " + h.getHoraFin())</p>
+            </div>
+          </div>
+          }
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Nivel</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">@c.getNivel()</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Profesor</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">@(c.getProfesor().getNombre() + " " + c.getProfesor().getApellidoPaterno())</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Correo Profesor</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">@c.getProfesor().getCorreoElectronico()</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Calificación</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">@c.getCalificacion()</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row padContainer">
+      <div class="col-md-6">
+        <a href="@(controllers.routes.CAlumno.index())" class="btn btn-primary" type="button">Regresar</a>
+      </div>
+      <div class="col-md-6 pull-right">
+        @if(c.getConstancia() != null){
+          <a href="#" class="btn" role="button"><span class="glyphicon glyphicon-download-alt"></span> Constancia</a>
+        }
+      </div>
+    </div>
+  </div>
+}
+
+@principalAlumnoIH(title, user, modifyAlumno,alumno, content, extraScripts)

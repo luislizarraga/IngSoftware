@@ -20,6 +20,8 @@ create table curso (
   aprobado                  tinyint(1) default 0,
   constancia                varchar(255),
   calificacion              integer,
+  autorizado                tinyint(1) default 0,
+  notas                     varchar(255),
   nivel                     varchar(255) not null,
   alumno_id                 integer,
   profesor_id               integer not null,

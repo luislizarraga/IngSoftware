@@ -124,6 +124,10 @@ public class Alumno extends Model {
     }
 
 
+    public List<Curso> getCursos(){
+        return cursos;
+    }
+
     /**
      * Metodo set
      * @param nombre Nuevo valor nombre del alumno
@@ -166,6 +170,11 @@ public class Alumno extends Model {
      */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+
+    public void addCurso(Curso curso) {
+        cursos.add(curso);
     }
 
 

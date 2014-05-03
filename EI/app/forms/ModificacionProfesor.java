@@ -54,9 +54,13 @@ public class ModificacionProfesor {
         }
         if (nombre.equals("")) {
             errores.add(new ValidationError("nombre", "Este campo es requerido."));
+        } else if (!nombre.matches("[a-zA-Z \\+]+")) {
+            errores.add(new ValidationError("nombre", "Nombre inválido."));
         }
         if (apellidoPaterno.equals("")) {
             errores.add(new ValidationError("apellidoPaterno", "Este campo es requerido."));
+        } else if (!apellidoPaterno.matches("[a-zA-Z \\+]+")) {
+            errores.add(new ValidationError("apellidoPaterno", "Apellido paterno inválido."));
         }
         return errores.isEmpty() ? null : errores;
     }

@@ -3,21 +3,22 @@
 @import helper._
 @import scala._
 
-@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
 
 
 <form id="cursoRegistrationForm" class="form-horizontal" role="form" enctype="multipart/form-data" method="POST">
     @helper.select(
         cursoForma("nivel"),
-        options("Basico 1" -> "Básico 1",
-                "Basico 2" -> "Básico 2",
-                "Basico 3" -> "Básico 3",
+        options("Básico 1" -> "Básico 1",
+                "Básico 2" -> "Básico 2",
+                "Básico 3" -> "Básico 3",
                 "Intermedio 1" -> "Intermedio 1",
                 "Intermedio 2" -> "Intermedio 2",
                 "Intermedio 3" -> "Intermedio 3",
                 "Avanzado 1" -> "Avanzado 1",
                 "Avanzado 2" -> "Avanzado 2",
-                "Avanzado 3" -> "Avanzado 3"
+                "Avanzado 3" -> "Avanzado 3",
+                "Conversación" -> "Conversación"
         ),
         '_label -> "Nivel", 
         '_error -> cursoForma.globalError,
@@ -27,7 +28,7 @@
         cursoForma("dias"), 
         options("Lunes" -> "Lunes",
                 "Martes" -> "Martes",
-                "Miercoles" -> "Miércoles",
+                "Miércoles" -> "Miércoles",
                 "Jueves" -> "Jueves",
                 "Viernes" -> "Viernes"
         ),

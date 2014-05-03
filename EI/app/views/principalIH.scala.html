@@ -3,7 +3,7 @@
 @import helper._
 @import scala._
 
-@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
+@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
 
 <!DOCTYPE html>
 <html>
@@ -63,7 +63,7 @@
   <div class="section conocenosBackground" id="conocenosdiv" style="background-image: url('/assets/images/IMG_2870.jpg');">
     <div id="conocenosData" class="row row-fluid pushDownWhite">
       <div class="col-md-6 col-md-offset-3 text-center" style="padding-top:1%">
-        <p class="lead">
+        <p class="lead" style="margin-bottom:0px">
           Nos preocupamos por nuestros estudiantes
         </p>
         <h4 class="" style="color:#808080">
@@ -101,7 +101,7 @@
           <ul class="list-unstyled">
             @for(prof <- profesores) {
               <li>
-                <a href="" class="profesoresList" data-pk="@prof.id" style="color:#FFFFFF; font-size: 18px;">@(prof.getNombre() + " " + prof.getApellidoPaterno() + " " + prof.getApellidoMaterno())</a>
+                <a href="" class="profesoresList" data-pk="@prof.id" style="color:#FFFFFF; font-size: 18px;">@(prof.getNombre() + " " + prof.getApellidoPaterno())</a>
               </li>
             }
           </ul>
@@ -141,7 +141,7 @@
                     <tr>
                     <td>@h.getCurso().getNivel()</td>
                     <td>@h.getHoraInicio() - @h.getHoraFin()</td>
-                    <td>@h.getCurso().getProfesor().getNombre()</td>
+                    <td>@(h.getCurso().getProfesor().getNombre()+" "+ h.getCurso().getProfesor().getApellidoPaterno())</td>
                     </tr>
                   }
                   </tbody>
@@ -163,13 +163,24 @@
             <div id="collapseTwo" class="panel-collapse collapse">
               <div class="panel-bodyMartes paddingCollapse">
                 @if(!martes.isEmpty) {
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                    <th>Nivel</th>
+                    <th>Hora</th>
+                    <th>Profesor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                   @for(h <- martes) {
-                    <ul class="list-unstyled">
-                      <li>Nivel:    @h.getCurso().getNivel()</li>
-                      <li>Hora:     @h.getHoraInicio() - @h.getHoraFin()</li>
-                      <li>Profesor: @h.getCurso().getProfesor().getNombre()</li>
-                    </ul>
+                    <tr>
+                    <td>@h.getCurso().getNivel()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                    <td>@(h.getCurso().getProfesor().getNombre()+" "+ h.getCurso().getProfesor().getApellidoPaterno())</td>
+                    </tr>
                   }
+                  </tbody>
+                </table>
                 } else {
                   <p class="text-center">¡No hay horarios disponibles para el día Martes!</p>
                 }
@@ -187,13 +198,24 @@
             <div id="collapseThree" class="panel-collapse collapse">
               <div class="panel-bodyMiercoles paddingCollapse">
                 @if(!miercoles.isEmpty) {
+                  <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                    <th>Nivel</th>
+                    <th>Hora</th>
+                    <th>Profesor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                   @for(h <- miercoles) {
-                    <ul class="list-unstyled">
-                      <li>Nivel:    @h.getCurso().getNivel()</li>
-                      <li>Hora:     @h.getHoraInicio() - @h.getHoraFin()</li>
-                      <li>Profesor: @h.getCurso().getProfesor().getNombre()</li>
-                    </ul>
+                    <tr>
+                    <td>@h.getCurso().getNivel()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                    <td>@(h.getCurso().getProfesor().getNombre()+" "+ h.getCurso().getProfesor().getApellidoPaterno())</td>
+                    </tr>
                   }
+                  </tbody>
+                </table>
                 } else {
                   <p class="text-center">¡No hay horarios disponibles para el día Miercoles!</p>
                 }
@@ -211,13 +233,24 @@
             <div id="collapseFour" class="panel-collapse collapse">
               <div class="panel-bodyJueves paddingCollapse">
                 @if(!jueves.isEmpty) {
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                    <th>Nivel</th>
+                    <th>Hora</th>
+                    <th>Profesor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                   @for(h <- jueves) {
-                    <ul class="list-unstyled">
-                      <li>Nivel:    @h.getCurso().getNivel()</li>
-                      <li>Hora:     @h.getHoraInicio() - @h.getHoraFin()</li>
-                      <li>Profesor: @h.getCurso().getProfesor().getNombre()</li>
-                    </ul>
+                    <tr>
+                    <td>@h.getCurso().getNivel()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                    <td>@(h.getCurso().getProfesor().getNombre()+" "+ h.getCurso().getProfesor().getApellidoPaterno())</td>
+                    </tr>
                   }
+                  </tbody>
+                </table>
                 } else {
                   <p class="text-center">¡No hay horarios disponibles para el día Jueves!</p>
                 }
@@ -235,13 +268,24 @@
             <div id="collapseFive" class="panel-collapse collapse">
               <div class="panel-bodyViernes paddingCollapse">
                 @if(!viernes.isEmpty) {
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                    <th>Nivel</th>
+                    <th>Hora</th>
+                    <th>Profesor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                   @for(h <- viernes) {
-                    <ul class="list-unstyled">
-                      <li>Nivel:    @h.getCurso().getNivel()</li>
-                      <li>Hora:     @h.getHoraInicio() - @h.getHoraFin()</li>
-                      <li>Profesor: @h.getCurso().getProfesor().getNombre()</li>
-                    </ul>
+                    <tr>
+                    <td>@h.getCurso().getNivel()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                    <td>@(h.getCurso().getProfesor().getNombre()+" "+ h.getCurso().getProfesor().getApellidoPaterno())</td>
+                    </tr>
                   }
+                  </tbody>
+                </table>
                 } else {
                   <p class="text-center">¡No hay horarios disponibles para el día Viernes!</p>
                 }
@@ -274,7 +318,6 @@
           <div class="col-md-6">
             <footer>
               <p class="text-center">Facultad de Ciencias, UNAM</p>
-              <p class="text-center">México, Distrito Federal</p>
               <p class="text-center">Contáctanos: info@@sourcecode.us</p>
               <p class="text-center">&copy; SourceCode Company 2014</p>
             </footer>
@@ -381,9 +424,13 @@
           <div id="processingRegistration">
             <h4>Procesando ... </h4>
           </div>
+          <div id="successRegistration">
+            <h2>Listo!</h2><br>
+            <h3>Ya puedes iniciar sesión</h3>
+          </div>
           <div id="cursoRegistration">
           </div>
-          <div id="studentRegistration">
+          <div id="studentRegistration" class="uno">
             <form id="studentRegistrationForm" class="form-horizontal" role="form" method="POST">
                 @helper.inputText(
                     alumnoForma("nombre"), 
@@ -473,7 +520,7 @@
                     '_label -> "Video", 
                     '_error -> profesorForma.globalError,
                     'class -> "form-control",
-                    '_help -> "El video debe ser formato .mp4"
+                    '_help -> "El video debe ser formato .mp4 / .ogg"
                 )
             </form>
           </div>
@@ -511,6 +558,7 @@
     <script type="text/javascript">
       $(document).ready(function() {
         var registroTerminado = true;
+        var registroAlumnoTerminado = false;
         $('#conocenosData').fadeOut();
         $('#contactoData').fadeOut();
         $.fn.fullpage({
@@ -579,9 +627,11 @@
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function(e){
-                  $('#studentRegistration').html("<h2>Listo!</h2><br><h3>Ya puedes iniciar sesión</h3>");
-                  $('#studentRegistration').show(400);
-                  $('#footerstockRegistration').show(400)
+                  $('#studentRegistration').html(e);
+                  //$('#studentRegistration').show(400);
+                  $('#successRegistration').show(400);
+                  $('#footerstockRegistration').show(400);
+                  registroAlumnoTerminado = true;
                   //window.location.replace('@(controllers.routes.CAlumno.index())');
                 },
                 error: function(jqXHR, exception) {
@@ -598,10 +648,21 @@
             e.preventDefault();
             var a = $('#constancia')[0].files[0];
             var b = $('#video')[0].files[0];
+            if (a == null && b == null) {
+              alert('Favor de adjuntar los archivos requeridos');
+            } else if(a == null && b != null) {
+              alert('Favor de adjuntar el .pdf');
+            } else if(a != null && b == null) {
+              alert('Favor de adjuntar el video con formato .mp4 / .ogg');
+            }
             if (a.name.indexOf('.pdf') == -1) {
               alert('No es un archivo pdf, favor de adjuntar un archivo .pdf');
-            } else if (b.name.indexOf('.mp4') == -1) {
-              alert('No es un archivo mp4, favor de adjuntar un archivo .mp4');
+            } else if (b.name.indexOf('.mp4') == -1 && b.name.indexOf('.ogg') == -1) {
+              alert('Favor de adjuntar un archivo con extensión .mp4 / .ogg');
+            // } else if (b.name.indexOf('.mp4') == -1 && b.name.indexOf('.ogg') != -1) {
+            //   alert('Favor de adjuntar un archivo con extensión .mp4 / .ogg');
+            // } else if (b.name.indexOf('.ogg') == -1 && b.name.indexOf('.mp4') != -1) {
+            //   alert('Favor de adjuntar un archivo con extensión .mp4 / .ogg');
             } else {
               $('#professorRegistration').hide(400);
               $('#footerprofessorRegistration').hide(400);
@@ -624,7 +685,7 @@
                     $('#modalRegistrationLabel3').hide(400);
                     $('#footercursoRegistration').show(400);
                     $('#modalRegistrationLabel4').show(400);
-
+                    registroTerminado = false;
 
                     //window.location.replace('@(controllers.routes.CAlumno.index())');
                   },
@@ -636,7 +697,6 @@
                   }
                 });
               });
-              registroTerminado = false;
               $('#professorRegistrationForm').submit();
             }
         });
@@ -737,6 +797,7 @@
         });
         $('#modalLogIn').modal({show:false});
         $('#cursoRegistration').hide();
+        $('#successRegistration').hide();
         $('#studentLogIn').hide();
         $('#professorLogIn').hide();
         $('#footerstudentLogIn').hide();
@@ -746,6 +807,7 @@
         $('#modalLogInProcessing').hide();
         $('#modalRegistration').modal({show:false});
         $('#studentRegistration').hide();
+        $('#studentRegistrationAux').hide();
         $('#professorRegistration').hide();
         $('#footerstudentRegistration').hide();
         $('#footerprofessorRegistration').hide();
@@ -809,14 +871,14 @@
         });
 
         $('#modalRegistration').on('hidden.bs.modal', function (e) {
-            $('#modalRegistrationLabel2').hide();
-            $('#modalRegistrationLabel3').hide();
+          if (registroTerminado) {
             $('#studentRegistration').hide();
             $('#footerstudentRegistration').hide();
             $('#professorRegistration').hide();
             $('#footerprofessorRegistration').hide();
             $('#processingRegistration').hide();
-          if (registroTerminado) {
+            $('#modalRegistrationLabel2').hide();
+            $('#modalRegistrationLabel3').hide();
             $('#modalRegistrationLabel1').show();
             $("#footerstockRegistration").show();
             $("#modal-buttonsRegistration").show();
@@ -827,6 +889,10 @@
             $("#footerstockRegistration").show();
             $('#modalRegistrationLabel4').hide();
             $('#footercursoRegistration').hide();
+            if (registroAlumnoTerminado) {
+              //$('#studentRegistration').show();
+              $('#successRegistration').hide();
+            }
             registroTerminado = true;
           }
         });

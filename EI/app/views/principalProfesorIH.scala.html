@@ -1,9 +1,8 @@
-@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor])(content: Html)
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor], profesor: Profesor, content: Html, extraScripts:Html)
 
 @import helper._
 
-@implicitField = @{ FieldConstructor(constructorDeFormas.f) }
-
+@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +20,8 @@
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 </head>
 <body>
-      <header>
+  <div id="wrap"> 
+  <header>
 	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,13 +38,13 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Inicio</a></li>
-          <li><a href="#">Mis grupos</a></li>
+          <li class="active"><a href="@(controllers.routes.CProfesor.index())">Inicio</a></li>
+          <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Mis Cursos</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">Alumnos</a></li>
-              <li><a href="#">Horarios</a></li>
+              <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Horarios</a></li>
 
               <!-- <li class="divider"></li>
               <li><a href="#">Separated link</a></li>
@@ -66,8 +66,8 @@
             <ul class="dropdown-menu">
               <li><a href="#modalModification" role="button" data-toggle="modal">Editar perfil</a></li>
               <li><a href="#">Privacidad</a></li>             
- <li><a href="#eliminarPerfil" role="button" data-toggle="modal">Eliminar perfil</a></li>
-     <li class="divider"></li>
+              <li><a href="#eliminarPerfil" role="button" data-toggle="modal">Eliminar perfil</a></li>
+              <li class="divider"></li>
               <li><a href="@controllers.routes.CProfesor.cerrarSesionP">Salir</a></li>
             </ul>
           </li>
@@ -86,6 +86,9 @@
           <h4 class="modal-title" id="modalRegistrationLabel1">Editar datos</h4>
         </div>
         <div class="modal-body">
+          <div id="successRegistration">
+            <h3>Listo!</h3><br>
+          </div>
           <div id="profesorRegistration">
             @helper.form(action = controllers.routes.CProfesor.modificarInformacionP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "profesorModificationForm") {
               <fieldset>
@@ -145,7 +148,7 @@
           <h4 class="modal-title" id="modalRegistrationLabel2">Eliminar perfil</h4>
         </div>
         <div class="modal-body">
-<div id="profesorRegistration">
+          <div id="profesorRegistration">
             @helper.form(action = controllers.routes.CProfesor.eliminaRegistroP(), 'class -> "form-horizontal", 'role -> "form", 'id -> "profesorEliminacionForm") {
               <fieldset>
                ¿Está seguro de que deseas eliminar su registro?
@@ -161,13 +164,20 @@
     </div>
   </div>
 
-  <div id="content" style="margin-top:50px">
-  @content
+  <div class="container-fluid clear-top">
+      <div id="content" style="margin-top:50px">
+      @content
+      </div>
+    </div>
+    <div id="pushh"></div>
   </div>
 
+  
+  <div id="footter">
   <footer>
-    <p>&copy; SourceCode Company 2014</p>
+    <p class="text-center">&copy; SourceCode Company 2014</p>
   </footer>
+  </div>
 
 
 
@@ -180,19 +190,42 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('#modalModification').modal({show:false});
+      $('#successRegistration').hide();
       $('#profesorModificationSubmit').on('click', function(e){
           e.preventDefault();
+          $('#profesorModificationForm').submit(function(e){
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+              url: '@(controllers.routes.CProfesor.modificarInformacionP())',
+              type: 'POST',
+              data: $(this).serialize(),
+              success: function(e){
+                // $('#professorRegistration').html("<h2>Listo!</h2><br><h3>Ya puedes iniciar sesión</h3>");
+                // $('#professorRegistration').show(400);
+                // $('#footerstockRegistration').show(400);
+                $('#successRegistration').show(400);
+                $('#profesorRegistration').html(e);
+              },
+              error: function(jqXHR, exception) {
+                console.log('quepedo');
+                console.log(jqXHR);
+                $('#profesorRegistration').html(jqXHR.responseText);
+              }
+            });
+          });
           $('#profesorModificationForm').submit();
       });
-    });
-$(document).ready(function() {
       $('#eliminarPerfil').modal({show:false});
       $('#profesorEliminacionSubmit').on('click', function(e){
           e.preventDefault();
           $('#profesorEliminacionForm').submit();
       });
+      $('#modalModification').on('hidden.bs.modal', function (e) {
+        $('#successRegistration').hide();
+      });
     });
-
+    @extraScripts
   </script>
 </body>
 </html> 

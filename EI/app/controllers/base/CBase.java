@@ -4,7 +4,6 @@ import play.*;
 import play.mvc.*;
 
 import views.html.*;
-import views.html.everything.*;
 import models.*;
 import play.data.*;
 import java.util.*;

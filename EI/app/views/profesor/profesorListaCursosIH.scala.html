@@ -1,0 +1,100 @@
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor], profesor: Profesor, cursos: List[Curso])
+
+@extraScripts = {
+    $('.del').each(function(){
+      var id = $(this).attr('data-pk');
+      //console.log(id);
+      $(this).on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+          url: '@(controllers.routes.CProfesor.eliminarCursoP())',
+          type: 'POST',
+          data: {"idCurso":id},
+          success: function(data){
+            window.location.replace('@(controllers.routes.CProfesor.obtenerCursos())');
+          }
+        });
+      });
+    });
+    $('.auth').each(function(){
+      var id = $(this).attr('data-pk');
+      //console.log(id);
+      $(this).on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+          url: '@(controllers.routes.CProfesor.autorizarCurso())',
+          type: 'POST',
+          data: {"idCurso":id},
+          success: function(data){
+            window.location.replace('@(controllers.routes.CProfesor.obtenerCursos())');
+          }
+        });
+      });
+    });
+}
+
+@content = {
+  <div class="container padContainer">  
+    <!-- <div class="row">
+      <h1>Éxito</h1>
+      <h2>Hola @user !</h2>
+    </div> -->
+    <div class="row">
+      <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+        <h3>Lista de cursos creados :</h3>
+        </div>
+      </div>
+      <div class="row well well-small">
+        <div class="col-md-12">
+        @if(!cursos.isEmpty){
+          <table class="table table-condensed ">
+            <thead>
+              <tr>
+              <th>Nivel</th>
+              <th>Dia</th>
+              <th>Hora</th>
+              <th>Alumno</th>
+              <th>Calificacion</th>
+              <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            @for(c <- cursos) {
+                <tr>
+                <td>@c.getNivel()</td>
+                @for(h <- c.getHorarios()) {
+                  <td>@h.getDia()</td>
+                  <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                }
+                @if(c.getAlumno() != null){
+                <td>@(c.getAlumno().getNombre()+ " " +c.getAlumno().getApellidoPaterno())</td>
+                }else{
+                <td>No hay alumno registrado</td>
+                }
+                <td>@c.getCalificacion()</td>
+                <td>
+                  <p>
+                    <button data-pk="@c.getId()" class="btn btn-primary btn-xs edit" role="button"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                    <button data-pk="@c.getId()" class="btn btn-primary btn-xs del" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+                    @if(c.getAlumno() != null && c.getAutorizado() == false){
+                    <button data-pk="@c.getId()" class="btn btn-primary btn-xs auth" role="button">Autorizar</button>
+                    }
+                  </p>
+                </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        } else {
+         <h3>¡ Aún no hay cursos abiertos!</h3>
+        }
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+}
+
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)

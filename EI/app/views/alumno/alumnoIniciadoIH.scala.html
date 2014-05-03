@@ -1,12 +1,79 @@
-@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno])(alumno: Alumno)
+@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno], alumno: Alumno, cursos: List[Curso])
 
-@principalAlumnoIH(title, user, modifyAlumno) {
+@extraScripts={
+  $('.delete').each(function(){
+      var id = $(this).attr('data-pk');
+      //console.log(id);
+      $(this).on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+          url: '@(controllers.routes.CAlumno.eliminarCursoA())',
+          type: 'POST',
+          data: {"idCurso":id},
+          success: function(data){
+            window.location.replace('@(controllers.routes.CAlumno.index())');
+          }
+        });
+      });
+    });
+}
 
-  <div class="container-fluid">  
-    <div class="row">
+@content = {
+  <div class="container padContainer">  
+    <!-- <div class="row">
       <h1>Éxito</h1>
       <h2>Hola @user !</h2>
+    </div> -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-9">
+          <h4>Cursos inscritos</h4>
+          </div>
+          <div class="col-md-3">
+          <a href="@(controllers.routes.CAlumno.obtenerCursos())" class="btn btn-primary pull-right" role="button">Registrar curso</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 well well-small">
+            @if(!alumno.getCursos().isEmpty){
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                  <th>Nivel</th>
+                  <th>Dia</th>
+                  <th>Hora</th>
+                  <th>Profesor</th>
+                  <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @for(c <- cursos) {
+                  <tr>
+                  <td>@c.getNivel()</td>
+                  @for(h <- c.getHorarios()) {
+                    <td>@h.getDia()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                  }
+                  <td>@c.getProfesor().getNombre()</td>
+                  <td>
+                    <p>
+                      <button data-pk="@c.getId()" class="btn btn-danger btn-xs delete" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+                      <a href="@(controllers.routes.CAlumno.verCursoA(c.getId()))" class="btn btn-primary btn-xs" role="button">Info</a>
+                    </p>
+                  </td>
+                  </tr>
+                }
+                </tbody>
+              </table>
+            } else {
+             <h3>¡ Aún no has registrado cursos !</h3>
+            }
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 }
+
+@principalAlumnoIH(title, user, modifyAlumno,alumno, content, extraScripts)
