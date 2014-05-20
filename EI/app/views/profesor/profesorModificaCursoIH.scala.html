@@ -1,0 +1,85 @@
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor], profesor: Profesor, c: Curso, modifyCurso: Form[forms.ModificarCurso])
+@import forms._
+@import helper._
+@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
+
+@extraScripts={
+  $('#submitform').on('click', function(e){
+    e.preventDefault();
+    $('#cursoprofformulario').submit();
+  });
+}
+
+@content = {
+  <p hidden>@implicitField</p>
+  <div class="container-fluid padContainer">  
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Curso de @(c.getProfesor().getNombre() + " " + c.getProfesor().getApellidoPaterno())</h3>
+      </div>
+    </div>
+    <div class="row padContainer">
+      <div class="col-md-6">
+        <form class="form-horizontal" role="form" method="POST" id="cursoprofformulario" action="@(controllers.routes.CProfesor.modificarCursoP(c.getId()))">
+          @for(h <- c.getHorarios()) {
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Dia</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@h.getDia</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Hora</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@(h.getHoraInicio()+ " - " + h.getHoraFin())</p>
+            </div>
+          </div>
+          }
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Nivel</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@c.getNivel()</p>
+            </div>
+          </div>
+          @if(c.getAlumno() != null){
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Alumno</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@(c.getAlumno().getNombre() + " " + c.getAlumno().getApellidoPaterno())</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Correo Alumno</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@c.getAlumno().getCorreoElectronico()</p>
+            </div>
+          </div>
+            @helper.inputText(
+                modifyCurso("calificacion"), 
+                '_label -> "Calificación", 
+                '_error -> modifyCurso.globalError,
+                'class -> "form-control",
+                'type -> "number"
+            )
+            @helper.textarea(
+                modifyCurso("notas"), 
+                '_label -> "Notas", 
+                '_error -> modifyCurso.globalError,
+                'class -> "form-control"
+            )
+          }
+        </form>
+      </div>
+    </div>
+    <div class="row padContainer">
+      <div class="col-md-12 well well-small">
+        <p>
+          <a href="@(controllers.routes.CProfesor.index())" class="btn btn-default" type="button">Regresar</a>
+          @if(c.getAlumno() != null){<button id="submitform" class="btn btn-primary" type="button">Guardar</button>}
+        </p>
+      </div>
+    </div>
+  </div>
+}
+
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)

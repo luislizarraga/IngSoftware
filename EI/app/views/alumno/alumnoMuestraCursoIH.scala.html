@@ -58,8 +58,8 @@
         <a href="@(controllers.routes.CAlumno.index())" class="btn btn-primary" type="button">Regresar</a>
       </div>
       <div class="col-md-6 pull-right">
-        @if(c.getConstancia() != null){
-          <a href="#" class="btn" role="button"><span class="glyphicon glyphicon-download-alt"></span> Constancia</a>
+        @if(c.getAprobado()){
+          <a href="@(controllers.routes.CAlumno.obtenerConstancia(c.getId()))" class="btn" role="button"><span class="glyphicon glyphicon-download-alt"></span> Constancia</a>
         }
       </div>
     </div>

@@ -201,11 +201,40 @@ public class CProfesor extends Controller {
 
 
     @Security.Authenticated(SecuredProfesor.class)
-    public static Result agregarCursoP() {
+    public static Result agregarCursoP(Boolean iniciado) {
+        System.out.println(iniciado);
         Profesor p = Profesor.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
-        Form<CrearCurso> cursoFormulario = Form.form(CrearCurso.class).bindFromRequest();
+        Form<CrearCurso> cursoFormulario;
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        if (iniciado) {
+            String user                                       = p.nombre + " " + p.apellidoPaterno;
+            Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
+            modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
+                                                                                    p.apellidoPaterno,
+                                                                                    p.apellidoMaterno,
+                                                                                    p.correoElectronico));
+            if (request().method().equals("GET")) {
+                cursoFormulario = Form.form(CrearCurso.class);
+                return ok(views.html.profesor.profesorIniciadoAgregarCursoFormularioIH.render("Crear Curso", user, modificacionFormulario, p,cursoFormulario));
+            }
+            cursoFormulario = Form.form(CrearCurso.class).bindFromRequest();
+            if (cursoFormulario.hasErrors()) {
+                return badRequest(views.html.profesor.profesorIniciadoAgregarCursoFormularioIH.render("Crear Curso", user, modificacionFormulario, p,cursoFormulario));
+            } else {
+                CrearCurso cc = cursoFormulario.get();
+                Curso c = new Curso(false, " ", 0, cc.nivel, p);
+                Horario h = new Horario(cc.dias, cc.horaInicio, cc.horaFin, c);
+                c.save();
+                h.save();
+                response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+                response().setHeader("Pragma","no-cache");
+                return redirect(routes.CProfesor.index());
+            }
+        }
+        cursoFormulario = Form.form(CrearCurso.class).bindFromRequest();
         if (p == null) {
             return badRequest("No se pudo crear un horario, favor de iniciar sesion y crear uno");
         }
@@ -217,8 +246,6 @@ public class CProfesor extends Controller {
             Horario h = new Horario(cc.dias, cc.horaInicio, cc.horaFin, c);
             c.save();
             h.save();
-            response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
-            response().setHeader("Pragma","no-cache");
             return redirect(routes.CProfesor.index());
         }
     }
@@ -240,14 +267,15 @@ public class CProfesor extends Controller {
     public static Result eliminarCursoP() {
         DynamicForm data = Form.form().bindFromRequest();
         Curso c = Curso.find.byId(Integer.parseInt(data.get("idCurso")));
+        Profesor p = c.getProfesor();
         if (c.getAlumno() != null) {
             Alumno a = c.getAlumno();
             MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
             mail.setSubject("Curso eliminado!");
             mail.setRecipient(a.getNombre() + " " + a.getApellidoPaterno() + " <" + a.getCorreoElectronico() + "> ");
             mail.setFrom("Escuela de Inglés <noreply@escueladeingles.com>");
-            //String htmls = views.html.alumno.alumnoCorreoIH.render(p,a).toString();
-            mail.sendHtml("weee");
+            String htmls = views.html.profesor.profesorEliminarCursoCorreoIH.render(a,p,c).toString();
+            mail.sendHtml(htmls);
         }
         c.delete();
         return ok();
@@ -273,9 +301,47 @@ public class CProfesor extends Controller {
 
 
     @Security.Authenticated(SecuredProfesor.class)
+    public static Result modificarCursoP(Integer id) {
+        Curso c = Curso.find.byId(id);
+        Profesor p = Profesor.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        String user                                       = p.nombre + " " + p.apellidoPaterno;
+        Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
+        modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
+                                                                                    p.apellidoPaterno,
+                                                                                    p.apellidoMaterno,
+                                                                                    p.correoElectronico));
+        //System.out.println(request().method());
+        if (request().method().equals("GET")) {
+            Form<ModificarCurso> cursoFormulario = Form.form(ModificarCurso.class);
+            cursoFormulario.fill(new ModificarCurso(c.calificacion, c.notas));
+            return ok (views.html.profesor.profesorModificaCursoIH.render("Ver Curso", user, modificacionFormulario, p, c, cursoFormulario));
+        } else {
+            Form<ModificarCurso> cursoFormulario = Form.form(ModificarCurso.class).bindFromRequest();
+            //System.out.println("weeee");
+            if (cursoFormulario.hasErrors()) {
+                return badRequest(views.html.profesor.profesorModificaCursoIH.render("Ver Curso", user, modificacionFormulario, p, c, cursoFormulario));
+            } else {
+                ModificarCurso mc = cursoFormulario.get();
+                Integer cali = Integer.parseInt(mc.calificacion);
+                c.setCalificacion(cali);
+                if (cali >= 6) c.setAprobado(true);
+                c.setNotas(mc.notas);
+                c.save();
+            }
+        }
+        return ok(views.html.profesor.profesorMuestraCursoIH.render("Ver Curso", user, modificacionFormulario, p, c));
+    }
+
+
+    @Security.Authenticated(SecuredProfesor.class)
     public static Result autorizarCurso() {
         DynamicForm data = Form.form().bindFromRequest();
         Curso c = Curso.find.byId(Integer.parseInt(data.get("idCurso")));
+        Profesor p = c.getProfesor();
         c.setAutorizado(true);
         c.save();
         Alumno a = c.getAlumno();
@@ -283,8 +349,8 @@ public class CProfesor extends Controller {
         mail.setSubject("Curso autorizado!");
         mail.setRecipient(a.getNombre() + " " + a.getApellidoPaterno() + " <" + a.getCorreoElectronico() + "> ");
         mail.setFrom("Escuela de Inglés <noreply@escueladeingles.com>");
-        //String htmls = views.html.alumno.alumnoCorreoIH.render(p,a).toString();
-        mail.sendHtml("El curso ha sido autorizado por el profesor!");
+        String htmls = views.html.profesor.profesorCursoAutorizadoCorreoIH.render(a,p,c).toString();
+        mail.sendHtml("htmls");
         return ok();
     }
 

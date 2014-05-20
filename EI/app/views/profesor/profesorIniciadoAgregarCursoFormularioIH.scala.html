@@ -1,0 +1,107 @@
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor], profesor: Profesor, cursoForma: Form[forms.CrearCurso])
+@import forms._
+@import helper._
+@import scala._
+
+@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
+
+@extraScripts = {
+  $('#submitform').on('click', function(e){
+    e.preventDefault();
+    $('#cursoRegistrationForm').submit();
+  });
+}
+
+@content = {
+<div hidden>@implicitField</div>
+<div class="container-fluid padContainer">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Crear Curso</h3>
+    </div>
+  </div>
+  <div class="row padContainer">
+    <div class="col-md-6">
+      <form id="cursoRegistrationForm" class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="@(controllers.routes.CProfesor.agregarCursoP(true))">
+          @helper.select(
+              cursoForma("nivel"),
+              options("Básico 1" -> "Básico 1",
+                      "Básico 2" -> "Básico 2",
+                      "Básico 3" -> "Básico 3",
+                      "Intermedio 1" -> "Intermedio 1",
+                      "Intermedio 2" -> "Intermedio 2",
+                      "Intermedio 3" -> "Intermedio 3",
+                      "Avanzado 1" -> "Avanzado 1",
+                      "Avanzado 2" -> "Avanzado 2",
+                      "Avanzado 3" -> "Avanzado 3",
+                      "Conversación" -> "Conversación"
+              ),
+              '_label -> "Nivel", 
+              '_error -> cursoForma.globalError,
+              'class -> "form-control"
+          )
+          @helper.select(
+              cursoForma("dias"), 
+              options("Lunes" -> "Lunes",
+                      "Martes" -> "Martes",
+                      "Miércoles" -> "Miércoles",
+                      "Jueves" -> "Jueves",
+                      "Viernes" -> "Viernes"
+              ),
+              '_label -> "Día", 
+              '_error -> cursoForma.globalError,
+              'class -> "form-control"
+          )
+          @helper.select(
+              cursoForma("horaInicio"),
+              options("8:00" -> "8:00",
+                      "9:00" -> "9:00",
+                      "10:00" -> "10:00",
+                      "11:00" -> "11:00",
+                      "12:00" -> "12:00",
+                      "13:00" -> "13:00",
+                      "14:00" -> "14:00",
+                      "15:00" -> "15:00",
+                      "16:00" -> "16:00",
+                      "17:00" -> "17:00",
+                      "18:00" -> "18:00",
+                      "19:00" -> "19:00"
+              ),
+              '_label -> "Hora de inicio", 
+              '_error -> cursoForma.globalError,
+              'class -> "form-control"
+          )
+          @helper.select(
+              cursoForma("horaFin"),
+              options("9:00" -> "9:00",
+                      "10:00" -> "10:00",
+                      "11:00" -> "11:00",
+                      "12:00" -> "12:00",
+                      "13:00" -> "13:00",
+                      "14:00" -> "14:00",
+                      "15:00" -> "15:00",
+                      "16:00" -> "16:00",
+                      "17:00" -> "17:00",
+                      "18:00" -> "18:00",
+                      "19:00" -> "19:00",
+                      "20:00" -> "20:00"
+              ),
+              '_label -> "Hora de termino", 
+              '_error -> cursoForma.globalError,
+              'class -> "form-control"
+          )
+      </form>
+    </div>
+  </div>
+  <div class="row padContainer">
+    <div class="col-md-12 well well-small">
+      <p>
+        <a href="@(controllers.routes.CProfesor.index())" class="btn btn-default" type="button">Regresar</a>
+        <button id="submitform" class="btn btn-primary" type="button">Crear</button>
+      </p>
+    </div>
+  </div>
+</div>
+}
+
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)

@@ -9,6 +9,7 @@ import play.data.*;
 import java.util.*;
 import forms.*;
 import com.typesafe.plugin.*;
+import util.pdf.PDF;
 
 
 /**
@@ -187,6 +188,16 @@ public class CAlumno extends Controller {
     public static Result eliminarCursoA() {
         DynamicForm data = Form.form().bindFromRequest();
         Curso c = Curso.find.byId(Integer.parseInt(data.get("idCurso")));
+        Profesor p = c.getProfesor();
+        if (c.getAlumno() != null) {
+            Alumno a = c.getAlumno();
+            MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
+            mail.setSubject("Curso eliminado!");
+            mail.setRecipient(p.getNombre() + " " + p.getApellidoPaterno() + " <" + p.getCorreoElectronico() + "> ");
+            mail.setFrom("Escuela de Inglés <noreply@escueladeingles.com>");
+            String htmls = views.html.alumno.alumnoEliminarCursoCorreoIH.render(a,p,c).toString();
+            mail.sendHtml(htmls);
+        }
         c.setAlumno(null);
         c.save();
         return ok();
@@ -211,8 +222,17 @@ public class CAlumno extends Controller {
 
 
     @Security.Authenticated(SecuredAlumno.class)
-    public static Result obtenerConstancia() {
-        return ok();
+    public static Result obtenerConstancia(Integer id) {
+        Curso c = Curso.find.byId(id);
+        Alumno a    = Alumno.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        //System.out.println(PDF.toBytes(views.html.alumno.alumnoCorreoIH.render(p,a)));
+        response().setHeader("Content-Disposition", "attachment; filename=Constancia" + a.getNombre() + a.getApellidoPaterno());
+        return ok(PDF.toBytes(views.html.alumno.alumnoConstanciaIH.render(a, c), "hola")).as("application/pdf");
+        //return PDF.ok(views.html.alumno.alumnoCorreoIH.render(p,a));
     }
 
 
