@@ -33,6 +33,18 @@
     });
 }
 
+@lis={
+<li><a href="@(controllers.routes.CProfesor.index())">Inicio</a></li>
+<li class="active"><a href="@(controllers.routes.CProfesor.obtenerCursos())">Mis Cursos</a></li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Alumnos</a></li>
+    <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Horarios</a></li>
+  </ul>
+</li>
+}
+
 @content = {
   <div class="container padContainer">  
     <!-- <div class="row">
@@ -80,10 +92,10 @@
                 <td>
                   <p>
                     <a href="@(controllers.routes.CProfesor.modificarCursoP(c.getId()))" class="btn btn-primary btn-xs edit" role="button"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                    <button data-pk="@c.getId()" class="btn btn-primary btn-xs del" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
                     @if(c.getAlumno() != null && c.getAutorizado() == false){
                     <button data-pk="@c.getId()" class="btn btn-primary btn-xs auth" role="button">Autorizar</button>
                     }
+                    <button data-pk="@c.getId()" class="btn btn-danger btn-xs del" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
                   </p>
                 </td>
                 </tr>
@@ -100,4 +112,4 @@
   </div>
 }
 
-@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts, lis)

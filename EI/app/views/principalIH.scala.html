@@ -771,6 +771,14 @@
 
             $('#studentLoginForm').submit();
         });
+        $('#studentLogIn').keypress(function(e) {
+            if(e.which == 13) {
+                var elem = $('#footerstudentLogInSubmit');
+                console.log(elem);
+                elem.click();
+
+            }
+        });
         $('#footerprofessorLogInSubmit').on('click', function(e){
             e.preventDefault();
             $('#professorLogIn').hide(400);
@@ -794,6 +802,14 @@
             });
 
             $('#professorLoginForm').submit();
+        });
+        $('#professorLogIn').keypress(function(e) {
+            if(e.which == 13) {
+                var elem = $('#footerprofessorLogInSubmit');
+                console.log(elem);
+                elem.click();
+
+            }
         });
         $('#modalLogIn').modal({show:false});
         $('#cursoRegistration').hide();
@@ -919,6 +935,7 @@
                     (function (i) {
                         sources[i].addEventListener('error', function (e) {
                             console.log('Error loading: '+e.target.src);
+                            console.log(e.target.error);
                         });
                     }(i));
                 }

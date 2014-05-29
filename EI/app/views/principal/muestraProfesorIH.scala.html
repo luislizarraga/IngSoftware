@@ -4,12 +4,16 @@
     Profesor no encontrado !
 } else {
     <div class="paddingCollapse">
-    <h3 id="profNombre">@(p.getNombre + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno())</h3>
+    @if(p.getApellidoMaterno != null) {
+        <h3 id="profNombre">@(p.getNombre + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno())</h3>
+    } else {
+        <h3 id="profNombre">@(p.getNombre + " " + p.getApellidoPaterno())</h3>
+    }
     <div id="footer">
       <p>
         <div class="pull-left">
-          <a href="@(controllers.routes.CProfesor.descargaArchivos(p.id, 1))"  class="btn" role="button"><span class="glyphicon glyphicon-download-alt"></span> Constancia</a>
-          <a href="@(controllers.routes.CProfesor.descargaArchivos(p.id, 2))"  class="btn" role="button"><span class="glyphicon glyphicon-download-alt"></span> Video</a>
+          <a href="@(controllers.routes.CProfesor.descargaArchivos(p.id, 1))"  class="btn button1" role="button"><span class="glyphicon glyphicon-download-alt"></span> Constancia</a>
+          <a href="@(controllers.routes.CProfesor.descargaArchivos(p.id, 2))"  class="btn button2" role="button"><span class="glyphicon glyphicon-download-alt"></span> Video</a>
         </div> 
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </p>
@@ -64,7 +68,7 @@
         </li>
     </ul>
     <video width="320" height="240" controls>
-      <source src="/assets/professordata/1/MVI_2781.mp4" type="video/mp4">
+      <source src="/assets/professordata/1/2.mp4" type="video/mp4"/>
       <!-- <source src="movie.ogg" type="video/ogg"> -->
         Your browser does not support the video tag.
     </video>

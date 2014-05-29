@@ -1,4 +1,4 @@
-@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno], alumno: Alumno, content: Html, extraScripts: Html)
+@(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno], alumno: Alumno, content: Html, extraScripts: Html, lis: Html)
 
 @import helper._
 
@@ -20,7 +20,7 @@
 	<!-- Optional theme -->
 	<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
 </head>
-<body>
+<body style="background-image: url('/assets/images/background4.jpg');">
  	<div id="wrap"> 
   <header>
   	<nav class="navbar navbar-inverse navbarMargin navbar-fixed-top" role="navigation">
@@ -39,16 +39,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="@(controllers.routes.CAlumno.index())">Inicio</a></li>
-            <li><a href="#">Mi Horario</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Profesores</a></li>
-                <li><a href="@(controllers.routes.CAlumno.obtenerCursos())">Horarios</a></li>
-                <li><a href="#">Mis cursos inscritos</a></li>
-              </ul>
-            </li>
+            @lis
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -154,19 +145,17 @@
   </div>
 
   
-    <div class="container-fluid clear-top">
-      <div id="content" style="margin-top:50px">
+  <div class="container-fluid clear-top" >
+      <div id="main" style="margin-top:65px">
       @content
       </div>
-    </div>
+    
     <div id="pushh"></div>
-  </div>
-
-  
-  <div id="footter">
-  <footer>
-    <p class="text-center">&copy; SourceCode Company 2014</p>
-  </footer>
+    <div id="footter">
+    <footer>
+      <p class="text-center">&copy; SourceCode Company 2014</p>
+    </footer>
+    </div>
   </div>
 
 

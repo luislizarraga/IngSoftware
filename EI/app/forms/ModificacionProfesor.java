@@ -16,7 +16,7 @@ public class ModificacionProfesor {
 
     public String apellidoMaterno;
 
-    public String correoElectronico;
+    //public String correoElectronico;
 
     public String contrasenaNueva;
 
@@ -29,21 +29,21 @@ public class ModificacionProfesor {
      */
     public List<ValidationError> validate() {
         List<ValidationError> errores = new ArrayList<ValidationError>();
-        if (correoElectronico.equals("")) {
-            errores.add(new ValidationError("correoElectronico", "Este campo es requerido."));
-        } else {
-            Profesor p = Profesor.find.where().eq("correoElectronico", correoElectronico).findUnique();
-            if (p != null && p.getApellidoPaterno().equals(apellidoPaterno) 
-                && p.getApellidoMaterno().equals(apellidoMaterno) && p.getNombre().equals(nombre)
-                && (!contrasenaNueva.equals("") && !confContrasena.equals(""))
-                && p.getContrasena().equals(contrasenaNueva)
-                && contrasenaNueva.equals(confContrasena)) {
-                errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
-            }
-            if (!correoElectronico.matches("[a-zA-Z0-9-._\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
-                errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
-            }
-        }
+        // if (correoElectronico.equals("")) {
+        //     errores.add(new ValidationError("correoElectronico", "Este campo es requerido."));
+        // } else {
+        //     Profesor p = Profesor.find.where().eq("correoElectronico", correoElectronico).findUnique();
+        //     if (p != null && p.getApellidoPaterno().equals(apellidoPaterno) 
+        //         && p.getApellidoMaterno().equals(apellidoMaterno) && p.getNombre().equals(nombre)
+        //         && (!contrasenaNueva.equals("") && !confContrasena.equals(""))
+        //         && p.getContrasena().equals(contrasenaNueva)
+        //         && contrasenaNueva.equals(confContrasena)) {
+        //         errores.add(new ValidationError("correoElectronico", "Este correo ya se encuentra registrado."));
+        //     }
+        //     if (!correoElectronico.matches("[a-zA-Z0-9-._\\+]+@[a-zA-Z0-9-\\+]+(.[a-zA-Z0-9-\\+]+)+")) {
+        //         errores.add(new ValidationError("correoElectronico", "Correo electrónico inválido."));
+        //     }
+        // }
         if (!contrasenaNueva.equals("") && !confContrasena.equals("")) {
             if (!contrasenaNueva.equals(confContrasena)) {
                 errores.add(new ValidationError("contrasenaNueva", "Las contraseñas no coinciden."));
@@ -73,11 +73,10 @@ public class ModificacionProfesor {
      * @param  apellidoMaterno   el apellido materno para el profesor
      * @param  correoElectronico el correo electrónico para el profesor
      */
-    public ModificacionProfesor (String nombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico) {
+    public ModificacionProfesor (String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.nombre            = nombre;
         this.apellidoPaterno   = apellidoPaterno;
         this.apellidoMaterno   = apellidoMaterno;
-        this.correoElectronico = correoElectronico;
     }
 
 

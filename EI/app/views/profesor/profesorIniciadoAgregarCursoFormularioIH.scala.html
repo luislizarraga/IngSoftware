@@ -3,18 +3,37 @@
 @import helper._
 @import scala._
 
-@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
+@implicitField = @{ FieldConstructor(constructorDeFormas2IH.f) }
 
 @extraScripts = {
   $('#submitform').on('click', function(e){
     e.preventDefault();
     $('#cursoRegistrationForm').submit();
   });
+  $( "#select1" )
+  .change(function () {
+    var str = "";
+    str += $( this ).text() + " ";
+    console.log(str);
+  })
+  .change();
+}
+
+@lis={
+<li><a href="@(controllers.routes.CProfesor.index())">Inicio</a></li>
+<li class="active"><a href="@(controllers.routes.CProfesor.obtenerCursos())">Mis Cursos</a></li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Alumnos</a></li>
+    <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Horarios</a></li>
+  </ul>
+</li>
 }
 
 @content = {
 <div hidden>@implicitField</div>
-<div class="container-fluid padContainer">
+<div class="container padContainer">
   <div class="row">
     <div class="col-md-12">
       <h3>Crear Curso</h3>
@@ -69,7 +88,9 @@
               ),
               '_label -> "Hora de inicio", 
               '_error -> cursoForma.globalError,
-              'class -> "form-control"
+              'class -> "form-control",
+              'type -> "time",
+              'id -> "select1"
           )
           @helper.select(
               cursoForma("horaFin"),
@@ -93,8 +114,8 @@
       </form>
     </div>
   </div>
-  <div class="row padContainer">
-    <div class="col-md-12 well well-small">
+  <div class="row padUpDown">
+    <div class="col-md-12">
       <p>
         <a href="@(controllers.routes.CProfesor.index())" class="btn btn-default" type="button">Regresar</a>
         <button id="submitform" class="btn btn-primary" type="button">Crear</button>
@@ -104,4 +125,4 @@
 </div>
 }
 
-@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts, lis)

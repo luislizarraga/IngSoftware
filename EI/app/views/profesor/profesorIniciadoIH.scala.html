@@ -1,14 +1,153 @@
-@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor],profesor: Profesor)
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor],profesor: Profesor, cursos: List[Curso], alumnos: Integer)
 
 @extraScripts={}
 
+@lis={
+<li class="active"><a href="@(controllers.routes.CProfesor.index())">Inicio</a></li>
+<li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Mis Cursos</a></li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Alumnos</a></li>
+    <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Horarios</a></li>
+
+    <!-- <li class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+    <li class="divider"></li>
+    <li><a href="#">One more separated link</a></li> -->
+  </ul>
+</li>
+}
+
 @content = {
-  <div class="container-fluid">  
-    <div class="row">
+  <div class="container-fluid padContainer" style="background-color:#FFFFFF">  
+    <!-- <div class="row">
       <h1>Éxito</h1>
       <h2>Hola @user !</h2>
+    </div> -->
+    <div class="row padSides">
+      <div class="col-md-3 well well-small padSides">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Nombre</label>
+            <div class="col-sm-8">
+            @if(profesor.getApellidoMaterno() == null){
+              <p class="form-control-static">@(profesor.getNombre() +" "+ profesor.getApellidoPaterno())</p>
+            } else {
+              <p class="form-control-static">@(profesor.getNombre() +" "+ profesor.getApellidoPaterno() +" "+ profesor.getApellidoMaterno())</p>
+            }
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Correo Electrónico</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@profesor.getCorreoElectronico()</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Cursos</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@profesor.getCursos().size</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Alumnos</label>
+            <div class="col-sm-8">
+              <p class="form-control-static">@alumnos</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-offset-1 col-md-8">
+        <div class="row">
+          <div class="col-md-12">
+          <h4>Cursos registrados</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 well well-small">
+            @if(!profesor.getCursos().isEmpty){
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                  <th>Nivel</th>
+                  <th>Dia</th>
+                  <th>Hora</th>
+                  <th>Profesor</th>
+                  <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @for(c <- cursos) {
+                  <tr>
+                  <td>@c.getNivel()</td>
+                  @for(h <- c.getHorarios()) {
+                    <td>@h.getDia()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                  }
+                  <td>@c.getProfesor().getNombre()</td>
+                  <td>
+                    <p>
+                      <a href="@(controllers.routes.CProfesor.verCursoP(c.getId()))" class="btn btn-primary btn-xs" role="button">Ver</a>
+                    </p>
+                  </td>
+                  </tr>
+                }
+                </tbody>
+              </table>
+            } else {
+             <h3>¡ Aún no has registrado cursos !</h3>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row padSides">
+      <div class="col-md-offset-4 col-md-8 padUpDown">
+        <div class="row">
+          <div class="col-md-12">
+          <h4>Cursos con alumnos inscritos</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 well well-small">
+            @if(!profesor.getCursos().isEmpty && alumnos != 0){
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                  <th>Nivel</th>
+                  <th>Dia</th>
+                  <th>Hora</th>
+                  <th>Profesor</th>
+                  <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @for(c <- cursos) {
+                  <tr>
+                  <td>@c.getNivel()</td>
+                  @for(h <- c.getHorarios()) {
+                    <td>@h.getDia()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                  }
+                  <td>@c.getProfesor().getNombre()</td>
+                  <td>
+                    <p>
+                      <a href="@(controllers.routes.CAlumno.verCursoA(c.getId()))" class="btn btn-primary btn-xs" role="button">Info</a>
+                    </p>
+                  </td>
+                  </tr>
+                }
+                </tbody>
+              </table>
+            } else {
+             <h3>¡ Aún no hay alumnos incritos en tus cursos !</h3>
+            }
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 }
 
-@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts, lis)

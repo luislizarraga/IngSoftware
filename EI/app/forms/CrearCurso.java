@@ -36,6 +36,11 @@ public class CrearCurso {
         if (horaFin.equals("")) {
             errores.add(new ValidationError("horaFin", "Este campo es requerido."));
         }
+        // int horainit = Integer.parseInt(horaInicio.substring(0, 1));
+        // System.out.println(horainit);
+        // if (horaInicio.compareTo(horaFin) > 0) {
+        //     errores.add(new ValidationError("horaInicio", "eeeh que pedo"));
+        // }
         return errores.isEmpty() ? null : errores;
     } 
 }

@@ -1,7 +1,7 @@
 @(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor], profesor: Profesor, c: Curso, modifyCurso: Form[forms.ModificarCurso])
 @import forms._
 @import helper._
-@implicitField = @{ FieldConstructor(constructorDeFormasIH.f) }
+@implicitField = @{ FieldConstructor(constructorDeFormas2IH.f) }
 
 @extraScripts={
   $('#submitform').on('click', function(e){
@@ -10,9 +10,22 @@
   });
 }
 
+@lis={
+<li><a href="@(controllers.routes.CProfesor.index())">Inicio</a></li>
+<li class="active"><a href="@(controllers.routes.CProfesor.obtenerCursos())">Mis Cursos</a></li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Alumnos</a></li>
+    <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Horarios</a></li>
+  </ul>
+</li>
+}
+
+
 @content = {
   <p hidden>@implicitField</p>
-  <div class="container-fluid padContainer">  
+  <div class="container padContainer">  
     <div class="row">
       <div class="col-md-12">
         <h3>Curso de @(c.getProfesor().getNombre() + " " + c.getProfesor().getApellidoPaterno())</h3>
@@ -71,8 +84,8 @@
         </form>
       </div>
     </div>
-    <div class="row padContainer">
-      <div class="col-md-12 well well-small">
+    <div class="row padUpDown">
+      <div class="col-md-12">
         <p>
           <a href="@(controllers.routes.CProfesor.index())" class="btn btn-default" type="button">Regresar</a>
           @if(c.getAlumno() != null){<button id="submitform" class="btn btn-primary" type="button">Guardar</button>}
@@ -82,4 +95,4 @@
   </div>
 }
 
-@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts)
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts, lis)

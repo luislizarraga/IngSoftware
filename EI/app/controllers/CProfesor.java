@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.FileInputStream;
 import org.apache.commons.io.*;
 import com.typesafe.plugin.*;
+import java.util.Iterator;
 
 /**
  * Clase CProfesor, el controlador para profesor
@@ -40,9 +41,14 @@ public class CProfesor extends Controller {
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
-                                                                                    p.apellidoMaterno,
-                                                                                    p.correoElectronico));
-        return ok(views.html.profesor.profesorIniciadoIH.render("Página Principal", user, modificacionFormulario, p));
+                                                                                    p.apellidoMaterno));
+        List<Curso> cursos = p.getCursos();
+        Iterator<Curso> it = cursos.iterator();
+        int alumnos = 0;
+        while (it.hasNext()) {
+            if(it.next().getAlumno() != null) alumnos++;
+        }
+        return ok(views.html.profesor.profesorIniciadoIH.render("Página Principal", user, modificacionFormulario, p, cursos, alumnos));
     }
 
 
@@ -97,14 +103,14 @@ public class CProfesor extends Controller {
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class).bindFromRequest();
         if (modificacionFormulario.hasErrors()) {
             String user = p.nombre + " " + p.apellidoPaterno;
-            return badRequest(views.html.profesor.profesorModificarDatosFormularioIH.render(modificacionFormulario));
+            return badRequest(views.html.profesor.profesorModificarDatosFormularioIH.render(modificacionFormulario, p));
         } else {
             ModificacionProfesor mp = modificacionFormulario.get();
             p.setNombre(mp.nombre);
             p.setApellidoPaterno(mp.apellidoPaterno);
             p.setApellidoMaterno(mp.apellidoMaterno);
-            p.setCorreoElectronico(mp.correoElectronico);
-            session("correoElectronico", mp.correoElectronico);
+            //p.setCorreoElectronico(mp.correoElectronico);
+            //session("correoElectronico", mp.correoElectronico);
             if (!mp.contrasenaNueva.equals(""))
                 p.setContrasena(mp.contrasenaNueva);
             p.save();
@@ -113,9 +119,8 @@ public class CProfesor extends Controller {
             modificacionFormulario = Form.form(ModificacionProfesor.class);
             modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
-                                                                                    p.apellidoMaterno,
-                                                                                    p.correoElectronico));
-            return ok(views.html.profesor.profesorModificarDatosFormularioIH.render(modificacionFormulario));
+                                                                                    p.apellidoMaterno));
+            return ok(views.html.profesor.profesorModificarDatosFormularioIH.render(modificacionFormulario, p));
         }
     }
 
@@ -162,9 +167,9 @@ public class CProfesor extends Controller {
             boolean sePudo = (new File("public/professordata/"+user.getId())).mkdirs();
             File file1 = filePart1.getFile();
             File file2 = filePart2.getFile();
-            System.out.println(filePart1.getFilename() + filePart2.getFilename());
-            System.out.println(sePudo);
-            System.out.println(user.getId());
+            //System.out.println(filePart1.getFilename() + filePart2.getFilename());
+            //System.out.println(sePudo);
+            //System.out.println(user.getId());
             File newFile1 = new File("public/professordata/"+user.getId()+"/" + filePart1.getFilename());
             File newFile2 = new File("public/professordata/"+user.getId()+"/" + filePart2.getFilename());
             try {
@@ -202,7 +207,7 @@ public class CProfesor extends Controller {
 
     @Security.Authenticated(SecuredProfesor.class)
     public static Result agregarCursoP(Boolean iniciado) {
-        System.out.println(iniciado);
+        //System.out.println(iniciado);
         Profesor p = Profesor.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
@@ -214,8 +219,7 @@ public class CProfesor extends Controller {
             Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
             modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
-                                                                                    p.apellidoMaterno,
-                                                                                    p.correoElectronico));
+                                                                                    p.apellidoMaterno));
             if (request().method().equals("GET")) {
                 cursoFormulario = Form.form(CrearCurso.class);
                 return ok(views.html.profesor.profesorIniciadoAgregarCursoFormularioIH.render("Crear Curso", user, modificacionFormulario, p,cursoFormulario));
@@ -253,11 +257,14 @@ public class CProfesor extends Controller {
 
     public static Result descargaArchivos(Integer id, int file) {
         Profesor p = Profesor.find.byId(id);
+        if (p == null) return redirect(base.routes.CBase.index());
         File f = null;
         if (file == 1) {
             f = new File(p.getConstancia());
         } else if (file == 2) {
             f = new File(p.getVideo());
+        } else {
+            return redirect(base.routes.CBase.index());
         }
         return ok(f);
     }
@@ -294,8 +301,7 @@ public class CProfesor extends Controller {
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
-                                                                                    p.apellidoMaterno,
-                                                                                    p.correoElectronico));
+                                                                                    p.apellidoMaterno));
         return ok(views.html.profesor.profesorMuestraCursoIH.render("Ver Curso", user, modificacionFormulario,p,c));
     }
 
@@ -312,8 +318,7 @@ public class CProfesor extends Controller {
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
-                                                                                    p.apellidoMaterno,
-                                                                                    p.correoElectronico));
+                                                                                    p.apellidoMaterno));
         //System.out.println(request().method());
         if (request().method().equals("GET")) {
             Form<ModificarCurso> cursoFormulario = Form.form(ModificarCurso.class);
@@ -372,8 +377,7 @@ public class CProfesor extends Controller {
         Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
         modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
-                                                                                    p.apellidoMaterno,
-                                                                                    p.correoElectronico));
+                                                                                    p.apellidoMaterno));
         List<Curso> cursos     = p.getCursos();
         System.out.println("saliendo de obtenerCursos");
         return ok(views.html.profesor.profesorListaCursosIH.render("Cursos Disponibles",user,modificacionFormulario,p, cursos));

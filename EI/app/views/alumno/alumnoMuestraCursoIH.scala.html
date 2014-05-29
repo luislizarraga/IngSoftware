@@ -2,8 +2,21 @@
 
 @extraScripts={}
 
+@lis={
+  <li><a href="@(controllers.routes.CAlumno.index())">Inicio</a></li>
+  <li><a href="#">Mi Horario</a></li>
+  <li class="dropdown active">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+      <li><a href="#">Profesores</a></li>
+      <li><a href="@(controllers.routes.CAlumno.obtenerCursos())">Horarios</a></li>
+      <li><a href="#">Mis cursos inscritos</a></li>
+    </ul>
+  </li>
+}
+
 @content = {
-  <div class="container-fluid padContainer">  
+  <div class="container padContainer">  
     <div class="row">
       <div class="col-md-12">
         <h3>Curso de @(c.getProfesor().getNombre() + " " + c.getProfesor().getApellidoPaterno())</h3>
@@ -50,10 +63,18 @@
               <p class="form-control-static">@c.getCalificacion()</p>
             </div>
           </div>
+          @if(c.getNotas() != null) {
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Notas</label>
+            <div class="col-sm-10">
+              <p class="form-control-static">@c.getNotas()</p>
+            </div>
+          </div>
+          }
         </form>
       </div>
     </div>
-    <div class="row padContainer">
+    <div class="row padUpDown">
       <div class="col-md-6">
         <a href="@(controllers.routes.CAlumno.index())" class="btn btn-primary" type="button">Regresar</a>
       </div>
@@ -66,4 +87,4 @@
   </div>
 }
 
-@principalAlumnoIH(title, user, modifyAlumno,alumno, content, extraScripts)
+@principalAlumnoIH(title, user, modifyAlumno,alumno, content, extraScripts, lis)

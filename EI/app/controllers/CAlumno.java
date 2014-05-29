@@ -163,21 +163,20 @@ public class CAlumno extends Controller {
     public static Result agregarCursoA() {
         DynamicForm data = Form.form().bindFromRequest();
         Curso c = Curso.find.byId(Integer.parseInt(data.get("idCurso")));
-        System.out.println(c);
+        //System.out.println(c);
         Alumno a    = Alumno.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
         c.setAlumno(a);
         c.save();
         Profesor p = c.getProfesor();
-        System.out.println(a.getCursos());
+        //System.out.println(a.getCursos());
         MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
         mail.setSubject("Alumno registrado!");
         mail.setRecipient(p.getNombre() + " " + p.getApellidoPaterno() + " <" + p.getCorreoElectronico() + "> ");
         mail.setFrom("Escuela de Inglés <noreply@escueladeingles.com>");
         String htmls = views.html.alumno.alumnoCorreoIH.render(p,a).toString();
         mail.sendHtml(htmls);
-        //mail.send( "text", "<html>html</html>");
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
         return ok();

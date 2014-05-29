@@ -1,4 +1,4 @@
-@(modifyProfesor: Form[forms.ModificacionProfesor])
+@(modifyProfesor: Form[forms.ModificacionProfesor], profesor: Profesor)
 @import forms._
 @import helper._
 
@@ -24,12 +24,12 @@
         '_error -> modifyProfesor.globalError,
         'class -> "form-control"
     )
-    @helper.inputText(
-        modifyProfesor("correoElectronico"), 
-        '_label -> "Correo Electrónico", 
-        '_error -> modifyProfesor.globalError,
-        'class -> "form-control"
-    )
+    <div class="form-group">
+        <label for="correoElectronico" class="col-sm-3 control-label">Correo Electrónico</label>
+        <div class="col-sm-8">
+            <p class="control-form-static">@profesor.getCorreoElectronico()</p>
+        </div>
+    </div>
     @helper.inputPassword(
         modifyProfesor("contrasenaNueva"), 
         '_label -> "Contraseña", 
