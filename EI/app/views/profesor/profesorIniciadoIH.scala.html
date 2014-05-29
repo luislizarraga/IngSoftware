@@ -8,7 +8,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
   <ul class="dropdown-menu">
-    <li><a href="#">Alumnos</a></li>
+    <li><a href="@(controllers.routes.CProfesor.obtenerAlumnos())">Alumnos</a></li>
     <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Horarios</a></li>
 
     <!-- <li class="divider"></li>
@@ -71,7 +71,7 @@
                 <thead>
                   <tr>
                   <th>Nivel</th>
-                  <th>Dia</th>
+                  <th>Día</th>
                   <th>Hora</th>
                   <th>Profesor</th>
                   <th>Acciones</th>
@@ -124,6 +124,7 @@
                 </thead>
                 <tbody>
                 @for(c <- cursos) {
+                  @if(c.getAlumno() != null) {
                   <tr>
                   <td>@c.getNivel()</td>
                   @for(h <- c.getHorarios()) {
@@ -133,10 +134,11 @@
                   <td>@c.getProfesor().getNombre()</td>
                   <td>
                     <p>
-                      <a href="@(controllers.routes.CAlumno.verCursoA(c.getId()))" class="btn btn-primary btn-xs" role="button">Info</a>
+                      <a href="@(controllers.routes.CAlumno.verCursoA(c.getId()))" class="btn btn-primary btn-xs" role="button">Ver</a>
                     </p>
                   </td>
                   </tr>
+                  }
                 }
                 </tbody>
               </table>

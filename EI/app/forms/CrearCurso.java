@@ -36,11 +36,24 @@ public class CrearCurso {
         if (horaFin.equals("")) {
             errores.add(new ValidationError("horaFin", "Este campo es requerido."));
         }
-        // int horainit = Integer.parseInt(horaInicio.substring(0, 1));
-        // System.out.println(horainit);
-        // if (horaInicio.compareTo(horaFin) > 0) {
-        //     errores.add(new ValidationError("horaInicio", "eeeh que pedo"));
-        // }
+        int horainit = 0;
+        if (horaInicio.length() == 4) {
+            horainit = Integer.parseInt(horaInicio.substring(0, 1));
+        } else {
+            horainit = Integer.parseInt(horaInicio.substring(0, 2));
+        }
+        int horafin = 0;
+        if (horaFin.length() == 4) {
+            horafin = Integer.parseInt(horaFin.substring(0, 1));
+        } else {
+            horafin = Integer.parseInt(horaFin.substring(0, 2));
+        }
+        if (horainit > horafin) {
+            errores.add(new ValidationError("horaInicio", "La hora de inicio no es válida para la hora de termino seleccionada."));
+        }
+        if (horainit == horafin) {
+            errores.add(new ValidationError("horaInicio", "La hora de inicio no puede ser la misma que la hora de termino."));
+        }
         return errores.isEmpty() ? null : errores;
     } 
 }

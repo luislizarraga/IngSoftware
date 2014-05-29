@@ -1,0 +1,65 @@
+@(title: String, user: String, modifyProfesor: Form[forms.ModificacionProfesor], profesor: Profesor, cursos: List[Curso], alumnos: Integer)
+
+@extraScripts={}
+
+@lis={
+<li><a href="@(controllers.routes.CProfesor.index())">Inicio</a></li>
+<li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Mis Cursos</a></li>
+<li class="dropdown active">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><a href="@(controllers.routes.CProfesor.obtenerAlumnos())">Alumnos</a></li>
+    <li><a href="@(controllers.routes.CProfesor.obtenerCursos())">Horarios</a></li>
+  </ul>
+</li>
+}
+
+@content={
+<div class="container padContainer">
+    <div class="row">
+      <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+        <h3>Lista de alumnos inscritos :</h3>
+        </div>
+      </div>
+      <div class="row well well-small">
+        <div class="col-md-12">
+        @if(!cursos.isEmpty && alumnos != 0){
+          <table class="table table-condensed ">
+            <thead>
+              <tr>
+              <th>Alumno</th>
+              <th>Nivel</th>
+              <th>Calificación</th>
+              <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            @for(c <- cursos) {
+              @if(c.getAlumno() != null) {
+                <tr>
+                <td>@(c.getAlumno().getNombre()+ " " +c.getAlumno().getApellidoPaterno())</td>
+                <td>@c.getNivel()</td>
+                <td>@c.getCalificacion()</td>
+                <td>
+                  <p>
+                    <a href="@(controllers.routes.CProfesor.verCursoP(c.getId()))" class="btn btn-primary btn-xs" role="button">Ver</a>
+                  </p>
+                </td>
+                </tr>
+              }
+            }
+            </tbody>
+          </table>
+        } else {
+         <h3>¡ Aún no hay alumnos inscritos en tus cursos !</h3>
+        }
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+}
+
+@principalProfesorIH(title, user, modifyProfesor, profesor, content, extraScripts, lis)

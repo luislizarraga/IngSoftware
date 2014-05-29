@@ -32,8 +32,8 @@ profesores:
         apellidoMaterno: Torretes
         correoElectronico: tomas@gmail.com
         contrasena: tomas
-        constancia: public/professordata/1/1.pdf
-        video: public/professordata/1/2.mp4
+        constancia: assets/professordata/1/1.pdf
+        video: assets/professordata/1/2.ogg
 
 
     - !!models.Profesor
@@ -42,8 +42,8 @@ profesores:
         apellidoMaterno: Carranza
         correoElectronico: panza@gmail.com
         contrasena: carranza
-        constancia: public/professordata/1/1.pdf
-        video: public/professordata/1/2.mp4
+        constancia: assets/professordata/1/1.pdf
+        video: assets/professordata/1/2.ogg
 
 
     - !!models.Profesor
@@ -51,8 +51,8 @@ profesores:
         apellidoPaterno: Lizarraga
         correoElectronico: siul.al4@gmail.com
         contrasena: luislizarraga
-        constancia: public/professordata/1/1.pdf
-        video: public/professordata/1/2.mp4
+        constancia: assets/professordata/1/1.pdf
+        video: assets/professordata/1/2.ogg
 
 
     - !!models.Profesor
@@ -60,8 +60,8 @@ profesores:
         apellidoPaterno: Vargas
         correoElectronico: j.vargas.munoz@gmail.com
         contrasena: josevargas
-        constancia: public/professordata/1/1.pdf
-        video: public/professordata/1/2.mp4
+        constancia: assets/professordata/1/1.pdf
+        video: assets/professordata/1/2.ogg
 
 
     - !!models.Profesor
@@ -69,8 +69,8 @@ profesores:
         apellidoPaterno: Trinidad
         correoElectronico: nvth28@gmail.com
         contrasena: normatrinidad
-        constancia: public/professordata/1/1.pdf
-        video: public/professordata/1/2.mp4
+        constancia: assets/professordata/1/1.pdf
+        video: assets/professordata/1/2.ogg
 
 
     - !!models.Profesor
@@ -78,8 +78,8 @@ profesores:
         apellidoPaterno: Mireles
         correoElectronico: lmirelesrivero@gmail.com
         contrasena: lorenamireles
-        constancia: public/professordata/1/1.pdf
-        video: public/professordata/1/2.mp4
+        constancia: assets/professordata/1/1.pdf
+        video: assets/professordata/1/2.ogg
 
 cursos:
 

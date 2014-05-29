@@ -20,6 +20,8 @@ POST    /alumno/agregarCurso          controllers.CAlumno.agregarCursoA()
 POST    /alumno/eliminarCurso         controllers.CAlumno.eliminarCursoA()
 GET     /alumno/verCurso/:id          controllers.CAlumno.verCursoA(id: Integer)
 GET     /alumno/obtenerConstancia     controllers.CAlumno.obtenerConstancia(id: Integer)
+GET     /alumno/obtenerProfesores     controllers.CAlumno.obtenerProfesores()
+GET     /alumno/obtenerHorario        controllers.CAlumno.obtenerHorario()
 
 
 # Páginas de profesores (CProfesor)
@@ -37,8 +39,9 @@ POST    /profesor/eliminarCurso       controllers.CProfesor.eliminarCursoP()
 GET     /profesor/verCurso/:id        controllers.CProfesor.verCursoP(id: Integer)
 GET     /profesor/cursosDisponibles   controllers.CProfesor.obtenerCursos()
 POST    /profesor/autorizarCurso      controllers.CProfesor.autorizarCurso()
-GET     /profesor/modificarCurso/:id controllers.CProfesor.modificarCursoP(id: Integer)
-POST    /profesor/modificarCurso/:id controllers.CProfesor.modificarCursoP(id: Integer)
+GET     /profesor/modificarCurso/:id  controllers.CProfesor.modificarCursoP(id: Integer)
+POST    /profesor/modificarCurso/:id  controllers.CProfesor.modificarCursoP(id: Integer)
+GET     /profesor/obtenerAlumnos      controllers.CProfesor.obtenerAlumnos()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                 controllers.Assets.at(path="/public", file)

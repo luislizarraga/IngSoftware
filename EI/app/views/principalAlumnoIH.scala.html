@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">¡Bienvenido, @user!</a>
+          <a id="bienvenido" class="navbar-brand" href="#">¡Bienvenido, @user!</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -166,6 +166,13 @@
   <script src="/assets/javascripts/bootstrap-3.1.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      var clicks = 0;
+      $('#bienvenido').on('click',function(e){
+        clicks++;
+        if (clicks > 4) {
+          $('#bienvenido').attr('href', '/assets/images/joseSexy2.gif');
+        }
+      });
       $('#modalModification').modal({show:false});
       $('#successRegistration').hide();
       $('#studentModificationSubmit').on('click', function(e){

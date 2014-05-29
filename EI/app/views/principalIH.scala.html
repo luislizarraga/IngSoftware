@@ -115,7 +115,7 @@
   <div class="section profesoresBackground" id="horariosdiv" style="background-image: url('/assets/images/IMG_2872.jpg');">
     @if(!horarios.isEmpty) {
     <div class="row row-fluid">
-      <div class="col-md-7 col-md-offset-2">
+      <div class="col-md-offset-1 col-md-7">
         <div class="panel-group" id="accordion">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -294,6 +294,9 @@
           </div>
         </div>
       </div>
+      <div class="col-md-offset-1 col-md-2 text-center">
+        <h2>Horarios</h2>
+      </div>
     </div>
     } else {
       <h3>!No hay horarios disponibles!</h3>
@@ -335,7 +338,6 @@
           <h4 class="modal-title" id="modalAssortedLabel"></h4>
         </div>
         <div id="modalBodyAssorted" class="modal-body">
-          bla
         </div>
         <div id="footerstockAssorted" class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -720,7 +722,7 @@
                   $('#cursoRegistration').html(jqXHR.responseText);
                   $('#processingRegistration').hide(400);
                   $('#cursoRegistration').show(700);
-                  $('#footerprofessorRegistration').show(700);
+                  $('#footercursoRegistration').show(700);
                 }
               });
             });
@@ -923,6 +925,9 @@
               data: {"idProf":id},
               success: function(data){
                 $('#modalAssorted').modal({show:true});
+                $('#modalAssorted').on('hidden.bs.modal', function (e) {
+                  $('#modalBodyAssorted').html("");
+                });
                 $('#modalBodyAssorted').html(data);
                 $('#modalAssortedLabel').html($('#profNombre').html());
                 $('#profNombre').hide();

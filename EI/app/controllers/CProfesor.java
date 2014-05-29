@@ -76,6 +76,7 @@ public class CProfesor extends Controller {
         }
     } 
 
+
     /**
      * Método que invalida la sesión del usuario
      * author: Jose Vargas
@@ -109,8 +110,6 @@ public class CProfesor extends Controller {
             p.setNombre(mp.nombre);
             p.setApellidoPaterno(mp.apellidoPaterno);
             p.setApellidoMaterno(mp.apellidoMaterno);
-            //p.setCorreoElectronico(mp.correoElectronico);
-            //session("correoElectronico", mp.correoElectronico);
             if (!mp.contrasenaNueva.equals(""))
                 p.setContrasena(mp.contrasenaNueva);
             p.save();
@@ -167,9 +166,6 @@ public class CProfesor extends Controller {
             boolean sePudo = (new File("public/professordata/"+user.getId())).mkdirs();
             File file1 = filePart1.getFile();
             File file2 = filePart2.getFile();
-            //System.out.println(filePart1.getFilename() + filePart2.getFilename());
-            //System.out.println(sePudo);
-            //System.out.println(user.getId());
             File newFile1 = new File("public/professordata/"+user.getId()+"/" + filePart1.getFilename());
             File newFile2 = new File("public/professordata/"+user.getId()+"/" + filePart2.getFilename());
             try {
@@ -182,8 +178,8 @@ public class CProfesor extends Controller {
                 FileUtils.writeByteArrayToFile(newFile1, byteFile1);
                 FileUtils.writeByteArrayToFile(newFile2, byteFile2);
 
-                user.setConstancia("public/professordata/"+user.getId()+"/" + filePart1.getFilename());
-                user.setVideo("public/professordata/"+user.getId()+"/" + filePart2.getFilename());
+                user.setConstancia("assets/professordata/"+user.getId()+"/" + filePart1.getFilename());
+                user.setVideo("assets/professordata/"+user.getId()+"/" + filePart2.getFilename());
                 user.save();
 
                 isFile1.close();
@@ -205,9 +201,15 @@ public class CProfesor extends Controller {
     }
 
 
+    /**
+     * Metodo que crea un curso para el Profesor dado
+     * @author Lorena Mireles
+     * @param iniciado nos permite saber si el profesor se está registrando o ya se había registrado anteriormente
+     * @return un Http response 303 si se pudo agregar el curso sin problemas, un Http response 200 si el metodo del request es GET, 
+     * un Http response 403 si la información no es correcta
+     */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result agregarCursoP(Boolean iniciado) {
-        //System.out.println(iniciado);
         Profesor p = Profesor.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
@@ -255,6 +257,13 @@ public class CProfesor extends Controller {
     }
 
 
+    /**
+     * Metodo que permite descargar los archivos subidos por el Profesor
+     * @author Luis Lizarraga
+     * @param  id   el identificador del Profesor
+     * @param  file el identificador del archivo
+     * @return      un Http response 200 con el archivo para descargar
+     */
     public static Result descargaArchivos(Integer id, int file) {
         Profesor p = Profesor.find.byId(id);
         if (p == null) return redirect(base.routes.CBase.index());
@@ -270,6 +279,11 @@ public class CProfesor extends Controller {
     }
 
 
+    /**
+     * Metodo que permite que un Profesor elimine un Curso suyo
+     * @author Lorena Mireles
+     * @return un Http response 200 s se pudo eliminar el Curso sin problemas
+     */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result eliminarCursoP() {
         DynamicForm data = Form.form().bindFromRequest();
@@ -289,6 +303,12 @@ public class CProfesor extends Controller {
     }
 
 
+    /**
+     * Metodo que permite obtener la informacion de un Curso del Profesor
+     * @author Lorena Mireles
+     * @param  id el identificador del curso
+     * @return    un Http response 200, una página web con la informacion del curso
+     */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result verCursoP(Integer id) {
         Curso c = Curso.find.byId(id);
@@ -306,6 +326,12 @@ public class CProfesor extends Controller {
     }
 
 
+    /**
+     * Metodo que permite modificar la informacion de un Curso del Profesor
+     * @author Jose Vargas
+     * @param  id el identificador del curso
+     * @return    un Http response 200 si se pudo modificar correctamente la informacion, un Http response 403 si no
+     */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result modificarCursoP(Integer id) {
         Curso c = Curso.find.byId(id);
@@ -319,29 +345,41 @@ public class CProfesor extends Controller {
         modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
                                                                                     p.apellidoPaterno,
                                                                                     p.apellidoMaterno));
-        //System.out.println(request().method());
         if (request().method().equals("GET")) {
             Form<ModificarCurso> cursoFormulario = Form.form(ModificarCurso.class);
             cursoFormulario.fill(new ModificarCurso(c.calificacion, c.notas));
             return ok (views.html.profesor.profesorModificaCursoIH.render("Ver Curso", user, modificacionFormulario, p, c, cursoFormulario));
         } else {
             Form<ModificarCurso> cursoFormulario = Form.form(ModificarCurso.class).bindFromRequest();
-            //System.out.println("weeee");
             if (cursoFormulario.hasErrors()) {
                 return badRequest(views.html.profesor.profesorModificaCursoIH.render("Ver Curso", user, modificacionFormulario, p, c, cursoFormulario));
             } else {
                 ModificarCurso mc = cursoFormulario.get();
                 Integer cali = Integer.parseInt(mc.calificacion);
                 c.setCalificacion(cali);
-                if (cali >= 6) c.setAprobado(true);
+                if (cali >= 6) {
+                    c.setAprobado(true);
+                    Alumno a = c.getAlumno();
+                    MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
+                    mail.setSubject("Curso calificado!");
+                    mail.setRecipient(a.getNombre() + " " + a.getApellidoPaterno() + " <" + a.getCorreoElectronico() + "> ");
+                    mail.setFrom("Escuela de Inglés <noreply@escueladeingles.com>");
+                    String htmls = views.html.profesor.profesorCursoAprobadoCorreoIH.render(a,p,c).toString();
+                    mail.sendHtml(htmls);
+                }
                 c.setNotas(mc.notas);
                 c.save();
             }
         }
-        return ok(views.html.profesor.profesorMuestraCursoIH.render("Ver Curso", user, modificacionFormulario, p, c));
+        return ok(views.html.profesor.profesorMuestraCursoIH.render("Modificar Curso", user, modificacionFormulario, p, c));
     }
 
 
+    /**
+     * Metodo que permite que un Profesor autorize un curso
+     * @author Lorena Mireles
+     * @return un Http response 200 si se pudo autorizar el Curso sin problemas
+     */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result autorizarCurso() {
         DynamicForm data = Form.form().bindFromRequest();
@@ -355,17 +393,43 @@ public class CProfesor extends Controller {
         mail.setRecipient(a.getNombre() + " " + a.getApellidoPaterno() + " <" + a.getCorreoElectronico() + "> ");
         mail.setFrom("Escuela de Inglés <noreply@escueladeingles.com>");
         String htmls = views.html.profesor.profesorCursoAutorizadoCorreoIH.render(a,p,c).toString();
-        mail.sendHtml("htmls");
+        mail.sendHtml(htmls);
         return ok();
     }
 
 
+    /**
+     * Metodo que permite obtener los Alumnos de un Profesor
+     * @author Lorena Mireles
+     * @return un Http response 200, una pagina web con la informacion de los alumnos desplegada
+     */
     @Security.Authenticated(SecuredProfesor.class)
-    public static Result registrarCalificacion() {
-        return ok();
+    public static Result obtenerAlumnos() {
+        Profesor p = Profesor.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        String user                                       = p.nombre + " " + p.apellidoPaterno;
+        Form<ModificacionProfesor> modificacionFormulario = Form.form(ModificacionProfesor.class);
+        modificacionFormulario = modificacionFormulario.fill(new ModificacionProfesor(p.nombre,
+                                                                                    p.apellidoPaterno,
+                                                                                    p.apellidoMaterno));
+        List<Curso> cursos = p.getCursos();
+        Iterator<Curso> it = cursos.iterator();
+        int alumnos = 0;
+        while (it.hasNext()) {
+            if(it.next().getAlumno() != null) alumnos++;
+        }
+        return ok(views.html.profesor.profesorMuestraAlumnosIH.render("Alumnos",user,modificacionFormulario,p, cursos, alumnos));
     }
 
 
+    /**
+     * Metodo que permite obtener los Cursos de un Profesor
+     * @author Lorena Mireles
+     * @return un Http response 200, una pagina web con los cursos desplegados
+     */
     @Security.Authenticated(SecuredProfesor.class)
     public static Result obtenerCursos() {
         Profesor p = Profesor.find.where()
@@ -379,13 +443,6 @@ public class CProfesor extends Controller {
                                                                                     p.apellidoPaterno,
                                                                                     p.apellidoMaterno));
         List<Curso> cursos     = p.getCursos();
-        System.out.println("saliendo de obtenerCursos");
-        return ok(views.html.profesor.profesorListaCursosIH.render("Cursos Disponibles",user,modificacionFormulario,p, cursos));
-    }
-
-
-    @Security.Authenticated(SecuredProfesor.class)
-    public static Result obtenerHorario() {
-        return ok();
+        return ok(views.html.profesor.profesorListaCursosIH.render("Cursos Registrados",user,modificacionFormulario,p, cursos));
     }
 }

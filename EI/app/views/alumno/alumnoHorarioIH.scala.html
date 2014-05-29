@@ -1,27 +1,11 @@
 @(title: String, user: String, modifyAlumno: Form[forms.ModificacionAlumno], alumno: Alumno, cursos: List[Curso])
 
-@extraScripts = {
-  $('.register').each(function(){
-      var id = $(this).attr('data-pk');
-      //console.log(id);
-      $(this).on('click', function(e){
-        e.preventDefault();
-        $.ajax({
-          url: '@(controllers.routes.CAlumno.agregarCursoA())',
-          type: 'POST',
-          data: {"idCurso":id},
-          success: function(data){
-            window.location.replace('@(controllers.routes.CAlumno.index())');
-          }
-        });
-      });
-    });
-}
+@extraScripts={}
 
 @lis={
   <li><a href="@(controllers.routes.CAlumno.index())">Inicio</a></li>
-  <li><a href="@(controllers.routes.CAlumno.obtenerHorario())">Mi Horario</a></li>
-  <li class="dropdown active">
+  <li class="active"><a href="@(controllers.routes.CAlumno.obtenerHorario())">Mi Horario</a></li>
+  <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cursos <b class="caret"></b></a>
     <ul class="dropdown-menu">
       <li><a href="@(controllers.routes.CAlumno.obtenerProfesores())">Mis Profesores</a></li>
@@ -30,17 +14,13 @@
   </li>
 }
 
-@content = {
-  <div class="container padContainer">  
-    <!-- <div class="row">
-      <h1>Éxito</h1>
-      <h2>Hola @user !</h2>
-    </div> -->
+@content={
+<div class="container padContainer">
     <div class="row">
       <div class="col-md-12">
       <div class="row">
         <div class="col-md-12">
-        <h3>Lista de cursos disponibles :</h3>
+        <h3>Lista de cursos inscritos :</h3>
         </div>
       </div>
       <div class="row well well-small">
@@ -49,31 +29,33 @@
           <table class="table table-condensed ">
             <thead>
               <tr>
-              <th>Nivel</th>
               <th>Día</th>
               <th>Hora</th>
               <th>Profesor</th>
+              <th>Nivel</th>
               <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
             @for(c <- cursos) {
-              @if(c.getAlumno() == null) {
-                <tr>
-                <td>@c.getNivel()</td>
+              <tr>
                 @for(h <- c.getHorarios()) {
-                  <td>@h.getDia()</td>
-                  <td>@h.getHoraInicio() - @h.getHoraFin()</td>
+                    <td>@h.getDia()</td>
+                    <td>@h.getHoraInicio() - @h.getHoraFin()</td>
                 }
                 <td>@(c.getProfesor().getNombre()+ " " +c.getProfesor().getApellidoPaterno())</td>
-                <td><button data-pk="@c.getId()" class="btn btn-primary btn-xs register" role="button">Registrar curso</button></td>
-                </tr>
-              }
+                <td>@c.getNivel()</td>
+                <td>
+                  <p>
+                    <a href="@(controllers.routes.CAlumno.verCursoA(c.getId()))" class="btn btn-primary btn-xs" role="button">Ver</a>
+                  </p>
+                </td>
+              </tr>
             }
             </tbody>
           </table>
         } else {
-         <h3>¡ Aún no hay cursos abiertos!</h3>
+         <h3>¡ Aún no te has inscrito en algún curso !</h3>
         }
         </div>
       </div>
@@ -82,4 +64,4 @@
   </div>
 }
 
-@principalAlumnoIH(title, user, modifyAlumno,alumno, content, extraScripts, lis)
+@principalAlumnoIH(title, user, modifyAlumno, alumno, content, extraScripts, lis)

@@ -80,7 +80,6 @@ public class RegistrarPTest extends WithApplication {
         assertEquals(200, status(result));
         a = Profesor.find.where().eq("correoElectronico", "maria1@gmail.com").findUnique();
         assert(a != null);
-        System.out.println(a + " ");
         assertEquals(a.getNombre(), "Maria");
         assertEquals(a.getApellidoPaterno(), "Toyos");
         assert(a.getApellidoMaterno() == null);

@@ -37,14 +37,13 @@ public class CAlumno extends Controller {
                                                                                     a.apellidoPaterno,
                                                                                     a.apellidoMaterno));
         List<Curso> cursos = a.getCursos();
-        System.out.println(cursos);
         return ok(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a, cursos));
     }
 
 
     /**
      * Método que verifica que la contrasña dada sea la misma que el usuario dado y crea una sesion con el usuario
-     * author: Jose Vargas
+     * @author Jose Vargas
      * @return un Http response 200 si se pudo iniciar sesión, 401 si no correspondió la contraseña con el usuario
      */
     public static Result iniciarSesionA() {
@@ -57,12 +56,11 @@ public class CAlumno extends Controller {
             session("usuario", "alumno");                                               // Se agrega el tipo de usuario a la sesion
             Alumno a = Alumno.find.where().eq("correoElectronico", formularioIniciar.get().correoElectronico).findUnique();
             if (a.getContrasena().equals(formularioIniciar.get().contrasena)) {
-                //return redirect(routes.CAlumno.index());
                 response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
                 response().setHeader("Pragma","no-cache");  
                 return ok();
             } else {
-                return ok("noup");
+                return ok();
             }
         }
     } 
@@ -70,7 +68,7 @@ public class CAlumno extends Controller {
 
     /**
      * Método que invalida la sesión del usuario
-     * author: Jose Vargas
+     * @author Jose Vargas
      * @return un http response 303, redireccionando a la página principal del servidor
      */
     @Security.Authenticated(SecuredAlumno.class)
@@ -84,7 +82,7 @@ public class CAlumno extends Controller {
 
     /**
      * Método que modifica la información en la base de datos de un usuario(Alumno) dado.
-     * author: Lorena Mireles
+     * @author Lorena Mireles
      * @return un Http response 200 si se pudo modificar la información o un Http response 403 si no pasó la verificación
      */
     @Security.Authenticated(SecuredAlumno.class)
@@ -95,15 +93,12 @@ public class CAlumno extends Controller {
         Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class).bindFromRequest();
         if (modificacionFormulario.hasErrors()) {
             String user = a.nombre + " " + a.apellidoPaterno;
-            //return badRequest(views.html.alumno.alumnoIniciadoIH.render("Página Principal", user, modificacionFormulario, a));
             return badRequest(views.html.alumno.alumnoModificarDatosFormularioIH.render(modificacionFormulario,a));
         } else {
             ModificacionAlumno ma = modificacionFormulario.get();
             a.setNombre(ma.nombre);
             a.setApellidoPaterno(ma.apellidoPaterno);
             a.setApellidoMaterno(ma.apellidoMaterno);
-            //a.setCorreoElectronico(ma.correoElectronico);
-            //session("correoElectronico", ma.correoElectronico);
             if (!ma.contrasenaNueva.equals(""))
                 a.setContrasena(ma.contrasenaNueva);
             a.save();
@@ -120,7 +115,7 @@ public class CAlumno extends Controller {
 
     /**
      * Método que elimina a un usuario(Alumno) de la base de datos
-     * author: Lorena Mireles
+     * @author Lorena Mireles
      * @return un Http response 303 que redirecciona a la página principal
      */
     @Security.Authenticated(SecuredAlumno.class)
@@ -138,7 +133,7 @@ public class CAlumno extends Controller {
 
     /**
      * Método que registra un alumno dado un formulario
-     * author: Norma Trinidad
+     * @author Norma Trinidad
      * @return un Http Response 200 si no hubo errores de verificacion, Http response 401 si los hubo
      */
     public static Result registrarA() {
@@ -159,18 +154,21 @@ public class CAlumno extends Controller {
     }
 
 
+    /**
+     * Metodo que agrega a un Alumno a un Curso
+     * @author Luis Lizarraga
+     * @return un Http response 200 si se pudo agregar el curso sin problemas
+     */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result agregarCursoA() {
         DynamicForm data = Form.form().bindFromRequest();
         Curso c = Curso.find.byId(Integer.parseInt(data.get("idCurso")));
-        //System.out.println(c);
         Alumno a    = Alumno.find.where()
                             .eq("correoElectronico", session().get("correoElectronico"))
                             .findUnique();
         c.setAlumno(a);
         c.save();
         Profesor p = c.getProfesor();
-        //System.out.println(a.getCursos());
         MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
         mail.setSubject("Alumno registrado!");
         mail.setRecipient(p.getNombre() + " " + p.getApellidoPaterno() + " <" + p.getCorreoElectronico() + "> ");
@@ -183,6 +181,11 @@ public class CAlumno extends Controller {
     }
 
 
+    /**
+     * Metodo que elimina a un Alumno de un Curso
+     * @author Luis Lizarraga
+     * @return un Http response 200 si se pudo eliminar el Alumno del Curso sin problemas
+     */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result eliminarCursoA() {
         DynamicForm data = Form.form().bindFromRequest();
@@ -203,6 +206,12 @@ public class CAlumno extends Controller {
     }
 
 
+    /**
+     * Metodo que permite ver la informacion de un Curso
+     * @author Norma Trinidad
+     * @param  id el identificador del Curso
+     * @return    un Http response 200, una página web con la informacion del curso
+     */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result verCursoA(Integer id) {
         Curso c = Curso.find.byId(id);
@@ -220,6 +229,12 @@ public class CAlumno extends Controller {
     }
 
 
+    /**
+     * Metodo que genera y permite descargar la constancia del Alumno
+     * @author Norma Trinidad
+     * @param  id el identificador del Curso
+     * @return    un Http response 200 con la constancia en formato PDF
+     */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result obtenerConstancia(Integer id) {
         Curso c = Curso.find.byId(id);
@@ -228,13 +243,17 @@ public class CAlumno extends Controller {
                             .findUnique();
         response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
         response().setHeader("Pragma","no-cache");
-        //System.out.println(PDF.toBytes(views.html.alumno.alumnoCorreoIH.render(p,a)));
         response().setHeader("Content-Disposition", "attachment; filename=Constancia" + a.getNombre() + a.getApellidoPaterno());
         return ok(PDF.toBytes(views.html.alumno.alumnoConstanciaIH.render(a, c), "hola")).as("application/pdf");
         //return PDF.ok(views.html.alumno.alumnoCorreoIH.render(p,a));
     }
 
 
+    /**
+     * Metodo que obtiene y despliega los cursos de un Alumno
+     * @author Luis Lizarraga
+     * @return un Http response 200, una página web con los cursos del Alumno
+     */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result obtenerCursos() {
         Alumno a    = Alumno.find.where()
@@ -252,8 +271,46 @@ public class CAlumno extends Controller {
     }
 
 
+    /**
+     * Metodo que obtiene el horario de un Alumno
+     * @author Luis Lizarraga
+     * @return un Http response 200, una página web con el horario del Alumno
+     */
     @Security.Authenticated(SecuredAlumno.class)
     public static Result obtenerHorario() {
-        return ok();
+        Alumno a    = Alumno.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        String user                                     = a.nombre + " " + a.apellidoPaterno;
+        Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
+        modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
+                                                                                    a.apellidoPaterno,
+                                                                                    a.apellidoMaterno));
+        List<Curso> cursos     = a.getCursos();
+        return ok(views.html.alumno.alumnoHorarioIH.render("Profesores",user,modificacionFormulario,a, cursos));
+    }
+
+
+    /**
+     * Metodo que permite obtener y desplegar los profesores de un Alumno
+     * @author Luis Lizarraga
+     * @return un Http response 200, una página web con los profesores del Alumno
+     */
+    @Security.Authenticated(SecuredAlumno.class)
+    public static Result obtenerProfesores() {
+        Alumno a    = Alumno.find.where()
+                            .eq("correoElectronico", session().get("correoElectronico"))
+                            .findUnique();
+        response().setHeader("Cache-Control","no-store, no-cache, must-revalidate");
+        response().setHeader("Pragma","no-cache");
+        String user                                     = a.nombre + " " + a.apellidoPaterno;
+        Form<ModificacionAlumno> modificacionFormulario = Form.form(ModificacionAlumno.class);
+        modificacionFormulario = modificacionFormulario.fill(new ModificacionAlumno(a.nombre,
+                                                                                    a.apellidoPaterno,
+                                                                                    a.apellidoMaterno));
+        List<Curso> cursos     = a.getCursos();
+        return ok(views.html.alumno.alumnoMuestraProfesoresIH.render("Profesores",user,modificacionFormulario,a, cursos));
     }
 }
